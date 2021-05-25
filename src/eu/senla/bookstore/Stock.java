@@ -8,13 +8,6 @@ public class Stock {
 
     ArrayList<Book> stock = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "Stock{" +
-                "stock=" + stock +
-                '}';
-    }
-
     public void addBook(String name, String edition, double price, boolean isInStock) {
         Book book = new Book(name, edition, price, isInStock);
         stock.add(book);
@@ -28,11 +21,21 @@ public class Stock {
             }
         }
     }
-    public void changeBookStatus(String name){
-        for (Book book:stock
-             ) {
-            if(book.getName().equals(name)){
+
+    public void changeBookStatus(String name) {
+        for (Book book : stock
+        ) {
+            if (book.getName().equals(name)) {
                 book.setStatus(!book.getStatus());
+            }
+        }
+    }
+
+    public void changeBookStatusToFalse(String name) {
+        for (Book book : stock
+        ) {
+            if (book.getName().equals(name)) {
+                book.setStatus(false);
             }
         }
     }
