@@ -1,6 +1,8 @@
 package eu.senla.bookstore;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static java.util.Comparator.comparing;
 
@@ -8,8 +10,8 @@ public class Stock {
 
     ArrayList<Book> stock = new ArrayList<>();
 
-    public void addBook(String name, String edition, double price, boolean isInStock) {
-        Book book = new Book(name, edition, price, isInStock);
+    public void addBook(String name, String edition, String description, double price, LocalDate incDate, boolean isInStock) {
+        Book book = new Book(name, edition, description, price, incDate, isInStock);
         stock.add(book);
     }
 
@@ -23,6 +25,7 @@ public class Stock {
     }
 
     public void changeBookStatus(String name) {
+
         for (Book book : stock
         ) {
             if (book.getName().equals(name)) {

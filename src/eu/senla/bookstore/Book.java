@@ -1,19 +1,52 @@
 package eu.senla.bookstore;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.Objects;
 
 public class Book {
     private String name;
     private String edition;
     private double price;
+    private String description;
+    private LocalDate incomingDate;
+
+
+    public LocalDate getIncomingDate() {
+        return incomingDate;
+    }
+
+    public void setIncomingDate(LocalDate incomingDate) {
+        this.incomingDate = incomingDate;
+    }
+
     private boolean status;
 
-    public Book(String name, String edition, double price, boolean isInStock) {
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Book(String name, String edition, String description, double price, LocalDate incomingDate, boolean status) {
         this.name = name;
         this.edition = edition;
         this.price = price;
-        this.status = isInStock;
+        this.description = description;
+        this.incomingDate = incomingDate;
+        this.status = status;
     }
+
+//    public Book(String name, String edition, String description, double price, boolean isInStock) {
+//        this.name = name;
+//        this.edition = edition;
+//        this.price = price;
+//        this.status = isInStock;
+//        this.description=description;
+//    }
 
     public Book() {
     }
@@ -49,21 +82,24 @@ public class Book {
     public void setStatus(boolean status) {
         this.status = status;
     }
-    public String inStock(){
 
-        if(status==true){
+    private String inStock() {
+
+        if (status) {
             return "In stock";
-        }
-        else return "Out of stock";
+        } else return "Out of stock";
     }
+
     @Override
     public String toString() {
 
         return "Book{" +
-                "name='" + name + '\'' +
-                ", edition='" + edition + '\'' +
-                ", price=" + price +
-                ", availability=" + inStock() +
+                "name: '" + name + '\'' +
+                ", edition: '" + edition + '\'' +
+                ", description: '" + description + '\'' +
+                ", price = " + price +'\'' +
+                ", incoming date: " + incomingDate +
+                ", availability: " + inStock() +
                 '}';
     }
 
