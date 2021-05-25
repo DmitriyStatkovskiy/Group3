@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import static java.util.Comparator.comparing;
 
-public class Stock {
+public class StockService {
 
     ArrayList<Book> stock = new ArrayList<>();
 

@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
-        Stock bookStore = new Stock();
+        StockService bookStore = new StockService();
         OrderService orderList = new OrderService();
 
         bookStore.addBook("c", "ewe", "22", 55.2, LocalDate.of(2020,12,3), true);
