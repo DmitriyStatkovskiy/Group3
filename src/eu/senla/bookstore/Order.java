@@ -1,6 +1,7 @@
 package eu.senla.bookstore;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 
 public class Order { //66
@@ -26,6 +27,9 @@ public class Order { //66
 
         if (orderFulfillmentDate==null) {
             return "In progress";
+        }
+        if(orderFulfillmentDate.equals(LocalDate.of(1970, 1, 1))){
+            return "Canceled";
         }
         return orderFulfillmentDate.toString();
     }
@@ -80,5 +84,23 @@ public class Order { //66
 
     public void setOrderFulfillmentDate(LocalDate orderFulfillmentDate) {
         this.orderFulfillmentDate = orderFulfillmentDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(customerName, order.customerName) &&
+                Objects.equals(getOrderNumber(), order.getOrderNumber()) &&
+                Objects.equals(getBookName(), order.getBookName()) &&
+                Objects.equals(getOrderStatus(), order.getOrderStatus()) &&
+                Objects.equals(getOrderCreationDate(), order.getOrderCreationDate()) &&
+                Objects.equals(getOrderFulfillmentDate(), order.getOrderFulfillmentDate());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(customerName, getOrderNumber(), getBookName(), getOrderStatus(), getOrderCreationDate(), getOrderFulfillmentDate());
     }
 }

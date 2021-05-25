@@ -42,6 +42,8 @@ public class Main {
         }
 
         orderList.changeOrderStatus("1","completed");
+        orderList.changeOrderStatus("2","canceled");
+        orderList.changeOrderStatus("22","canceled");
 
         for (Order order:orderList.orderArrayList
         ) {
