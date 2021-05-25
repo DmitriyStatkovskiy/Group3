@@ -14,12 +14,13 @@ public class OrderService {
     public void changeOrderStatus(String orderNumber, String status) {
         for (Order order : orderArrayList
         ) {
-            if (orderNumber.equals(order.getOrderNumber())) {
+            if (orderNumber.equals(order.getOrderNumber())&&status.equals("completed")) {
                 order.setOrderStatus(status);
                 order.setOrderFulfillmentDate(LocalDate.now());
             }
-
-            else System.out.println("order was not found");
+            else {
+                order.setOrderStatus(status);
+            }
         }
     }
 }

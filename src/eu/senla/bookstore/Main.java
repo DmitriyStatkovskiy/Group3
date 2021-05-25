@@ -41,7 +41,7 @@ public class Main {
             System.out.println(order);
         }
 
-        orderList.changeOrderStatus("2","completed");
+        orderList.changeOrderStatus("1","completed");
 
         for (Order order:orderList.orderArrayList
         ) {

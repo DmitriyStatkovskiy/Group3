@@ -22,6 +22,13 @@ public class Order { //66
 
     public Order() {
     }
+    private String fulfillmentDate() {
+
+        if (orderFulfillmentDate==null) {
+            return "In progress";
+        }
+        return orderFulfillmentDate.toString();
+    }
 
     @Override
     public String toString() {
@@ -31,7 +38,7 @@ public class Order { //66
                 ", bookName='" + bookName + '\'' +
                 ", orderStatus='" + orderStatus + '\'' +
                 ", orderCreationDate=" + orderCreationDate +
-                ", orderFulfillmentDate=" + orderFulfillmentDate +
+                ", orderFulfillmentDate=" + fulfillmentDate() +
                 '}';
     }
 
