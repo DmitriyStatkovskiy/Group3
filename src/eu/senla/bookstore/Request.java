@@ -1,11 +1,12 @@
 package eu.senla.bookstore;
 
+import java.util.Objects;
+
 public class Request {
-    private String requestStatus;
+    private String requestStatus = "new";
     private String requestedBookName;
 
-    public Request(String requestStatus, String requestedBookName) {
-        this.requestStatus = requestStatus;
+    public Request(String requestedBookName) {
         this.requestedBookName = requestedBookName;
     }
 
@@ -28,4 +29,17 @@ public class Request {
         this.requestedBookName = requestedBookName;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Request request = (Request) o;
+        return Objects.equals(getRequestStatus(), request.getRequestStatus()) &&
+                Objects.equals(getRequestedBookName(), request.getRequestedBookName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getRequestStatus(), getRequestedBookName());
+    }
 }
