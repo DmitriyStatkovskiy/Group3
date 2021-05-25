@@ -6,13 +6,13 @@ public class Book {
     private String name;
     private String edition;
     private double price;
-    private boolean isInStock;
+    private boolean status;
 
     public Book(String name, String edition, double price, boolean isInStock) {
         this.name = name;
         this.edition = edition;
         this.price = price;
-        this.isInStock = isInStock;
+        this.status = isInStock;
     }
 
     public Book() {
@@ -42,21 +42,28 @@ public class Book {
         this.price = price;
     }
 
-    public boolean isInStock() {
-        return isInStock;
+    public boolean getStatus() {
+        return status;
     }
 
-    public void setInStock(boolean inStock) {
-        isInStock = inStock;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
+    public String inStock(){
 
+        if(status==true){
+            return "In stock";
+        }
+        else return "Out of stock";
+    }
     @Override
     public String toString() {
+
         return "Book{" +
                 "name='" + name + '\'' +
                 ", edition='" + edition + '\'' +
                 ", price=" + price +
-                ", isInStock=" + isInStock +
+                ", availability=" + inStock() +
                 '}';
     }
 
@@ -66,13 +73,13 @@ public class Book {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
         return Double.compare(book.price, price) == 0 &&
-                isInStock == book.isInStock &&
+                status == book.status &&
                 Objects.equals(name, book.name) &&
                 Objects.equals(edition, book.edition);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, edition, price, isInStock);
+        return Objects.hash(name, edition, price, status);
     }
 }
