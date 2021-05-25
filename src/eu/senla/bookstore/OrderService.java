@@ -20,7 +20,7 @@ public class OrderService {
             }
             if (orderNumber.equals(order.getOrderNumber())&&status.equals("canceled")) {
                 order.setOrderStatus(status);
-                order.setOrderFulfillmentDate(LocalDate.of(1970,1,1));
+                order.setOrderFulfillmentDate(LocalDate.of(1970,1,1)); //used in orderToString
             }
 
         }
