@@ -12,6 +12,7 @@ public class StockService {
     public void addBook(String name, String edition, String description, double price, LocalDate incDate, boolean isInStock) {
         Book book = new Book(name, edition, description, price, incDate, isInStock);
         stock.add(book);
+
     }
 
     public void changeBookName(String name, String newName) {

@@ -9,6 +9,7 @@ public class OrderService {
     public void addOrder(String customerName, String orderNumber, String bookName, LocalDate orderCreationDate) {
         Order order = new Order(customerName, orderNumber, bookName, "new", orderCreationDate);
         orderArrayList.add(order);
+
     }
 
     public void changeOrderStatus(String orderNumber, String status) {

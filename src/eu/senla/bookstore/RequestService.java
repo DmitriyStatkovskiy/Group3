@@ -13,7 +13,7 @@ public class RequestService {
         for (Request request : requests
         ) {
             if (request.getRequestedBookName().equals(bookName)) {
-                request.setRequestStatus("completed");
+                request.setRequestStatus("closed");
             }
         }
     }
