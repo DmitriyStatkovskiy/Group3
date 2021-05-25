@@ -54,6 +54,7 @@ public class Main {
         bookStore.stock.addBook("c", "ewe", "22", 55.2, LocalDate.of(2020,12,3), true);
         bookStore.requestList.addRequest("a");
         bookStore.orderList.addOrder("Blabla","1","a",LocalDate.now());
-
+        bookStore.requestList.addSmth(new Request("sad"));
+        bookStore.stock.printStock();
     }
 }

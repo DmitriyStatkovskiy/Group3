@@ -23,7 +23,12 @@ public class OrderService {
                 order.setOrderStatus(status);
                 order.setOrderFulfillmentDate(LocalDate.of(1970,1,1)); //used in orderToString
             }
-
+        }
+    }
+    public void printOrders(){
+        for (Order order:orderArrayList
+        ) {
+            System.out.println(order);
         }
     }
 }

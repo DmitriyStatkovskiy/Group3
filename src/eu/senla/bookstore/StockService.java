@@ -7,16 +7,16 @@ import static java.util.Comparator.comparing;
 
 public class StockService {
 
-    ArrayList<Book> stock = new ArrayList<>();
+    ArrayList<Book> stockList = new ArrayList<>();
 
     public void addBook(String name, String edition, String description, double price, LocalDate incDate, boolean isInStock) {
         Book book = new Book(name, edition, description, price, incDate, isInStock);
-        stock.add(book);
+        stockList.add(book);
 
     }
 
     public void changeBookName(String name, String newName) {
-        for (Book book : stock
+        for (Book book : stockList
         ) {
             if (book.getName().equals(name)) {
                 book.setName(newName);
@@ -26,7 +26,7 @@ public class StockService {
 
     public void changeBookStatus(String name) {
 
-        for (Book book : stock
+        for (Book book : stockList
         ) {
             if (book.getName().equals(name)) {
                 book.setStatus(!book.getStatus());
@@ -35,7 +35,7 @@ public class StockService {
     }
 
     public void changeBookStatusToFalse(String name) {
-        for (Book book : stock
+        for (Book book : stockList
         ) {
             if (book.getName().equals(name)) {
                 book.setStatus(false);
@@ -44,19 +44,26 @@ public class StockService {
     }
 
     public void sortByName() {
-        stock.sort(comparing(Book::getName));
+        stockList.sort(comparing(Book::getName));
     }
 
     public void sortByEdition() {
-        stock.sort(comparing(Book::getEdition));
+        stockList.sort(comparing(Book::getEdition));
     }
 
     public void sortByPrice() {
-        stock.sort(comparing(Book::getPrice));
+        stockList.sort(comparing(Book::getPrice));
     }
 
     public void sortByIsInStock() {
-        stock.sort(comparing(Book::getStatus));
+        stockList.sort(comparing(Book::getStatus));
+    }
+
+    public void printStock(){
+        for (Book book: stockList
+             ) {
+            System.out.println(book);
+        }
     }
 
 }
