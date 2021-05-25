@@ -40,14 +40,6 @@ public class Book {
         this.status = status;
     }
 
-//    public Book(String name, String edition, String description, double price, boolean isInStock) {
-//        this.name = name;
-//        this.edition = edition;
-//        this.price = price;
-//        this.status = isInStock;
-//        this.description=description;
-//    }
-
     public Book() {
     }
 
