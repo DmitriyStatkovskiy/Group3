@@ -8,16 +8,21 @@ public class Main {
         bookStore.addBook("a", "ew322e", 54, true);
 
         for (Book s : bookStore.stock
-        ) {            System.out.println(s);        }
+        ) {
+            System.out.println(s);
+        }
 
         bookStore.sortByName();
 
 
         for (Book s : bookStore.stock
-        ) {            System.out.println(s);        }
+        ) {
+            System.out.println(s);
+        }
 
         bookStore.changeBookStatus("c");
-        for (Book s : bookStore.stock        ) {            System.out.println(s);
+        for (Book s : bookStore.stock) {
+            System.out.println(s);
         }
     }
 }
