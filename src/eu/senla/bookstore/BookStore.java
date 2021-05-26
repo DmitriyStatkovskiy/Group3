@@ -15,18 +15,25 @@ public class BookStore {
         }
     }
 
-    public void addNewOrder(String customerName, String orderID, String bookName, LocalDate date){
-        orders.addOrder(customerName,orderID,bookName,date);
-        if(stock.getRequestedBookName(bookName)){
-            requests.addRequest(orderID,bookName);
+    public void addNewOrder(String customerName, String orderID, String bookName, LocalDate date) {
+        orders.addOrder(customerName, orderID, bookName, date);
+        if (stock.getRequestedBookName(bookName)) {
+            requests.addRequest(orderID, bookName);
         }
     }
-    public void completeOrder(String orderId){
+
+    public void completeOrder(String orderId) {
         String bookName = orders.getBookName(orderId);
 
         if (orders.getOrderId(orderId).equals(orderId)) {
-            orders.changeOrderStatus(orderId,"completed");
+            orders.changeOrderStatus(orderId, "completed");
             stock.changeBookStatus(bookName);
+        }
+    }
+
+    public void cancelOrder(String orderId) {
+        if (orders.getOrderId(orderId).equals(orderId)) {
+            orders.changeOrderStatus(orderId, "canceled");
         }
     }
 

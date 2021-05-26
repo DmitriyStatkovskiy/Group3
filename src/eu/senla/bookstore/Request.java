@@ -5,7 +5,7 @@ import java.util.Objects;
 
 
 public class Request {
-    private String requestStatus = "new";
+    private String requestStatus = "open";
     private String requestedBookName;
     private String requestId;
 
