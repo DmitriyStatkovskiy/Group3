@@ -11,6 +11,24 @@ public class OrderService {
         orders.add(order);
 
     }
+    public String getOrderId(String orderId){
+        for (Order order :
+                orders) {
+            if(orderId.equals(order.getOrderNumber())){
+                return order.getOrderNumber();
+            }
+        }
+        return "order not found";
+    }
+    public String getBookName(String orderId){
+        for (Order order :
+                orders) {
+            if(orderId.equals(order.getOrderNumber())){
+                return order.getBookName();
+            }
+        }
+        return "book not found";
+    }
 
     public void changeOrderStatus(String orderNumber, String status) {
         for (Order order : orders

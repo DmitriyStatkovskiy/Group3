@@ -21,5 +21,13 @@ public class BookStore {
             requests.addRequest(orderID,bookName);
         }
     }
+    public void completeOrder(String orderId){
+        String bookName = orders.getBookName(orderId);
+
+        if (orders.getOrderId(orderId).equals(orderId)) {
+            orders.changeOrderStatus(orderId,"completed");
+            stock.changeBookStatus(bookName);
+        }
+    }
 
 }
