@@ -3,6 +3,8 @@ package eu.senla.bookstore;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import static java.util.Comparator.comparing;
+
 public class OrderService {
     ArrayList<Order> orders = new ArrayList<>();
 
@@ -49,5 +51,20 @@ public class OrderService {
             System.out.println(order);
         }
         System.out.println();
+    }
+    public void sortByName() {
+        orders.sort(comparing(Order::getBookName));
+    }
+    public void sortByOrderNumber() {
+        orders.sort(comparing(Order::getOrderNumber));
+    }
+    public void sortByOrderCreationDate() {
+        orders.sort(comparing(Order::getOrderCreationDate));
+    }
+    public void sortByOrderFulfullmentDate() {
+        orders.sort(comparing(Order::getOrderFulfillmentDate));
+    }
+    public void sortByOrderStatus() {
+        orders.sort(comparing(Order::getOrderStatus));
     }
 }

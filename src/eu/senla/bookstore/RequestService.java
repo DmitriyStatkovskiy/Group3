@@ -4,6 +4,8 @@ import eu.senla.bookstore.interfaces.DaoApi;
 
 import java.util.ArrayList;
 
+import static java.util.Comparator.comparing;
+
 //определиться с тем, какой из методов add лучше
 
 public class RequestService implements DaoApi<Request> {
@@ -43,6 +45,16 @@ public class RequestService implements DaoApi<Request> {
         }
         System.out.println();
     }
+    public void sortByName() {
+        requests.sort(comparing(Request::getRequestedBookName));
+    }
 
+    public void sortById() {
+        requests.sort(comparing(Request::getRequestId));
+    }
+
+    public void sortByStatus() {
+        requests.sort(comparing(Request::getRequestStatus));
+    }
 
 }
