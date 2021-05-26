@@ -21,6 +21,16 @@ public class RequestService implements DaoApi<Request> {
         return false;
     }
 
+    public boolean getRequestStatus() {
+        for (Request req :
+                requests) {
+            if (req.getRequestStatus().equals("closed")) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void addRequest(String id, String requestedBookName) {
         requests.add(new Request(id, requestedBookName));
     }

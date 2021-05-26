@@ -27,7 +27,7 @@ public class BookStore {
     public void completeOrder(String orderId) {
         String bookName = orders.getBookName(orderId);
 
-        if (orders.getOrderId(orderId).equals(orderId)) {
+        if (orders.getOrderId(orderId).equals(orderId)&&requests.getRequestStatus()) {
             orders.changeOrderStatus(orderId, "completed");
             stock.changeBookStatus(bookName);
         }
