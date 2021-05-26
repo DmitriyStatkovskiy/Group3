@@ -1,7 +1,9 @@
 package eu.senla.bookstore;
 
 
+import java.lang.reflect.Type;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class BookStore {
     StockService stock = new StockService();
@@ -37,6 +39,10 @@ public class BookStore {
         }
     }
 
+    public void betweenDates (LocalDate start, LocalDate end){
+
+
+    }
 
 
 }
