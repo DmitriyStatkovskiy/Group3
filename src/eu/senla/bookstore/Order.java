@@ -37,8 +37,8 @@ public class Order { //66
     @Override
     public String toString() {
         return "Order{" +
-                "customerName='" + customerName + '\'' +
-                ", orderNumber='" + orderNumber + '\'' +
+                "orderNumber='" + orderNumber + '\'' +
+                ",customerName= '" + customerName + '\'' +
                 ", bookName='" + bookName + '\'' +
                 ", orderStatus='" + orderStatus + '\'' +
                 ", orderCreationDate=" + orderCreationDate +

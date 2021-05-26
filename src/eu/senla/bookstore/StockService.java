@@ -14,6 +14,15 @@ public class StockService {
         stockList.add(book);
 
     }
+    public boolean getRequestedBookName(String name) {
+        for (Book book :
+                stockList) {
+            if (book.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public void changeBookName(String name, String newName) {
         for (Book book : stockList

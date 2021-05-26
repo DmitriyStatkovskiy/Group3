@@ -1,6 +1,15 @@
 package eu.senla.bookstore;
 
 import java.time.LocalDate;
+/**
+ * Entities:
+ * stock
+ * requestList
+ * Methods:
+ * addBook, addRequest, addOrder
+ *
+ *
+ */
 
 public class Main {
     public static void main(String[] args) {
@@ -52,16 +61,16 @@ public class Main {
 
         BookStore bookStore = new BookStore();
         bookStore.stock.addBook("c", "ewe", "22", 55.2, LocalDate.of(2020,12,3), true);
-        bookStore.requestList.addRequest(1,"a");
-        bookStore.orderList.addOrder("Blabla","1","a",LocalDate.now());
-        bookStore.requestList.add(new Request(2,"sad"));
+        bookStore.requests.addRequest("1","a");
+        bookStore.orders.addOrder("Blabla","1","a",LocalDate.now());
+        bookStore.requests.add(new Request("2","sad"));
         bookStore.stock.printStock();
 
-        bookStore.requestList.printRequests();
+        bookStore.requests.printRequests();
         System.out.println();
         bookStore.addBookToStock("sad", "ewe", "22", 55.2, LocalDate.of(2020,12,3));
 
-        bookStore.requestList.printRequests();
+        bookStore.requests.printRequests();
 
     }
 }

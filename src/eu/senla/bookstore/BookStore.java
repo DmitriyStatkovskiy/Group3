@@ -3,15 +3,22 @@ package eu.senla.bookstore;
 
 import java.time.LocalDate;
 
-public class BookStore  {
+public class BookStore {
     StockService stock = new StockService();
-    RequestService requestList = new RequestService();
-    OrderService orderList = new OrderService();
+    RequestService requests = new RequestService();
+    OrderService orders = new OrderService();
 
-    public void addBookToStock(String name, String edition, String description, double price, LocalDate incDate){
+    public void addBookToStock(String name, String edition, String description, double price, LocalDate incDate) {
         stock.addBook(name, edition, description, price, incDate, true);
-        if(requestList.getRequestedBookName(name)){
-            requestList.closeRequest(name);
+        if (requests.getRequestedBookName(name)) {
+            requests.closeRequest(name);
+        }
+    }
+
+    public void addOrder(String customerName, String orderID, String bookName,LocalDate date){
+        orders.addOrder(customerName,orderID,bookName,date);
+        if(stock.getRequestedBookName(bookName)){
+            requests.addRequest(orderID,bookName);
         }
     }
 

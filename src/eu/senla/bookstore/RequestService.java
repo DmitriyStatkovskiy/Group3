@@ -17,7 +17,7 @@ public class RequestService implements DaoApi<Request> {
         return false;
     }
 
-    public void addRequest(int id, String requestedBookName) {
+    public void addRequest(String id, String requestedBookName) {
         requests.add(new Request(id, requestedBookName));
     }
 

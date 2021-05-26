@@ -4,16 +4,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class OrderService {
-    ArrayList<Order> orderArrayList = new ArrayList<>();
+    ArrayList<Order> orders = new ArrayList<>();
 
     public void addOrder(String customerName, String orderNumber, String bookName, LocalDate orderCreationDate) {
         Order order = new Order(customerName, orderNumber, bookName, "new", orderCreationDate);
-        orderArrayList.add(order);
+        orders.add(order);
 
     }
 
     public void changeOrderStatus(String orderNumber, String status) {
-        for (Order order : orderArrayList
+        for (Order order : orders
         ) {
             if (orderNumber.equals(order.getOrderNumber())&&status.equals("completed")) {
                 order.setOrderStatus(status);
@@ -26,7 +26,7 @@ public class OrderService {
         }
     }
     public void printOrders(){
-        for (Order order:orderArrayList
+        for (Order order: orders
         ) {
             System.out.println(order);
         }
