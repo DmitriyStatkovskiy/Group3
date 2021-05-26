@@ -76,7 +76,6 @@ public class Book {
     }
 
     private String inStock() {
-
         if (status) {
             return "In stock";
         } else return "Out of stock";

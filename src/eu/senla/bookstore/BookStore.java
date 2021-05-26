@@ -41,7 +41,7 @@ public class BookStore {
 
     public static List<Date> getDaysBetweenDates(Date startDate, Date endDate)
     {
-        List<Date> dates = new ArrayList<Date>();
+        List<Date> dates = new ArrayList<>();
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(startDate);
 
@@ -53,6 +53,8 @@ public class BookStore {
         }
         return dates;
     }
+
+
 //
 //    public void findOutProfit(Date startDate, Date endDate){
 //        double profit = 0;
