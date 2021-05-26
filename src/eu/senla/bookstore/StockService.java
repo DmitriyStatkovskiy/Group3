@@ -64,7 +64,7 @@ public class StockService {
         stockList.sort(comparing(Book::getPrice));
     }
 
-    public void sortByIsInStock() {
+    public void sortByStatus() {
         stockList.sort(comparing(Book::getStatus));
     }
 
