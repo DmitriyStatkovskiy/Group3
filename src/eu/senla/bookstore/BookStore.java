@@ -3,7 +3,7 @@ package eu.senla.bookstore;
 
 import java.lang.reflect.Type;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.*;
 
 public class BookStore {
     StockService stock = new StockService();
@@ -39,10 +39,27 @@ public class BookStore {
         }
     }
 
-    public void betweenDates (LocalDate start, LocalDate end){
+    public static List<Date> getDaysBetweenDates(Date startDate, Date endDate)
+    {
+        List<Date> dates = new ArrayList<Date>();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(startDate);
 
-
+        while (calendar.getTime().before(endDate))
+        {
+            Date result = calendar.getTime();
+            dates.add(result);
+            calendar.add(Calendar.DATE, 1);
+        }
+        return dates;
     }
-
-
+//
+//    public void findOutProfit(Date startDate, Date endDate){
+//        double profit = 0;
+//        List<Date> date = getDaysBetweenDates(startDate,endDate);
+//        for (Order order:orders.getOrdrFlfllDate()
+//             ) {
+//
+//        }
+//    }
 }

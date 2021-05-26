@@ -2,6 +2,7 @@ package eu.senla.bookstore;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 import static java.util.Comparator.comparing;
 
@@ -30,6 +31,15 @@ public class OrderService {
             }
         }
         return "book not found";
+    }
+    public LocalDate getOrdrFlfllDate(LocalDate date){
+        for (Order order :
+                orders) {
+            if(date.equals(order.getOrderFulfillmentDate())){
+                return order.getOrderFulfillmentDate();
+            }
+        }
+        return null;
     }
 
     public void changeOrderStatus(String orderNumber, String status) {
@@ -61,7 +71,7 @@ public class OrderService {
     public void sortByOrderCreationDate() {
         orders.sort(comparing(Order::getOrderCreationDate));
     }
-    public void sortByOrderFulfullmentDate() {
+    public void sortByOrderFulfillmentDate() {
         orders.sort(comparing(Order::getOrderFulfillmentDate));
     }
     public void sortByOrderStatus() {
