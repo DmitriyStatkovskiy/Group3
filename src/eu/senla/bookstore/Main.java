@@ -56,5 +56,12 @@ public class Main {
         bookStore.orderList.addOrder("Blabla","1","a",LocalDate.now());
         bookStore.requestList.addSmth(new Request("sad"));
         bookStore.stock.printStock();
+
+        bookStore.requestList.printRequests();
+        System.out.println();
+        bookStore.addAnotherBook("sad", "ewe", "22", 55.2, LocalDate.of(2020,12,3), true);
+
+        bookStore.requestList.printRequests();
+
     }
 }

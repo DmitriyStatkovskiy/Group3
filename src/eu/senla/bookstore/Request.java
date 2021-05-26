@@ -42,4 +42,12 @@ public class Request {
     public int hashCode() {
         return Objects.hash(getRequestStatus(), getRequestedBookName());
     }
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "requestStatus='" + requestStatus + '\'' +
+                ", requestedBookName='" + requestedBookName + '\'' +
+                '}';
+    }
 }
