@@ -64,6 +64,7 @@ public class StockService {
              ) {
             System.out.println(book);
         }
+        System.out.println();
     }
 
 }

@@ -5,9 +5,19 @@ import java.util.Objects;
 public class Request {
     private String requestStatus = "new";
     private String requestedBookName;
+    private int requestId;
 
-    public Request(String requestedBookName) {
+    public int getRequestId() {
+        return requestId;
+    }
+
+    public void setRequestId(int requestId) {
+        this.requestId = requestId;
+    }
+
+    public Request(int requestId,String requestedBookName) {
         this.requestedBookName = requestedBookName;
+        this.requestId = requestId;
     }
 
     public Request() {

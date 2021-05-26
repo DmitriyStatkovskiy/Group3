@@ -7,18 +7,18 @@ import java.util.ArrayList;
 public class RequestService implements DaoApi<Request> {
     ArrayList<Request> requests = new ArrayList<>();
 
-    public boolean getRequestedBookName(String name){
+    public boolean getRequestedBookName(String name) {
         for (Request req :
                 requests) {
-            if(req.getRequestedBookName().equals(name)){
+            if (req.getRequestedBookName().equals(name)) {
                 return true;
             }
         }
         return false;
     }
 
-    public void addRequest(String requestedBookName) {
-        requests.add(new Request(requestedBookName));
+    public void addRequest(int id, String requestedBookName) {
+        requests.add(new Request(id, requestedBookName));
     }
 
     public void closeRequest(String bookName) {
@@ -29,14 +29,17 @@ public class RequestService implements DaoApi<Request> {
             }
         }
     }
-    public void printRequests(){
-        for (Request request:requests
+
+    public void printRequests() {
+        for (Request request : requests
         ) {
             System.out.println(request);
         }
+        System.out.println();
     }
+
     @Override
-    public void addSmth(Request request) {
+    public void add(Request request) {
         requests.add(request);
     }
 }

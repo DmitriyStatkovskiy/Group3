@@ -30,5 +30,6 @@ public class OrderService {
         ) {
             System.out.println(order);
         }
+        System.out.println();
     }
 }

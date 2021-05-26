@@ -8,8 +8,8 @@ public class BookStore  {
     RequestService requestList = new RequestService();
     OrderService orderList = new OrderService();
 
-    public void addAnotherBook(String name, String edition, String description, double price, LocalDate incDate, boolean isInStock){
-        stock.addBook(name, edition, description, price, incDate, isInStock);
+    public void addBookToStock(String name, String edition, String description, double price, LocalDate incDate){
+        stock.addBook(name, edition, description, price, incDate, true);
         if(requestList.getRequestedBookName(name)){
             requestList.closeRequest(name);
         }
