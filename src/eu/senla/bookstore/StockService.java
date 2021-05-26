@@ -9,8 +9,8 @@ public class StockService {
 
     ArrayList<Book> stockList = new ArrayList<>();
 
-    public void addBook(String name, String edition, String description, double price, LocalDate incDate, boolean isInStock) {
-        Book book = new Book(name, edition, description, price, incDate, isInStock);
+    public void addBook(String name, String edition, String description, double price, LocalDate incomingDate, boolean isInStock) {
+        Book book = new Book(name, edition, description, price, incomingDate, isInStock);
         stockList.add(book);
 
     }
@@ -18,10 +18,10 @@ public class StockService {
         for (Book book :
                 stockList) {
             if (book.getName().equals(name)) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public void changeBookName(String name, String newName) {

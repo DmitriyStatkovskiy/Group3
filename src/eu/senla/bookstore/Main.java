@@ -4,9 +4,14 @@ import java.time.LocalDate;
 /**
  * Entities:
  * stock
- * requestList
+ * requests
+ * orders
+ *
  * Methods:
- * addBook, addRequest, addOrder
+ * add
+ * changeStatus
+ * print
+ *
  *
  *
  */
@@ -61,16 +66,27 @@ public class Main {
 
         BookStore bookStore = new BookStore();
         bookStore.stock.addBook("c", "ewe", "22", 55.2, LocalDate.of(2020,12,3), true);
-        bookStore.requests.addRequest("1","a");
-        bookStore.orders.addOrder("Blabla","1","a",LocalDate.now());
-        bookStore.requests.add(new Request("2","sad"));
+        bookStore.stock.addBook("qwe", "ewwree", "22+23", 545.2, LocalDate.of(2021,3,3), true);
+        bookStore.stock.addBook("123", "ew321e", "2223", 25.2, LocalDate.of(2010,2,23), true);
+        bookStore.stock.printStock();
+        bookStore.addNewOrder("Mr.Bla", "1", "42 or 69?",LocalDate.now());
+        bookStore.requests.printRequests();
+        bookStore.orders.printOrders();
+        bookStore.addBookToStock("42 or 69?", "mars 4kk B.C.",
+                "The Answer to the Ultimate Question of Life, the Universe, and Everything",420,LocalDate.now());
+        bookStore.requests.printRequests();
         bookStore.stock.printStock();
 
-        bookStore.requests.printRequests();
-        System.out.println();
-        bookStore.addBookToStock("sad", "ewe", "22", 55.2, LocalDate.of(2020,12,3));
-
-        bookStore.requests.printRequests();
+//        bookStore.requests.addRequest("1","a");
+//        bookStore.orders.addOrder("Blabla","1","a",LocalDate.now());
+//        bookStore.requests.add(new Request("2","sad"));
+//        bookStore.stock.printStock();
+//
+//        bookStore.requests.printRequests();
+//        System.out.println();
+//        bookStore.addBookToStock("sad", "ewe", "22", 55.2, LocalDate.of(2020,12,3));
+//
+//        bookStore.requests.printRequests();
 
     }
 }

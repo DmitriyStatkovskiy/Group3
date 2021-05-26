@@ -4,6 +4,8 @@ import eu.senla.bookstore.interfaces.DaoApi;
 
 import java.util.ArrayList;
 
+//определиться с тем, какой из методов add лучше
+
 public class RequestService implements DaoApi<Request> {
     ArrayList<Request> requests = new ArrayList<>();
 
@@ -19,6 +21,10 @@ public class RequestService implements DaoApi<Request> {
 
     public void addRequest(String id, String requestedBookName) {
         requests.add(new Request(id, requestedBookName));
+    }
+    @Override
+    public void add(Request request) {
+        requests.add(request);
     }
 
     public void closeRequest(String bookName) {
@@ -38,8 +44,5 @@ public class RequestService implements DaoApi<Request> {
         System.out.println();
     }
 
-    @Override
-    public void add(Request request) {
-        requests.add(request);
-    }
+
 }

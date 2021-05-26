@@ -15,7 +15,7 @@ public class BookStore {
         }
     }
 
-    public void addOrder(String customerName, String orderID, String bookName,LocalDate date){
+    public void addNewOrder(String customerName, String orderID, String bookName, LocalDate date){
         orders.addOrder(customerName,orderID,bookName,date);
         if(stock.getRequestedBookName(bookName)){
             requests.addRequest(orderID,bookName);
