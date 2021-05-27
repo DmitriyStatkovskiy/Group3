@@ -3,10 +3,12 @@ package eu.senla.bookstore;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparing;
 
-public class OrderService {
+public class OrderService  {
     ArrayList<Order> orders = new ArrayList<>();
 
     public void addOrder(String customerName, String orderNumber, String bookName, LocalDate orderCreationDate) {
@@ -14,6 +16,15 @@ public class OrderService {
         orders.add(order);
 
     }
+    public void findOut(List<LocalDate> from){
+        List<String> qwe = orders.stream()
+                .filter(d->d.getOrderFulfillmentDate().equals(from))
+                .map(Order::getOrderNumber)
+                .collect(Collectors.toList());
+        System.out.println(qwe);
+
+    }
+
     public String getOrderId(String orderId){
         for (Order order :
                 orders) {

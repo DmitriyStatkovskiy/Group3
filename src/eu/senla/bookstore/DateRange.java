@@ -2,9 +2,11 @@ package eu.senla.bookstore;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class DateRange implements Iterable<LocalDate> {
@@ -12,11 +14,13 @@ public class DateRange implements Iterable<LocalDate> {
     private final LocalDate startDate;
     private final LocalDate endDate;
 
+
     public DateRange(LocalDate startDate, LocalDate endDate) {
         //check that range is valid (null, start < end)
         this.startDate = startDate;
         this.endDate = endDate;
     }
+
 
     @Override
     public Iterator<LocalDate> iterator() {
@@ -35,4 +39,6 @@ public class DateRange implements Iterable<LocalDate> {
         }
         return dates;
     }
+
+
 }
