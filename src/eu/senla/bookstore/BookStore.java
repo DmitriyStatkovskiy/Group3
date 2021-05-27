@@ -39,29 +39,8 @@ public class BookStore {
         }
     }
 
-    public static List<Date> getDaysBetweenDates(Date startDate, Date endDate)
-    {
-        List<Date> dates = new ArrayList<>();
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTime(startDate);
-
-        while (calendar.getTime().before(endDate))
-        {
-            Date result = calendar.getTime();
-            dates.add(result);
-            calendar.add(Calendar.DATE, 1);
-        }
-        return dates;
-    }
 
 
-//
-//    public void findOutProfit(Date startDate, Date endDate){
-//        double profit = 0;
-//        List<Date> date = getDaysBetweenDates(startDate,endDate);
-//        for (Order order:orders.getOrdrFlfllDate()
-//             ) {
-//
-//        }
-//    }
+
+
 }
