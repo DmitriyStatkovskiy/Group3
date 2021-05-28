@@ -1,12 +1,13 @@
 package StatkovskiyDmitriy.bookstore.dao;
 
+import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
 import StatkovskiyDmitriy.bookstore.model.Request;
 
 import java.util.ArrayList;
 
 import static java.util.Comparator.comparing;
 
-public class RequestDao implements StatkovskiyDmitriy.bookstore.api.dao.RequestDao<Request> {
+public class RequestDao implements IRequestDao<Request> {
     ArrayList<Request> requests = new ArrayList<>();
 
     public boolean getRequestedBookName(String name) {

@@ -47,7 +47,7 @@ public class OrderDao {
         return "book not found";
     }
 
-    public LocalDate getOrdrFlfllDate(LocalDate date) {
+    public LocalDate getOrderFulfillmentDate(LocalDate date) {
         for (Order order :
                 orders) {
             if (date.equals(order.getOrderFulfillmentDate())) {

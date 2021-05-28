@@ -1,5 +1,5 @@
 package StatkovskiyDmitriy.bookstore.api.dao;
 
-public interface RequestDao<T> {
+public interface IRequestDao<T> {
     void add(T t);
 }

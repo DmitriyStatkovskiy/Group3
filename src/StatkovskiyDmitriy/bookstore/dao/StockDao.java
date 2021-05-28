@@ -1,5 +1,6 @@
 package StatkovskiyDmitriy.bookstore.dao;
 
+import StatkovskiyDmitriy.bookstore.api.dao.IStockDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 
 import java.time.LocalDate;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 
 import static java.util.Comparator.comparing;
 
-public class StockDao implements StatkovskiyDmitriy.bookstore.api.dao.StockDao {
+public class StockDao implements IStockDao {
 
     ArrayList<Book> stockList = new ArrayList<>();
 

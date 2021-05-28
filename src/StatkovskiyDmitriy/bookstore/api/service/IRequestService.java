@@ -1,4 +1,4 @@
 package StatkovskiyDmitriy.bookstore.api.service;
 
-public class RequestService {
+public class IRequestService {
 }
