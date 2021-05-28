@@ -3,6 +3,7 @@ package StatkovskiyDmitriy.bookstore;
 import StatkovskiyDmitriy.bookstore.service.BookStore;
 
 import java.time.LocalDate;
+
 /**
  *
  */
@@ -37,7 +38,7 @@ public class Main {
         bookStore.requests.printRequests();
         bookStore.stock.printStock();
 
-        bookStore.range(LocalDate.of(2021,2,2),LocalDate.of(2021,6,23));
+        bookStore.range(LocalDate.of(2021, 2, 2), LocalDate.of(2021, 6, 23));
         //        bookStore.stock.sortByName();
         //        bookStore.stock.printStock();
 

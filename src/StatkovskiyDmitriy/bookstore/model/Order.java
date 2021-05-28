@@ -22,12 +22,13 @@ public class Order { //66
 
     public Order() {
     }
+
     private String fulfillmentDate() {
 
-        if (orderFulfillmentDate==null) {
+        if (orderFulfillmentDate == null) {
             return "In progress";
         }
-        if(orderFulfillmentDate.equals(LocalDate.of(1970, 1, 1))){
+        if (orderFulfillmentDate.equals(LocalDate.of(1970, 1, 1))) {
             return "Canceled";
         }
         return orderFulfillmentDate.toString();

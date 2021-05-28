@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 import static java.util.Comparator.comparing;
 
-//определиться с тем, какой из методов add лучше
-
 public class RequestDao implements StatkovskiyDmitriy.bookstore.api.dao.RequestDao<Request> {
     ArrayList<Request> requests = new ArrayList<>();
 
@@ -34,6 +32,7 @@ public class RequestDao implements StatkovskiyDmitriy.bookstore.api.dao.RequestD
     public void addRequest(String id, String requestedBookName) {
         requests.add(new Request(id, requestedBookName));
     }
+
     @Override
     public void add(Request request) {
         requests.add(request);
@@ -55,6 +54,7 @@ public class RequestDao implements StatkovskiyDmitriy.bookstore.api.dao.RequestD
         }
         System.out.println();
     }
+
     public void sortByName() {
         requests.sort(comparing(Request::getRequestedBookName));
     }

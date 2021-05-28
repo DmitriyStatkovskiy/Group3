@@ -85,7 +85,7 @@ public class Book {
                 "name: '" + name + '\'' +
                 ", edition: '" + edition + '\'' +
                 ", description: '" + description + '\'' +
-                ", price = " + price +'\'' +
+                ", price = " + price + '\'' +
                 ", incoming date: " + incomingDate +
                 ", availability: " + inStock() +
                 '}';

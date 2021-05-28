@@ -17,37 +17,40 @@ public class OrderDao {
         orders.add(order);
 
     }
-    public void findOut(List<LocalDate> from){
+
+    public void findOut(List<LocalDate> from) {
         List<String> qwe = orders.stream()
-                .filter(d->d.getOrderFulfillmentDate().equals(from))
+                .filter(d -> d.getOrderFulfillmentDate().equals(from))
                 .map(Order::getOrderNumber)
                 .collect(Collectors.toList());
         System.out.println(qwe);
 
     }
 
-    public String getOrderId(String orderId){
+    public String getOrderId(String orderId) {
         for (Order order :
                 orders) {
-            if(orderId.equals(order.getOrderNumber())){
+            if (orderId.equals(order.getOrderNumber())) {
                 return order.getOrderNumber();
             }
         }
         return "order not found";
     }
-    public String getBookName(String orderId){
+
+    public String getBookName(String orderId) {
         for (Order order :
                 orders) {
-            if(orderId.equals(order.getOrderNumber())){
+            if (orderId.equals(order.getOrderNumber())) {
                 return order.getBookName();
             }
         }
         return "book not found";
     }
-    public LocalDate getOrdrFlfllDate(LocalDate date){
+
+    public LocalDate getOrdrFlfllDate(LocalDate date) {
         for (Order order :
                 orders) {
-            if(date.equals(order.getOrderFulfillmentDate())){
+            if (date.equals(order.getOrderFulfillmentDate())) {
                 return order.getOrderFulfillmentDate();
             }
         }
@@ -57,35 +60,41 @@ public class OrderDao {
     public void changeOrderStatus(String orderNumber, String status) {
         for (Order order : orders
         ) {
-            if (orderNumber.equals(order.getOrderNumber())&&status.equals("completed")) {
+            if (orderNumber.equals(order.getOrderNumber()) && status.equals("completed")) {
                 order.setOrderStatus(status);
                 order.setOrderFulfillmentDate(LocalDate.now());
             }
-            if (orderNumber.equals(order.getOrderNumber())&&status.equals("canceled")) {
+            if (orderNumber.equals(order.getOrderNumber()) && status.equals("canceled")) {
                 order.setOrderStatus(status);
-                order.setOrderFulfillmentDate(LocalDate.of(1970,1,1)); //used in orderToString
+                order.setOrderFulfillmentDate(LocalDate.of(1970, 1, 1)); //used in orderToString
             }
         }
     }
-    public void printOrders(){
-        for (Order order: orders
+
+    public void printOrders() {
+        for (Order order : orders
         ) {
             System.out.println(order);
         }
         System.out.println();
     }
+
     public void sortByName() {
         orders.sort(comparing(Order::getBookName));
     }
+
     public void sortByOrderNumber() {
         orders.sort(comparing(Order::getOrderNumber));
     }
+
     public void sortByOrderCreationDate() {
         orders.sort(comparing(Order::getOrderCreationDate));
     }
+
     public void sortByOrderFulfillmentDate() {
         orders.sort(comparing(Order::getOrderFulfillmentDate));
     }
+
     public void sortByOrderStatus() {
         orders.sort(comparing(Order::getOrderStatus));
     }

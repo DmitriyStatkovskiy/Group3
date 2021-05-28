@@ -15,7 +15,7 @@ public class Request {
         this.requestId = requestId;
     }
 
-    public Request(String requestId,String requestedBookName) {
+    public Request(String requestId, String requestedBookName) {
         this.requestedBookName = requestedBookName;
         this.requestId = requestId;
     }

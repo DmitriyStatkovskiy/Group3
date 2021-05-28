@@ -16,6 +16,7 @@ public class StockDao implements StatkovskiyDmitriy.bookstore.api.dao.StockDao {
         stockList.add(book);
 
     }
+
     public boolean getRequestedBookName(String name) {
         for (Book book :
                 stockList) {
@@ -70,9 +71,9 @@ public class StockDao implements StatkovskiyDmitriy.bookstore.api.dao.StockDao {
         stockList.sort(comparing(Book::getStatus));
     }
 
-    public void printStock(){
-        for (Book book: stockList
-             ) {
+    public void printStock() {
+        for (Book book : stockList
+        ) {
             System.out.println(book);
         }
         System.out.println();
