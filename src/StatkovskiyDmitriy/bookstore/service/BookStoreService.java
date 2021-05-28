@@ -14,7 +14,7 @@ public class BookStoreService {
     public RequestDao requests = new RequestDao();
     public OrderDao orders = new OrderDao();
     public ArrayList<Order> ordersFromRange = new ArrayList<>();
-    public  ArrayList<LocalDate> datesRange = new ArrayList<>();
+    public ArrayList<LocalDate> datesRange = new ArrayList<>();
     public ArrayList<LocalDate> completedOrdersDates = new ArrayList<>();
 
     public void addBookToStock(String name, String edition, String description, double price, LocalDate incDate) {
@@ -46,7 +46,7 @@ public class BookStoreService {
         }
     }
 
-    public void findOutProfit(LocalDate from, LocalDate to){
+    public void findOutProfit(LocalDate from, LocalDate to) {
         double profit = 0;
         completedOrdersDates = orders.findOutCompletedOrderDates();
         ArrayList<String> book = new ArrayList<>();
@@ -54,16 +54,19 @@ public class BookStoreService {
         TimeRange range = new TimeRange();
         datesRange = range.createList(from, to);
 
+
         completedOrdersDates.retainAll(datesRange);
 
         for (LocalDate date :
                 completedOrdersDates) {
-            if(date.equals(orders.getOrderFulfillmentDate(date))){
+            if (date.equals(orders.getOrderFulfillmentDate(date))) {
                 book.add(orders.getBookName(date));
             }
         }
-
-
+        for (String s:
+                book) {
+            profit += stock.getBookPrice(s);
+        }
 
         System.out.println(book);
         System.out.println(profit);

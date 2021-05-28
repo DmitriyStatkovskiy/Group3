@@ -24,13 +24,19 @@ public class Main {
         bookStore.requests.printRequests();
         bookStore.orders.printOrders();
 
-        bookStore.addBookToStock("42 or 69?", "mars 4kk B.C.",
-                "The Answer to the Ultimate Question of Life, the Universe, and Everything", 420, LocalDate.now());
+        bookStore.addBookToStock("42 or 69?", "wefw",
+                "142dd", 420, LocalDate.now());
+
         bookStore.addNewOrder("Ms.Bla", "2", "420 or 328?", LocalDate.of(2021, 5, 5));
+        bookStore.addNewOrder("Ms.Bla", "3", "qwe", LocalDate.of(2021, 5, 6));
+        bookStore.addNewOrder("Ms.Bla", "4", "ewe", LocalDate.of(2021, 5, 7));
 
         bookStore.requests.addRequest("23", "REQUESTED_BOOK");
 
         bookStore.completeOrder("1");
+        bookStore.completeOrder("3");
+        bookStore.completeOrder("4");
+
         bookStore.cancelOrder("2");
         bookStore.completeOrder("23");
 
