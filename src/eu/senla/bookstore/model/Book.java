@@ -1,7 +1,6 @@
-package eu.senla.bookstore;
+package eu.senla.bookstore.model;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Objects;
 
 public class Book {

@@ -1,14 +1,15 @@
-package eu.senla.bookstore;
+package eu.senla.bookstore.dao;
+
+import eu.senla.bookstore.model.Order;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparing;
 
-public class OrderService  {
+public class OrderDao {
     ArrayList<Order> orders = new ArrayList<>();
 
     public void addOrder(String customerName, String orderNumber, String bookName, LocalDate orderCreationDate) {

@@ -1,4 +1,9 @@
-package eu.senla.bookstore;
+package eu.senla.bookstore.service;
+
+import eu.senla.bookstore.model.Order;
+import eu.senla.bookstore.dao.OrderDao;
+import eu.senla.bookstore.dao.RequestDao;
+import eu.senla.bookstore.dao.StockDao;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -9,10 +14,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class BookStore {
-    StockService stock = new StockService();
-    RequestService requests = new RequestService();
-    OrderService orders = new OrderService();
-    ArrayList<Order> ordersFromRange = new ArrayList<>();
+    public StockDao stock = new StockDao();
+    public RequestDao requests = new RequestDao();
+    public OrderDao orders = new OrderDao();
+    public ArrayList<Order> ordersFromRange = new ArrayList<>();
 
     public void addBookToStock(String name, String edition, String description, double price, LocalDate incDate) {
         stock.addBook(name, edition, description, price, incDate, true);

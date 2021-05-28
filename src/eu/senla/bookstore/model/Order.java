@@ -1,4 +1,4 @@
-package eu.senla.bookstore;
+package eu.senla.bookstore.model;
 
 import java.time.LocalDate;
 import java.util.Objects;

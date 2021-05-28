@@ -1,11 +1,13 @@
-package eu.senla.bookstore;
+package eu.senla.bookstore.dao;
+
+import eu.senla.bookstore.model.Book;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static java.util.Comparator.comparing;
 
-public class StockService {
+public class StockDao implements eu.senla.bookstore.api.dao.StockDao {
 
     ArrayList<Book> stockList = new ArrayList<>();
 

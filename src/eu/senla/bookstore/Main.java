@@ -1,5 +1,7 @@
 package eu.senla.bookstore;
 
+import eu.senla.bookstore.service.BookStore;
+
 import java.time.LocalDate;
 /**
  *

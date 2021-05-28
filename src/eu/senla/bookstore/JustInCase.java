@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class DateRange implements Iterable<LocalDate> {
+public class JustInCase implements Iterable<LocalDate> {
 
     private final LocalDate startDate;
     private final LocalDate endDate;
 
-    public DateRange(LocalDate startDate, LocalDate endDate) {
+    public JustInCase(LocalDate startDate, LocalDate endDate) {
         //check that range is valid (null, start < end)
         this.startDate = startDate;
         this.endDate = endDate;
