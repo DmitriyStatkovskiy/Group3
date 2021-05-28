@@ -1,9 +1,9 @@
-package eu.senla.bookstore.service;
+package StatkovskiyDmitriy.bookstore.service;
 
-import eu.senla.bookstore.model.Order;
-import eu.senla.bookstore.dao.OrderDao;
-import eu.senla.bookstore.dao.RequestDao;
-import eu.senla.bookstore.dao.StockDao;
+import StatkovskiyDmitriy.bookstore.dao.OrderDao;
+import StatkovskiyDmitriy.bookstore.dao.RequestDao;
+import StatkovskiyDmitriy.bookstore.dao.StockDao;
+import StatkovskiyDmitriy.bookstore.model.Order;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

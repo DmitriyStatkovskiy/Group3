@@ -1,4 +1,4 @@
-package eu.senla.bookstore.model;
+package StatkovskiyDmitriy.bookstore.model;
 
 import java.util.Objects;
 

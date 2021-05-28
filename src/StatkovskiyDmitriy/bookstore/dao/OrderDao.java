@@ -1,6 +1,6 @@
-package eu.senla.bookstore.dao;
+package StatkovskiyDmitriy.bookstore.dao;
 
-import eu.senla.bookstore.model.Order;
+import StatkovskiyDmitriy.bookstore.model.Order;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

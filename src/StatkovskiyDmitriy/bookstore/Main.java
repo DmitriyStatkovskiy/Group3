@@ -1,6 +1,6 @@
-package eu.senla.bookstore;
+package StatkovskiyDmitriy.bookstore;
 
-import eu.senla.bookstore.service.BookStore;
+import StatkovskiyDmitriy.bookstore.service.BookStore;
 
 import java.time.LocalDate;
 /**

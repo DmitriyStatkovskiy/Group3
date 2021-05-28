@@ -1,4 +1,4 @@
-package eu.senla.bookstore;
+package StatkovskiyDmitriy.bookstore;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

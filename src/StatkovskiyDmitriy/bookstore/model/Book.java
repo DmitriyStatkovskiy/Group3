@@ -1,4 +1,4 @@
-package eu.senla.bookstore.model;
+package StatkovskiyDmitriy.bookstore.model;
 
 import java.time.LocalDate;
 import java.util.Objects;

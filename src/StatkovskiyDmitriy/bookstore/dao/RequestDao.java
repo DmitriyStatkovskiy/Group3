@@ -1,6 +1,6 @@
-package eu.senla.bookstore.dao;
+package StatkovskiyDmitriy.bookstore.dao;
 
-import eu.senla.bookstore.model.Request;
+import StatkovskiyDmitriy.bookstore.model.Request;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import static java.util.Comparator.comparing;
 
 //определиться с тем, какой из методов add лучше
 
-public class RequestDao implements eu.senla.bookstore.api.dao.RequestDao<Request> {
+public class RequestDao implements StatkovskiyDmitriy.bookstore.api.dao.RequestDao<Request> {
     ArrayList<Request> requests = new ArrayList<>();
 
     public boolean getRequestedBookName(String name) {

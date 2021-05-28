@@ -1,4 +1,4 @@
-package eu.senla.bookstore.api.dao;
+package StatkovskiyDmitriy.bookstore.api.dao;
 
 public interface RequestDao<T> {
     void add(T t);
