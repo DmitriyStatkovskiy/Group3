@@ -3,7 +3,6 @@ package eu.senla.bookstore;
 import java.time.LocalDate;
 import java.util.Objects;
 
-
 public class Order { //66
 
     private String customerName;

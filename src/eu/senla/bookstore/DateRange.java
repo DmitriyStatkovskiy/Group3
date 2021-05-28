@@ -14,13 +14,11 @@ public class DateRange implements Iterable<LocalDate> {
     private final LocalDate startDate;
     private final LocalDate endDate;
 
-
     public DateRange(LocalDate startDate, LocalDate endDate) {
         //check that range is valid (null, start < end)
         this.startDate = startDate;
         this.endDate = endDate;
     }
-
 
     @Override
     public Iterator<LocalDate> iterator() {

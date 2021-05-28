@@ -1,14 +1,12 @@
 package eu.senla.bookstore;
 
 import java.time.LocalDate;
-
 /**
  *
  */
 //подумать закрывать ли запрос при отмене заказа
 public class Main {
     public static void main(String[] args) {
-
 
         BookStore bookStore = new BookStore();
         bookStore.stock.addBook("420 or 328", "ewe", "22", 55.2, LocalDate.of(2020, 12, 3), true);
@@ -23,7 +21,6 @@ public class Main {
         bookStore.requests.printRequests();
         bookStore.orders.printOrders();
 
-
         bookStore.addBookToStock("42 or 69?", "mars 4kk B.C.",
                 "The Answer to the Ultimate Question of Life, the Universe, and Everything", 420, LocalDate.now());
         bookStore.addNewOrder("Ms.Bla", "2", "420 or 328?", LocalDate.of(2021, 5, 5));
@@ -33,7 +30,6 @@ public class Main {
         bookStore.completeOrder("1");
         bookStore.cancelOrder("2");
         bookStore.completeOrder("23");
-
 
         bookStore.orders.printOrders();
         bookStore.requests.printRequests();

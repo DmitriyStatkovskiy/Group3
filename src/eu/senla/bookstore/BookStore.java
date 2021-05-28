@@ -1,6 +1,5 @@
 package eu.senla.bookstore;
 
-
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
@@ -14,7 +13,6 @@ public class BookStore {
     RequestService requests = new RequestService();
     OrderService orders = new OrderService();
     ArrayList<Order> ordersFromRange = new ArrayList<>();
-
 
     public void addBookToStock(String name, String edition, String description, double price, LocalDate incDate) {
         stock.addBook(name, edition, description, price, incDate, true);
@@ -44,7 +42,6 @@ public class BookStore {
             orders.changeOrderStatus(orderId, "canceled");
         }
     }
-
 
     public void range(LocalDate from, LocalDate to) {
         LocalDate start = from;

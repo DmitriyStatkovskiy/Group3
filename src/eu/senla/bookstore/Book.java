@@ -11,7 +11,6 @@ public class Book {
     private String description;
     private LocalDate incomingDate;
 
-
     public LocalDate getIncomingDate() {
         return incomingDate;
     }
@@ -21,7 +20,6 @@ public class Book {
     }
 
     private boolean status;
-
 
     public String getDescription() {
         return description;

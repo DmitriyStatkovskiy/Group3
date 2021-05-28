@@ -2,8 +2,6 @@ package eu.senla.bookstore;
 
 import java.util.Objects;
 
-
-
 public class Request {
     private String requestStatus = "open";
     private String requestedBookName;
