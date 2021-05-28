@@ -4,7 +4,7 @@ import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.dao.RequestDao;
 import StatkovskiyDmitriy.bookstore.dao.StockDao;
 import StatkovskiyDmitriy.bookstore.model.Order;
-import StatkovskiyDmitriy.bookstore.utils.RangeTimeUtil;
+import StatkovskiyDmitriy.bookstore.utils.TimeRange;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -46,16 +46,26 @@ public class BookStoreService {
         }
     }
 
-
     public void findOutProfit(LocalDate from, LocalDate to){
         double profit = 0;
         completedOrdersDates = orders.findOutCompletedOrderDates();
+        ArrayList<String> book = new ArrayList<>();
 
-        RangeTimeUtil range = new RangeTimeUtil();
-        datesRange = range.range(from, to);
+        TimeRange range = new TimeRange();
+        datesRange = range.createList(from, to);
+
+        completedOrdersDates.retainAll(datesRange);
+
+        for (LocalDate date :
+                completedOrdersDates) {
+            if(date.equals(orders.getOrderFulfillmentDate(date))){
+                book.add(orders.getBookName(date));
+            }
+        }
 
 
 
+        System.out.println(book);
         System.out.println(profit);
     }
 }

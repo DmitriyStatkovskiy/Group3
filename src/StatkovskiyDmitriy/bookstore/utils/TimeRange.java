@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class RangeTimeUtil {
+public class TimeRange {
 
-    public ArrayList<LocalDate> range(LocalDate from, LocalDate to) {
+    public ArrayList<LocalDate> createList(LocalDate from, LocalDate to) {
         LocalDate start = from;
         LocalDate end = to.plusMonths(1).with(TemporalAdjusters.lastDayOfMonth());
 

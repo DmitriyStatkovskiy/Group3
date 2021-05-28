@@ -25,6 +25,15 @@ public class OrderDao {
         }
         return "order not found";
     }
+    public String getBookName(LocalDate date) {
+        for (Order order :
+                orders) {
+            if (date.equals(order.getOrderFulfillmentDate())) {
+                return order.getBookName();
+            }
+        }
+        return "book not found";
+    }
 
     public String getBookName(String orderId) {
         for (Order order :
