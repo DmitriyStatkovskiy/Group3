@@ -27,6 +27,14 @@ public class StockDao implements IStockDao {
         }
         return true;
     }
+    public double getBookPrice(){
+        double price = 0;
+        for (Book book:stockList
+             ) {
+
+        }
+        return price;
+    }
 
     public void changeBookName(String name, String newName) {
         for (Book book : stockList

@@ -1,6 +1,6 @@
 package StatkovskiyDmitriy.bookstore;
 
-import StatkovskiyDmitriy.bookstore.service.BookStore;
+import StatkovskiyDmitriy.bookstore.service.BookStoreService;
 
 import java.time.LocalDate;
 
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
 
-        BookStore bookStore = new BookStore();
+        BookStoreService bookStore = new BookStoreService();
         bookStore.stock.addBook("420 or 328", "ewe", "22", 55.2, LocalDate.of(2020, 12, 3), true);
         bookStore.stock.addBook("qwe", "ewwree", "22+23", 545.2, LocalDate.of(2021, 3, 3), true);
         bookStore.stock.addBook("qwe", "ewwr33ee", "2wer", 45.32, LocalDate.of(2018, 7, 29), true);
@@ -38,7 +38,8 @@ public class Main {
         bookStore.requests.printRequests();
         bookStore.stock.printStock();
 
-        bookStore.range(LocalDate.of(2021, 2, 2), LocalDate.of(2021, 6, 23));
+        bookStore.findOutProfit(LocalDate.of(2021, 2, 2), LocalDate.of(2021, 6, 23));
+       // bookStore.range(LocalDate.of(2021, 2, 2), LocalDate.of(2021, 6, 23));
         //        bookStore.stock.sortByName();
         //        bookStore.stock.printStock();
 

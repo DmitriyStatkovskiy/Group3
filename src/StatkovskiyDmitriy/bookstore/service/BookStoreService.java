@@ -3,22 +3,19 @@ package StatkovskiyDmitriy.bookstore.service;
 import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.dao.RequestDao;
 import StatkovskiyDmitriy.bookstore.dao.StockDao;
-import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
+import StatkovskiyDmitriy.bookstore.utils.RangeTimeUtil;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalAdjusters;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-public class BookStore {
+public class BookStoreService {
     public StockDao stock = new StockDao();
     public RequestDao requests = new RequestDao();
     public OrderDao orders = new OrderDao();
     public ArrayList<Order> ordersFromRange = new ArrayList<>();
+    public  ArrayList<LocalDate> datesRange = new ArrayList<>();
+    public ArrayList<LocalDate> completedOrdersDates = new ArrayList<>();
 
     public void addBookToStock(String name, String edition, String description, double price, LocalDate incDate) {
         stock.addBook(name, edition, description, price, incDate, true);
@@ -49,17 +46,16 @@ public class BookStore {
         }
     }
 
-    public void range(LocalDate from, LocalDate to) {
-        LocalDate start = from;
-        LocalDate end = to.plusMonths(1).with(TemporalAdjusters.lastDayOfMonth());
 
-        List<LocalDate> dates = Stream.iterate(start, date -> date.plusDays(1))
-                .limit(ChronoUnit.DAYS.between(start, end))
-                .collect(Collectors.toList());
+    public void findOutProfit(LocalDate from, LocalDate to){
+        double profit = 0;
+        completedOrdersDates = orders.findOutCompletedOrderDates();
 
-        orders.findOut(dates);
-        //return dates;
+        RangeTimeUtil range = new RangeTimeUtil();
+        datesRange = range.range(from, to);
+
+
+
+        System.out.println(profit);
     }
-
-
 }

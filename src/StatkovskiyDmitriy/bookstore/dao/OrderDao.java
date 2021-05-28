@@ -4,8 +4,6 @@ import StatkovskiyDmitriy.bookstore.model.Order;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.Comparator.comparing;
 
@@ -15,15 +13,6 @@ public class OrderDao {
     public void addOrder(String customerName, String orderNumber, String bookName, LocalDate orderCreationDate) {
         Order order = new Order(customerName, orderNumber, bookName, "new", orderCreationDate);
         orders.add(order);
-
-    }
-
-    public void findOut(List<LocalDate> from) {
-        List<String> qwe = orders.stream()
-                .filter(d -> d.getOrderFulfillmentDate().equals(from))
-                .map(Order::getOrderNumber)
-                .collect(Collectors.toList());
-        System.out.println(qwe);
 
     }
 
@@ -57,6 +46,17 @@ public class OrderDao {
         return null;
     }
 
+    public ArrayList<LocalDate> findOutCompletedOrderDates() {
+        ArrayList<LocalDate> fulfillmentDates = new ArrayList<>();
+        for (Order order :
+                orders) {
+            if (order.getOrderFulfillmentDate() != null && !order.getOrderFulfillmentDate().equals(LocalDate.of(1970, 1, 1))) {
+                fulfillmentDates.add(order.getOrderFulfillmentDate());
+            }
+        }
+        return fulfillmentDates;
+    }
+
     public void changeOrderStatus(String orderNumber, String status) {
         for (Order order : orders
         ) {
@@ -66,7 +66,7 @@ public class OrderDao {
             }
             if (orderNumber.equals(order.getOrderNumber()) && status.equals("canceled")) {
                 order.setOrderStatus(status);
-                order.setOrderFulfillmentDate(LocalDate.of(1970, 1, 1)); //used in orderToString
+                order.setOrderFulfillmentDate(LocalDate.of(1970, 1, 1));
             }
         }
     }
