@@ -14,6 +14,25 @@ public class Book {
     private LocalDate incomingDate;
     private boolean status;
 
+    public Book(String name, String edition, double price, String description) {
+        this.name = name;
+        this.edition = edition;
+        this.price = price;
+        this.description = description;
+    }
+
+    public Book(String name, String edition, String description, double price, LocalDate incomingDate, boolean status) {
+        this.name = name;
+        this.edition = edition;
+        this.price = price;
+        this.description = description;
+        this.incomingDate = incomingDate;
+        this.status = status;
+    }
+
+    public Book() {
+    }
+
     public String getId() {
         return id;
     }
@@ -34,24 +53,6 @@ public class Book {
         this.description = description;
     }
 
-    public Book(String name, String edition, double price, String description) {
-        this.name = name;
-        this.edition = edition;
-        this.price = price;
-        this.description = description;
-    }
-
-    public Book(String name, String edition, String description, double price, LocalDate incomingDate, boolean status) {
-        this.name = name;
-        this.edition = edition;
-        this.price = price;
-        this.description = description;
-        this.incomingDate = incomingDate;
-        this.status = status;
-    }
-
-    public Book() {
-    }
 
     public String getName() {
         return name;
@@ -85,11 +86,6 @@ public class Book {
         this.status = status;
     }
 
-    private String inStock() {
-        if (status) {
-            return "In stock";
-        } else return "Out of stock";
-    }
 
     @Override
     public String toString() {

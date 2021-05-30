@@ -15,9 +15,11 @@ import StatkovskiyDmitriy.bookstore.service.RequestService;
 import StatkovskiyDmitriy.bookstore.service.StockService;
 
 /**
- *
+ * it's a total mess I know
+ * task 3 completed; task 4 I'll complete in a few days
+ * I hope it's better than nothing
  */
-//подумать закрывать ли запрос при отмене заказа
+
 public class Main {
     public static void main(String[] args) {
 
@@ -41,12 +43,12 @@ public class Main {
 
         stockDao.addBook(bookA);
         stockDao.addBook(bookB);
-  //      stockDao.changeBookStatus(bookB.getId(), StockUnitStatus.OUT_OF_STOCK);
+        // stockDao.changeBookStatus(bookB.getId(), StockUnitStatus.OUT_OF_STOCK);
 
 
         orderService.addBook(order, bookA);
         orderService.addBook(order, bookB);
-  //      orderService.cancelOrder(order);
+        //orderService.cancelOrder(order);
         System.out.println(order);
         orderService.completeOrder(order);
 
