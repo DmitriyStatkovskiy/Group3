@@ -1,16 +1,23 @@
 package StatkovskiyDmitriy.bookstore.model;
 
+import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-public class Order { //66
+public class Order {
 
     private String customerName;
     private String orderNumber;
     private String bookName;
     private String orderStatus;
+    private OrderStatus status = OrderStatus.NEW;
     private LocalDate orderCreationDate;
     private LocalDate orderFulfillmentDate;
+
+    private List<Book> books = new ArrayList<>();
 
     public Order(String customerName, String orderNumber, String bookName, String orderStatus, LocalDate orderCreationDate) {
         this.customerName = customerName;
@@ -21,6 +28,14 @@ public class Order { //66
     }
 
     public Order() {
+    }
+
+    public OrderStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderStatus status) {
+        this.status = status;
     }
 
     private String fulfillmentDate() {
@@ -34,14 +49,21 @@ public class Order { //66
         return orderFulfillmentDate.toString();
     }
 
+    private String printBooks() {
+        String message = "";
+        for (Book book : books) {
+            message +=" "+ book.getName() + " " + book.getPrice()+" ";
+        }
+        return message;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
                 "orderNumber='" + orderNumber + '\'' +
-                ",customerName= '" + customerName + '\'' +
-                ", bookName='" + bookName + '\'' +
-                ", orderStatus='" + orderStatus + '\'' +
+                ", orderStatus='" + status + '\'' +
                 ", orderCreationDate=" + orderCreationDate +
+                ", Books" + printBooks() +
                 ", orderFulfillmentDate=" + fulfillmentDate() +
                 '}';
     }
@@ -84,6 +106,22 @@ public class Order { //66
 
     public void setOrderFulfillmentDate(LocalDate orderFulfillmentDate) {
         this.orderFulfillmentDate = orderFulfillmentDate;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     @Override

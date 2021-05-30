@@ -1,26 +1,45 @@
 package StatkovskiyDmitriy.bookstore.model;
 
+import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
+
 import java.util.Objects;
+import java.util.UUID;
 
 public class Request {
+    private RequestStatus status = RequestStatus.OPEN;
     private String requestStatus = "open";
-    private String requestedBookName;
-    private String requestId;
-
-    public String getRequestId() {
-        return requestId;
-    }
-
-    public void setRequestId(String requestId) {
-        this.requestId = requestId;
-    }
-
-    public Request(String requestId, String requestedBookName) {
-        this.requestedBookName = requestedBookName;
-        this.requestId = requestId;
-    }
+    private Book book;
+    private String id = UUID.randomUUID().toString();
 
     public Request() {
+    }
+
+    public Request(Book book) {
+        this.book = book;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public RequestStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(RequestStatus status) {
+        this.status = status;
     }
 
     public String getRequestStatus() {
@@ -31,33 +50,28 @@ public class Request {
         this.requestStatus = requestStatus;
     }
 
-    public String getRequestedBookName() {
-        return requestedBookName;
-    }
-
-    public void setRequestedBookName(String requestedBookName) {
-        this.requestedBookName = requestedBookName;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Request request = (Request) o;
-        return Objects.equals(getRequestStatus(), request.getRequestStatus()) &&
-                Objects.equals(getRequestedBookName(), request.getRequestedBookName());
+        return status == request.status &&
+                Objects.equals(requestStatus, request.requestStatus) &&
+                Objects.equals(book, request.book) &&
+                Objects.equals(id, request.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getRequestStatus(), getRequestedBookName());
+        return Objects.hash(status, requestStatus, book, id);
     }
 
     @Override
     public String toString() {
         return "Request{" +
-                "requestStatus='" + requestStatus + '\'' +
-                ", requestedBookName='" + requestedBookName + '\'' +
+                "requestStatus='" + status + '\'' +
+                ", requestedBookName='" + book.getName() + '\'' +
                 '}';
     }
 }

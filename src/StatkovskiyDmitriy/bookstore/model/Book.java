@@ -2,13 +2,21 @@ package StatkovskiyDmitriy.bookstore.model;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.UUID;
 
 public class Book {
+    private String id = UUID.randomUUID().toString();
     private String name;
     private String edition;
     private double price;
     private String description;
+    //TODO delete fields
     private LocalDate incomingDate;
+    private boolean status;
+
+    public String getId() {
+        return id;
+    }
 
     public LocalDate getIncomingDate() {
         return incomingDate;
@@ -18,13 +26,18 @@ public class Book {
         this.incomingDate = incomingDate;
     }
 
-    private boolean status;
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Book(String name, String edition, double price, String description) {
+        this.name = name;
+        this.edition = edition;
+        this.price = price;
         this.description = description;
     }
 
@@ -86,8 +99,6 @@ public class Book {
                 ", edition: '" + edition + '\'' +
                 ", description: '" + description + '\'' +
                 ", price = " + price + '\'' +
-                ", incoming date: " + incomingDate +
-                ", availability: " + inStock() +
                 '}';
     }
 
