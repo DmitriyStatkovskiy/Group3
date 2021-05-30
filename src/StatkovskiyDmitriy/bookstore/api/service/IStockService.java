@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface IStockService {
     List<Book> getOutOfStockBooks(Order order);
+
     void addBook(Book book);
 }

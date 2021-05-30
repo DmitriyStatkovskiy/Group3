@@ -78,40 +78,6 @@ public class StockDao implements IStockDao {
         }
     }
 
-//    public void changeBookStatusToFalse(String name) {
-//        for (Book book : stockList) {
-//            if (book.getName().equals(name)) {
-//                book.setStatus(false);
-//            }
-//        }
-//    }
-//
-//    public void sortByName() {
-//        stockList.sort(comparing(Book::getName));
-//    }
-//
-//    public void sortByEdition() {
-//        stockList.sort(comparing(Book::getEdition));
-//    }
-//
-//    public void sortByPrice() {
-//        stockList.sort(comparing(Book::getPrice));
-//    }
-//
-//    public void sortByStatus() {
-//        stockList.sort(comparing(Book::getStatus));
-//    }
-
-    public void printStock() {
-        for (Book book : stockList) {
-            System.out.println(book);
-        }
-        System.out.println();
-    }
-
-
-
-
     @Override
     public Book getBook(Book book) {
         return book;

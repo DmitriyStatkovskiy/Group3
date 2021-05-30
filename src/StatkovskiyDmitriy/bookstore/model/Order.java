@@ -52,7 +52,7 @@ public class Order {
     private String printBooks() {
         String message = "";
         for (Book book : books) {
-            message +=" "+ book.getName() + " " + book.getPrice()+" ";
+            message += " " + book.getName() + " " + book.getPrice() + " ";
         }
         return message;
     }

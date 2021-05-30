@@ -57,4 +57,13 @@ public class StockUnit {
     public int hashCode() {
         return Objects.hash(status, incomingDate, book);
     }
+
+    @Override
+    public String toString() {
+        return "StockUnit{" +
+                "status=" + status +
+                ", incomingDate=" + incomingDate +
+                ", book=" + book +
+                '}';
+    }
 }

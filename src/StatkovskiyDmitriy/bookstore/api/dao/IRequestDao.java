@@ -15,6 +15,7 @@ public interface IRequestDao {
     Request addBookToRequest(Book book);
 
     List<Request> getAll();
+
     Request getRequest(String id);
 
     Request delete(String id);

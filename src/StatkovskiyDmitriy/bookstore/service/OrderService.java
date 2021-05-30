@@ -37,7 +37,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public Order completeOrder(Order order) {
-        if(!order.getStatus().equals(OrderStatus.NEW)){
+        if (!order.getStatus().equals(OrderStatus.NEW)) {
             return order;
         }
         List<Book> outOfStockBooks = stockService.getOutOfStockBooks(order);

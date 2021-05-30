@@ -36,7 +36,7 @@ public class RequestDao implements IRequestDao {
     }
 
     public void addRequest(String id, String requestedBookName) {
-     //   requests.add(new Request(id, requestedBookName));
+        //   requests.add(new Request(id, requestedBookName));
     }
 
 
@@ -76,13 +76,6 @@ public class RequestDao implements IRequestDao {
         return null;
     }
 
-//    public void closeRequest(String bookName) {
-//        for (Request request : requests) {
-//            if (request.getRequestedBookName().equals(bookName)) {
-//                request.setRequestStatus("closed");
-//            }
-//        }
-//    }
 
     public void printRequests() {
         for (Request request : requests) {
@@ -90,16 +83,4 @@ public class RequestDao implements IRequestDao {
         }
         System.out.println();
     }
-
-//    public void sortByName() {
-//        requests.sort(comparing(Request::getRequestedBookName));
-//    }
-//    public void sortById() {
-//        requests.sort(comparing(Request::getId));
-//    }
-//
-//    public void sortByStatus() {
-//        requests.sort(comparing(Request::getRequestStatus));
-//    }
-
 }

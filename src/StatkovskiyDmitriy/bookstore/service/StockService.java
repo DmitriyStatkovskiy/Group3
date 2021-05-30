@@ -38,7 +38,7 @@ public class StockService implements IStockService {
     @Override
     public void addBook(Book book) {
         List<String> id = Arrays.asList(book.getId());
-        if(stockDao.getStockUnitsByIds(id,StockUnitStatus.OUT_OF_STOCK).size()!=0){
+        if (stockDao.getStockUnitsByIds(id, StockUnitStatus.OUT_OF_STOCK).size() != 0) {
             requestService.changeRequestStatus(book.getId(), RequestStatus.CLOSED);
         }
     }
