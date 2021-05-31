@@ -4,12 +4,15 @@ import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.api.service.IStockService;
+import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 public class OrderService implements IOrderService {
 
@@ -63,6 +66,15 @@ public class OrderService implements IOrderService {
     public Order changeOrderStatus(Order order, OrderStatus status){
         order.setStatus(status);
         return order;
+    }
+
+    public double calculateOrderPrice(OrderDao order){
+        double result = 0;
+        List<Order> orders = order.getAll();
+//        List<Book> books = orders.stream()
+//                .map(book->book.getBooks())
+//                .collect(Collectors.toList());
+        return result;
     }
 
     @Override

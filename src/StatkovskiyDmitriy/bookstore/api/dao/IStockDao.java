@@ -14,5 +14,7 @@ public interface IStockDao {
 
     Book getBook(Book book);
 
+    List<StockUnit> getAllUnits();
+
 
 }

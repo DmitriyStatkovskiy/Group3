@@ -29,7 +29,6 @@ public class StockDao implements IStockDao {
                 .filter(stockUnit -> ids.contains(stockUnit.getBook().getId()))
                 .filter(stockUnit -> status.equals(stockUnit.getStatus()))
                 .collect(Collectors.toList());
-
     }
 
     public void changeBookStatus(String id, StockUnitStatus status) {
@@ -57,8 +56,8 @@ public class StockDao implements IStockDao {
     }
 
     public void printStock(List<StockUnit> stockUnit) {
-        for (StockUnit unit: stockUnit
-             ) {
+        for (StockUnit unit : stockUnit
+        ) {
             System.out.println(unit);
         }
     }

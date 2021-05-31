@@ -36,6 +36,9 @@ public class OrderDao implements IOrderDao {
         order.setStatus(OrderStatus.CANCELED);
         return order;
     }
+    public List<Order> getAll(){
+        return orders;
+    }
 
     @Override
     public Order changeOrderStatus(Order order, OrderStatus status) {

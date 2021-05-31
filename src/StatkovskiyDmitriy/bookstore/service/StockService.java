@@ -43,7 +43,7 @@ public class StockService implements IStockService {
         }
     }
 
-    public List<StockUnit> sortBooksByName(StockDao stockDao){
+    public List<StockUnit> sortBooksByName(StockDao stockDao) {
         List<StockUnit> books = stockDao.getAllUnits();
 
         List<StockUnit> sorted = books.stream()
@@ -52,8 +52,17 @@ public class StockService implements IStockService {
 
         return sorted;
     }
+    public List<StockUnit> sortBooksByPrice(StockDao stockDao) {
+        List<StockUnit> books = stockDao.getAllUnits();
 
-//    public List<StockUnit> sortUnitsByDate(StockDao stockUnit){
+        List<StockUnit> sorted = books.stream()
+                .sorted(Comparator.comparing(o -> o.getBook().getPrice()))
+                .collect(Collectors.toList());
+
+        return sorted;
+    }
+
+    //    public List<StockUnit> sortUnitsByDate(StockDao stockUnit){
 //        List<StockUnit> units = stockUnit.getAllUnits();
 //        List<StockUnit> sorted = units.stream()
 //                .sorted(Comparator.comparing(StockUnit::getIncomingDate))
@@ -63,14 +72,12 @@ public class StockService implements IStockService {
 //        }
 //        return sorted;
 //    }
-    public List<StockUnit> sortUnitsByStatus(StockDao stockUnit){
+    public List<StockUnit> sortUnitsByStatus(StockDao stockUnit) {
         List<StockUnit> units = stockUnit.getAllUnits();
         List<StockUnit> sorted = units.stream()
                 .sorted(Comparator.comparing(StockUnit::getStatus))
                 .collect(Collectors.toList());
-//        for (StockUnit unit : sorted) {
-//            System.out.println(unit);
-//        }
+
         return sorted;
     }
 

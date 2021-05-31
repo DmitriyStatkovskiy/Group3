@@ -57,15 +57,8 @@ public class Order {
         return message;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderNumber='" + orderNumber + '\'' +
-                ", orderStatus='" + status + '\'' +
-                ", orderCreationDate=" + orderCreationDate +
-                ", Books" + printBooks() +
-                ", orderFulfillmentDate=" + fulfillmentDate() +
-                '}';
+    public List<Book> getBooks() {
+        return books;
     }
 
     public String getOrderNumber() {
@@ -116,12 +109,19 @@ public class Order {
         this.customerName = customerName;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderNumber='" + orderNumber + '\'' +
+                ", orderStatus='" + status + '\'' +
+                ", orderCreationDate=" + orderCreationDate +
+                ", Books" + printBooks() +
+                ", orderFulfillmentDate=" + fulfillmentDate() +
+                '}';
     }
 
     @Override
