@@ -43,6 +43,12 @@ public class OrderDao implements IOrderDao {
         order.setStatus(OrderStatus.CANCELED);
         return order;
     }
+
+    @Override
+    public Order changeOrderStatus(Order order, OrderStatus status) {
+        order.setStatus(status);
+        return order;
+    }
 //
 //    public void addOrder(String customerName, String orderNumber, String bookName, LocalDate orderCreationDate) {
 //        Order order = new Order(customerName, orderNumber, bookName, "new", orderCreationDate);

@@ -60,6 +60,11 @@ public class OrderService implements IOrderService {
         return order;
     }
 
+    public Order changeOrderStatus(Order order, OrderStatus status){
+        order.setStatus(status);
+        return order;
+    }
+
     @Override
     public Order getOrder(String id) {
         return null;

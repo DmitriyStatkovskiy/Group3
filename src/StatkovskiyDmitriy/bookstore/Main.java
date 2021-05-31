@@ -9,15 +9,14 @@ import StatkovskiyDmitriy.bookstore.dao.RequestDao;
 import StatkovskiyDmitriy.bookstore.dao.StockDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
+import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
 import StatkovskiyDmitriy.bookstore.service.StockService;
 
 /**
- * it's a total mess I know
- * task 3 completed; task 4 I'll complete in a few days
- * I hope it's better than nothing
+ *
  */
 
 public class Main {
@@ -33,6 +32,7 @@ public class Main {
         OrderService orderService = new OrderService(orderDao, stockService, requestService);
 
         Order order = orderService.createNew();
+        Order order2 = orderService.createNew();
 
         Book bookA = new Book("AAA", "1", 10, "e");
         Book bookB = new Book("BBB", "2", 20, "ee");
@@ -59,6 +59,10 @@ public class Main {
         requestDao.getAll().forEach(System.out::println);
         orderService.completeOrder(order);
         System.out.println(order);
-
+//        test changeOrderStatus
+//        orderService.addBook(order2,bookD);
+//        System.out.println(order2);
+//        orderService.changeOrderStatus(order2, OrderStatus.CANCELED);
+//        System.out.println(order2);
     }
 }

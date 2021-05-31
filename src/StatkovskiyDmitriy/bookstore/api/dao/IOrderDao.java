@@ -2,6 +2,7 @@ package StatkovskiyDmitriy.bookstore.api.dao;
 
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
+import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 
 public interface IOrderDao {
     Order createOrder();
@@ -13,4 +14,5 @@ public interface IOrderDao {
     Order deleteOrder(String id);
 
     Order cancelOrder(Order order);
+    Order changeOrderStatus(Order order, OrderStatus status);
 }
