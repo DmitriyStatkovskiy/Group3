@@ -1,8 +1,10 @@
 package StatkovskiyDmitriy.bookstore.model;
 
+import StatkovskiyDmitriy.bookstore.dao.StockDao;
 import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import static StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus.IN_STOCK;

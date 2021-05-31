@@ -13,24 +13,6 @@ import static java.util.Comparator.comparing;
 public class RequestDao implements IRequestDao {
     private List<Request> requests = new ArrayList<>();
 
-//    public boolean getRequestedBookName(String name) {
-//        for (Request req : requests) {
-//            if (req.getRequestedBookName().equals(name)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
-//    public boolean getRequestStatus() {
-//        for (Request req : requests) {
-//            if (req.getRequestStatus().equals("closed")) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
     public List<Request> getRequests() {
         return requests;
     }

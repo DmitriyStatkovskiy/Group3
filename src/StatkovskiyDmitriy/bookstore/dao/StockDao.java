@@ -9,16 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.Comparator.comparing;
-
 public class StockDao implements IStockDao {
 
     private List<StockUnit> stockUnits = new ArrayList<>();
-    private List<Book> stockList = new ArrayList<>();
+
 
     public void addBook(Book book) {
         stockUnits.add(new StockUnit(book));
 
+    }
+
+    public List<StockUnit> getAllUnits() {
+        return stockUnits;
     }
 
     public List<StockUnit> getStockUnitsByIds(List<String> ids, StockUnitStatus status) {
@@ -42,49 +44,22 @@ public class StockDao implements IStockDao {
                 .orElse(null);
     }
 
-    public boolean getRequestedBookName(String name) {
-        for (Book book : stockList) {
-            if (book.getName().equals(name)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public double getBookPrice(String bookName) {
-
-        for (Book book : stockList) {
-            if (book.getName().equals(bookName)) {
-                return book.getPrice();
-            }
-        }
-        return 0;
-    }
-
-    public void changeBookName(String name, String newName) {
-        for (Book book : stockList) {
-            if (book.getName().equals(name)) {
-                book.setName(newName);
-            }
-        }
-    }
-
-    public void changeBookStatus(String name) {
-
-        for (Book book : stockList) {
-            if (book.getName().equals(name)) {
-                book.setStatus(!book.getStatus());
-            }
-        }
-    }
-
     @Override
     public Book getBook(Book book) {
+
         return book;
     }
 
-    @Override
-    public void removeBookFromStock(Book book) {
-        stockList.remove(book);
+    public void printStock() {
+        for (StockUnit stockUnit : stockUnits) {
+            System.out.println(stockUnit);
+        }
+    }
+
+    public void printStock(List<StockUnit> stockUnit) {
+        for (StockUnit unit: stockUnit
+             ) {
+            System.out.println(unit);
+        }
     }
 }

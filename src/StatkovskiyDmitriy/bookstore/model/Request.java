@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class Request {
     private RequestStatus status = RequestStatus.OPEN;
-    private String requestStatus = "open";
+
     private Book book;
     private String id = UUID.randomUUID().toString();
 
@@ -42,29 +42,19 @@ public class Request {
         this.status = status;
     }
 
-    public String getRequestStatus() {
-        return requestStatus;
-    }
-
-    public void setRequestStatus(String requestStatus) {
-        this.requestStatus = requestStatus;
-    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Request request = (Request) o;
-        return status == request.status &&
-                Objects.equals(requestStatus, request.requestStatus) &&
-                Objects.equals(book, request.book) &&
-                Objects.equals(id, request.id);
+        return getStatus() == request.getStatus() &&
+                Objects.equals(getBook(), request.getBook()) &&
+                Objects.equals(getId(), request.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(status, requestStatus, book, id);
+        return Objects.hash(getStatus(), getBook(), getId());
     }
 
     @Override

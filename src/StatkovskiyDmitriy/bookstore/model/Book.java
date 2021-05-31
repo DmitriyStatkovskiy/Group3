@@ -10,9 +10,7 @@ public class Book {
     private String edition;
     private double price;
     private String description;
-    //TODO delete fields
-    private LocalDate incomingDate;
-    private boolean status;
+
 
     public Book(String name, String edition, double price, String description) {
         this.name = name;
@@ -21,14 +19,6 @@ public class Book {
         this.description = description;
     }
 
-    public Book(String name, String edition, String description, double price, LocalDate incomingDate, boolean status) {
-        this.name = name;
-        this.edition = edition;
-        this.price = price;
-        this.description = description;
-        this.incomingDate = incomingDate;
-        this.status = status;
-    }
 
     public Book() {
     }
@@ -37,13 +27,7 @@ public class Book {
         return id;
     }
 
-    public LocalDate getIncomingDate() {
-        return incomingDate;
-    }
 
-    public void setIncomingDate(LocalDate incomingDate) {
-        this.incomingDate = incomingDate;
-    }
 
     public String getDescription() {
         return description;
@@ -78,13 +62,7 @@ public class Book {
         this.price = price;
     }
 
-    public boolean getStatus() {
-        return status;
-    }
 
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
 
 
     @Override
@@ -103,14 +81,15 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Double.compare(book.price, price) == 0 &&
-                status == book.status &&
-                Objects.equals(name, book.name) &&
-                Objects.equals(edition, book.edition);
+        return Double.compare(book.getPrice(), getPrice()) == 0 &&
+                Objects.equals(getId(), book.getId()) &&
+                Objects.equals(getName(), book.getName()) &&
+                Objects.equals(getEdition(), book.getEdition()) &&
+                Objects.equals(getDescription(), book.getDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, edition, price, status);
+        return Objects.hash(getId(), getName(), getEdition(), getPrice(), getDescription());
     }
 }

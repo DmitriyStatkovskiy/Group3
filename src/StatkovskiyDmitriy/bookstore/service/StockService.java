@@ -9,10 +9,10 @@ import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.StockUnit;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
+import org.w3c.dom.ls.LSOutput;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StockService implements IStockService {
@@ -43,5 +43,35 @@ public class StockService implements IStockService {
         }
     }
 
+    public List<StockUnit> sortBooksByName(StockDao stockDao){
+        List<StockUnit> books = stockDao.getAllUnits();
+
+        List<StockUnit> sorted = books.stream()
+                .sorted(Comparator.comparing(o -> o.getBook().getName()))
+                .collect(Collectors.toList());
+
+        return sorted;
+    }
+
+    public List<StockUnit> sortUnitsByDate(StockDao stockUnit){
+        List<StockUnit> units = stockUnit.getAllUnits();
+        List<StockUnit> sorted = units.stream()
+                .sorted(Comparator.comparing(StockUnit::getIncomingDate))
+                .collect(Collectors.toList());
+        for (StockUnit unit : sorted) {
+            System.out.println(unit);
+        }
+        return sorted;
+    }
+    public List<StockUnit> sortUnitsByStatus(StockDao stockUnit){
+        List<StockUnit> units = stockUnit.getAllUnits();
+        List<StockUnit> sorted = units.stream()
+                .sorted(Comparator.comparing(StockUnit::getStatus))
+                .collect(Collectors.toList());
+        for (StockUnit unit : sorted) {
+            System.out.println(unit);
+        }
+        return sorted;
+    }
 
 }

@@ -15,6 +15,8 @@ import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
 import StatkovskiyDmitriy.bookstore.service.StockService;
 
+import java.util.List;
+
 /**
  *
  */
@@ -27,6 +29,7 @@ public class Main {
         IRequestService requestService = new RequestService(requestDao);
 
         StockDao stockDao = new StockDao();
+
         IStockService stockService = new StockService(stockDao, requestService);
 
         OrderService orderService = new OrderService(orderDao, stockService, requestService);
@@ -43,11 +46,19 @@ public class Main {
 
         stockDao.addBook(bookA);
         stockDao.addBook(bookB);
+        stockDao.addBook(bookD);
+        stockDao.addBook(bookE);
+        stockDao.addBook(bookC);
         // stockDao.changeBookStatus(bookB.getId(), StockUnitStatus.OUT_OF_STOCK);
 
+        stockService.sortBooksByName(stockDao);
+        stockDao.printStock();
+
+        stockDao.printStock(stockService.sortBooksByName(stockDao));
 
         orderService.addBook(order, bookA);
         orderService.addBook(order, bookB);
+
         //orderService.cancelOrder(order);
         System.out.println(order);
         orderService.completeOrder(order);

@@ -14,5 +14,5 @@ public interface IStockDao {
 
     Book getBook(Book book);
 
-    void removeBookFromStock(Book book);
+
 }
