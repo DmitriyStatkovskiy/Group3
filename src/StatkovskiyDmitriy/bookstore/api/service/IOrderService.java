@@ -14,7 +14,7 @@ public interface IOrderService {
 
     Order completeOrder(Order order);
 
-    double calculateOrderPrice(OrderDao order);
+    double calculateOrderPrice(Order order);
 
     Order changeOrderStatus(Order order, OrderStatus status);
 

@@ -1,6 +1,7 @@
 package StatkovskiyDmitriy.bookstore.dao;
 
 import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
+import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 
@@ -39,7 +40,11 @@ public class OrderDao implements IOrderDao {
     public List<Order> getAll(){
         return orders;
     }
-
+    public List<Book> getBooksFromOrder (Order order){
+        List<Book> books = order.getBooks();
+        return books;
+    }
+    
     @Override
     public Order changeOrderStatus(Order order, OrderStatus status) {
         order.setStatus(status);

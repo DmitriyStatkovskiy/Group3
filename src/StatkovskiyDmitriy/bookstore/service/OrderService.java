@@ -68,12 +68,11 @@ public class OrderService implements IOrderService {
         return order;
     }
 
-    public double calculateOrderPrice(OrderDao order){
+    public double calculateOrderPrice(Order order){
         double result = 0;
-        List<Order> orders = order.getAll();
-//        List<Book> books = orders.stream()
-//                .map(book->book.getBooks())
-//                .collect(Collectors.toList());
+//        List<Book> books = order.getBooks();
+//        result = books.stream()
+//                .
         return result;
     }
 
