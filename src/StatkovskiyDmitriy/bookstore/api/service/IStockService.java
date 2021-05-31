@@ -16,5 +16,5 @@ public interface IStockService {
 
     List<StockUnit> sortUnitsByStatus(StockDao stockUnit);
 
-    List<StockUnit> sortUnitsByDate(StockDao stockUnit);
+    // List<StockUnit> sortUnitsByDate(StockDao stockUnit);
 }

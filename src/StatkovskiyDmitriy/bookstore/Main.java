@@ -9,13 +9,10 @@ import StatkovskiyDmitriy.bookstore.dao.RequestDao;
 import StatkovskiyDmitriy.bookstore.dao.StockDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
-import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
 import StatkovskiyDmitriy.bookstore.service.StockService;
-
-import java.util.List;
 
 /**
  *
@@ -49,12 +46,13 @@ public class Main {
         stockDao.addBook(bookD);
         stockDao.addBook(bookE);
         stockDao.addBook(bookC);
-        // stockDao.changeBookStatus(bookB.getId(), StockUnitStatus.OUT_OF_STOCK);
-
-        stockService.sortBooksByName(stockDao);
-        stockDao.printStock();
-
-        stockDao.printStock(stockService.sortBooksByName(stockDao));
+        stockDao.changeBookStatus(bookB.getId(), StockUnitStatus.OUT_OF_STOCK);
+        //test sort methods
+//        stockService.sortBooksByName(stockDao);
+//        stockService.sortUnitsByStatus(stockDao);
+//        stockDao.printStock();//
+//        stockDao.printStock(stockService.sortBooksByName(stockDao));
+//        stockDao.printStock(stockService.sortUnitsByStatus(stockDao));
 
         orderService.addBook(order, bookA);
         orderService.addBook(order, bookB);
