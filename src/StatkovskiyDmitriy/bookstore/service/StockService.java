@@ -52,6 +52,7 @@ public class StockService implements IStockService {
 
         return sorted;
     }
+
     public List<StockUnit> sortBooksByPrice(StockDao stockDao) {
         List<StockUnit> books = stockDao.getAllUnits();
 
@@ -81,13 +82,13 @@ public class StockService implements IStockService {
         return sorted;
     }
 
-    public String showBookDescription(StockDao stockUnit, String book){
+    public String showBookDescription(StockDao stockUnit, String book) {
         List<StockUnit> units = stockUnit.getAllUnits();
-        List<String> filteredBook = units.stream()
-                .filter(unit->unit.getBook().getName().equals(book))
-                .map(unit->unit.getBook().getDescription())
-                .collect(Collectors.toList());
-        String description = filteredBook.get(0);
+        StockUnit filteredBook = units.stream()
+                .filter(unit -> unit.getBook().getName().equals(book))
+                .findFirst()
+                .get();
+        String description = filteredBook.getBook().getDescription();
         return description;
     }
 

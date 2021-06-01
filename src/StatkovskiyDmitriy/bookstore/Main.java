@@ -9,6 +9,7 @@ import StatkovskiyDmitriy.bookstore.dao.RequestDao;
 import StatkovskiyDmitriy.bookstore.dao.StockDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
+import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
@@ -34,11 +35,11 @@ public class Main {
         Order order = orderService.createNew();
         Order order2 = orderService.createNew();
 
-        Book bookA = new Book("AAA", "1", 10, "e");
-        Book bookB = new Book("BBB", "2", 20, "ee");
-        Book bookC = new Book("CCC", "3", 30, "eee");
-        Book bookD = new Book("DDD", "4", 40, "eeee");
-        Book bookE = new Book("EEE", "5", 50, "eeeee");
+        Book bookA = new Book("AAA", "1", 10, "aaa");
+        Book bookB = new Book("BBB", "2", 20, "bbb");
+        Book bookC = new Book("CCC", "3", 30, "ccc");
+        Book bookD = new Book("DDD", "4", 40, "ddd");
+        Book bookE = new Book("EEE", "5", 50, "eee");
 
 
         stockDao.addBook(bookA);
@@ -68,11 +69,12 @@ public class Main {
         requestDao.getAll().forEach(System.out::println);
         orderService.completeOrder(order);
         System.out.println(order);
+        System.out.println(orderService.calculateOrderPrice(order));
         //show book description
-        //System.out.println(stockService.showBookDescription(stockDao, "CCC"));
+        // System.out.println(stockService.showBookDescription(stockDao, "DDD"));
 
 //        test changeOrderStatus
-//        orderService.addBook(order2,bookD);
+//        orderService.addBook(order2, bookD);
 //        System.out.println(order2);
 //        orderService.changeOrderStatus(order2, OrderStatus.CANCELED);
 //        System.out.println(order2);
