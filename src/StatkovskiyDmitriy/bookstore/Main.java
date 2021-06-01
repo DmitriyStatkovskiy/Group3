@@ -9,6 +9,7 @@ import StatkovskiyDmitriy.bookstore.dao.RequestDao;
 import StatkovskiyDmitriy.bookstore.dao.StockDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
+import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
@@ -72,6 +73,11 @@ public class Main {
         requestDao.getAll().forEach(System.out::println);
         orderService.completeOrder(order);
         System.out.println(order);
+//        //test sort stock by name
+//        System.out.println();
+//        stockDao.printStock();
+//        System.out.println();
+//        stockDao.printStock(stockService.sortBooksByName(stockDao));
 
 //        System.out.println(requestService.sortRequestsByBookName(requestService));
         //sort by order price
@@ -81,10 +87,10 @@ public class Main {
 //        System.out.println("sorted orders:");
 //        orderService.sortOrdersByPrice(orderService).forEach(System.out::println);
 
-        //show book description
-        // System.out.println(stockService.showBookDescription(stockDao, "DDD"));
-
-//        test changeOrderStatus
+////        show book description
+//         System.out.println(stockService.showBookDescription(stockDao, "DDD"));
+//
+////        test changeOrderStatus
 //        orderService.addBook(order2, bookD);
 //        System.out.println(order2);
 //        orderService.changeOrderStatus(order2, OrderStatus.CANCELED);

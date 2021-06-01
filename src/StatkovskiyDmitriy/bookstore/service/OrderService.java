@@ -4,7 +4,6 @@ import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.api.service.IStockService;
-import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
@@ -79,7 +78,7 @@ public class OrderService implements IOrderService {
         return result;
     }
 
-    public List<Order> sortOrdersByFulfillmentDate(OrderDao orderDao) {
+    public List<Order> sortOrdersByFulfillmentDate(IOrderDao orderDao) {
         List<Order> orders = orderDao.getAll();
         List<Order> sorted = orders.stream()
                 .sorted(Comparator.comparing(o -> o.getOrderFulfillmentDate()))
@@ -87,7 +86,7 @@ public class OrderService implements IOrderService {
         return sorted;
     }
 
-    public List<Order> sortOrdersByStatus(OrderDao orderDao) {
+    public List<Order> sortOrdersByStatus(IOrderDao orderDao) {
         List<Order> orders = orderDao.getAll();
         List<Order> sorted = orders.stream()
                 .sorted(Comparator.comparing(o -> o.getOrderStatus()))
@@ -95,8 +94,8 @@ public class OrderService implements IOrderService {
         return sorted;
     }
 
-    public List<Order> sortOrdersByPrice(OrderService orderDao) {
-        List<Order> orders = orderDao.orderDao.getAll();
+    public List<Order> sortOrdersByPrice(IOrderDao orderDao) {
+        List<Order> orders = orderDao.getAll();
         for (Order order : orders) {
             order.setOrderPrice(calculateOrderPrice(order));
         }

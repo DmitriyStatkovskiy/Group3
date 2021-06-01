@@ -2,7 +2,6 @@ package StatkovskiyDmitriy.bookstore.service;
 
 import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
-import StatkovskiyDmitriy.bookstore.dao.RequestDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Request;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
@@ -43,7 +42,7 @@ public class RequestService implements IRequestService {
         return requestDao.addBookToRequest(book);
     }
 
-    public List<Request> sortRequestsByBookName(RequestDao requestDao) {
+    public List<Request> sortRequestsByBookName(IRequestDao requestDao) {
         List<Request> books = requestDao.getAll();
         List<Request> sorted = books.stream()
                 .sorted(Comparator.comparing(o -> o.getBook().getName()))

@@ -1,10 +1,9 @@
 package StatkovskiyDmitriy.bookstore.api.service;
 
-import StatkovskiyDmitriy.bookstore.dao.OrderDao;
+import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
-import StatkovskiyDmitriy.bookstore.service.OrderService;
 
 import java.util.List;
 
@@ -17,11 +16,11 @@ public interface IOrderService {
 
     double calculateOrderPrice(Order order);
 
-    List<Order> sortOrdersByPrice(OrderService orderDao);
+    List<Order> sortOrdersByPrice(IOrderDao orderDao);
 
-    List<Order> sortOrdersByStatus(OrderDao orderDao);
+    List<Order> sortOrdersByStatus(IOrderDao orderDao);
 
-    List<Order> sortOrdersByFulfillmentDate(OrderDao orderDao);
+    List<Order> sortOrdersByFulfillmentDate(IOrderDao orderDao);
 
     Order changeOrderStatus(Order order, OrderStatus status);
 

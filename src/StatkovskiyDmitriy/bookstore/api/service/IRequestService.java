@@ -1,6 +1,6 @@
 package StatkovskiyDmitriy.bookstore.api.service;
 
-import StatkovskiyDmitriy.bookstore.dao.RequestDao;
+import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Request;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
@@ -14,7 +14,7 @@ public interface IRequestService {
 
     void changeRequestStatusByBookName(String bookName, RequestStatus status);
 
-    List<Request> sortRequestsByBookName(RequestDao requestDao);
+    List<Request> sortRequestsByBookName(IRequestDao requestDao);
 
     Request addBookToRequest(Book book);
 }

@@ -44,7 +44,7 @@ public class StockService implements IStockService {
         }
     }
 
-    public List<StockUnit> sortBooksByName(StockDao stockDao) {
+    public List<StockUnit> sortBooksByName(IStockDao stockDao) {
         List<StockUnit> books = stockDao.getAllUnits();
 
         List<StockUnit> sorted = books.stream()
@@ -54,7 +54,7 @@ public class StockService implements IStockService {
         return sorted;
     }
 
-    public List<StockUnit> sortBooksByPrice(StockDao stockDao) {
+    public List<StockUnit> sortBooksByPrice(IStockDao stockDao) {
         List<StockUnit> books = stockDao.getAllUnits();
 
         List<StockUnit> sorted = books.stream()
@@ -64,8 +64,8 @@ public class StockService implements IStockService {
         return sorted;
     }
 
-    //    public List<StockUnit> sortUnitsByDate(StockService stockUnit){
-//        List<StockUnit> units = stockUnit.stockDao.getAllUnits();
+//        public List<StockUnit> sortUnitsByDate(IStockDao stockUnit){
+//        List<StockUnit> units = stockUnit.getAllUnits();
 //        List<StockUnit> sorted = units.stream()
 //                .sorted(Comparator.comparing(StockUnit::getIncomingDate))
 //                .collect(Collectors.toList());
@@ -74,7 +74,7 @@ public class StockService implements IStockService {
 //        }
 //        return sorted;
 //    }
-    public List<StockUnit> sortUnitsByStatus(StockDao stockUnit) {
+    public List<StockUnit> sortUnitsByStatus(IStockDao stockUnit) {
         List<StockUnit> units = stockUnit.getAllUnits();
         List<StockUnit> sorted = units.stream()
                 .sorted(Comparator.comparing(StockUnit::getStatus))
@@ -83,7 +83,7 @@ public class StockService implements IStockService {
         return sorted;
     }
 
-    public String showBookDescription(StockDao stockUnit, String book) {
+    public String showBookDescription(IStockDao stockUnit, String book) {
         List<StockUnit> units = stockUnit.getAllUnits();
         StockUnit filteredBook = units.stream()
                 .filter(unit -> unit.getBook().getName().equals(book))
