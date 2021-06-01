@@ -68,6 +68,9 @@ public class Main {
         requestDao.getAll().forEach(System.out::println);
         orderService.completeOrder(order);
         System.out.println(order);
+        //show book description
+        //System.out.println(stockService.showBookDescription(stockDao, "CCC"));
+
 //        test changeOrderStatus
 //        orderService.addBook(order2,bookD);
 //        System.out.println(order2);

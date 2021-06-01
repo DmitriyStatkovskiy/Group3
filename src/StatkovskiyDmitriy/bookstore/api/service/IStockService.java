@@ -18,5 +18,6 @@ public interface IStockService {
 
     List<StockUnit> sortUnitsByStatus(StockDao stockUnit);
 
+    String showBookDescription(StockDao stockUnit, String book);
     // List<StockUnit> sortUnitsByDate(StockDao stockUnit);
 }
