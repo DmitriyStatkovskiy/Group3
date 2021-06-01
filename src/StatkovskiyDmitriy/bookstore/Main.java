@@ -9,7 +9,6 @@ import StatkovskiyDmitriy.bookstore.dao.RequestDao;
 import StatkovskiyDmitriy.bookstore.dao.StockDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
-import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
@@ -34,6 +33,7 @@ public class Main {
 
         Order order = orderService.createNew();
         Order order2 = orderService.createNew();
+        Order order3 = orderService.createNew();
 
         Book bookA = new Book("AAA", "1", 10, "aaa");
         Book bookB = new Book("BBB", "2", 20, "bbb");
@@ -57,6 +57,9 @@ public class Main {
 
         orderService.addBook(order, bookA);
         orderService.addBook(order, bookB);
+        orderService.addBook(order2,bookE);
+        orderService.addBook(order3,bookA);
+
 
         //orderService.cancelOrder(order);
         System.out.println(order);
@@ -69,7 +72,14 @@ public class Main {
         requestDao.getAll().forEach(System.out::println);
         orderService.completeOrder(order);
         System.out.println(order);
-        System.out.println(orderService.calculateOrderPrice(order));
+
+        //sort by order price
+//        System.out.println(orderService.calculateOrderPrice(order));
+//        System.out.println("Orders without sort:");
+//        orderDao.getAll().forEach(System.out::println);
+//        System.out.println("sorted orders:");
+//        orderService.sortOrdersByPrice(orderService).forEach(System.out::println);
+
         //show book description
         // System.out.println(stockService.showBookDescription(stockDao, "DDD"));
 

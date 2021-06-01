@@ -4,11 +4,13 @@ import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.api.service.IStockService;
+import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,14 +71,38 @@ public class OrderService implements IOrderService {
     public double calculateOrderPrice(Order order) {
         double result = 0;
         List<Book> books = order.getBooks();
-        List<Double> priceList = books.stream()
+        result = books.stream()
                 .map(book -> book.getPrice())
-                .collect(Collectors.toList());
+                .mapToDouble(Double::doubleValue)
+                .sum();
 
-        for (Double aDouble : priceList) {
-            result+=aDouble;
-        }
         return result;
+    }
+
+    public List<Order> sortOrdersByFulfillmentDate(OrderDao orderDao) {
+        List<Order> orders = orderDao.getAll();
+        List<Order> sorted = orders.stream()
+                .sorted(Comparator.comparing(o -> o.getOrderFulfillmentDate()))
+                .collect(Collectors.toList());
+        return sorted;
+    }
+
+    public List<Order> sortOrdersByStatus(OrderDao orderDao) {
+        List<Order> orders = orderDao.getAll();
+        List<Order> sorted = orders.stream()
+                .sorted(Comparator.comparing(o -> o.getOrderStatus()))
+                .collect(Collectors.toList());
+        return sorted;
+    }
+    public List<Order> sortOrdersByPrice(OrderService orderDao){
+        List<Order> orders = orderDao.orderDao.getAll();
+        for (Order order : orders) {
+           order.setOrderPrice(calculateOrderPrice(order));
+        }
+        List<Order> sorted = orders.stream()
+                .sorted(Comparator.comparing(o -> o.getOrderPrice()))
+                .collect(Collectors.toList());
+        return sorted;
     }
 
     @Override

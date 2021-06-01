@@ -16,6 +16,7 @@ public class Order {
     private OrderStatus status = OrderStatus.NEW;
     private LocalDate orderCreationDate;
     private LocalDate orderFulfillmentDate;
+    private double orderPrice;
 
     private List<Book> books = new ArrayList<>();
 
@@ -28,6 +29,14 @@ public class Order {
     }
 
     public Order() {
+    }
+
+    public double getOrderPrice() {
+        return orderPrice;
+    }
+
+    public void setOrderPrice(double orderPrice) {
+        this.orderPrice = orderPrice;
     }
 
     public OrderStatus getStatus() {

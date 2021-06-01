@@ -4,6 +4,7 @@ import StatkovskiyDmitriy.bookstore.dao.StockDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.StockUnit;
+import StatkovskiyDmitriy.bookstore.service.StockService;
 
 import java.util.List;
 

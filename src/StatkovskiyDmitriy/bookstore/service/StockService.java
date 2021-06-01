@@ -63,8 +63,8 @@ public class StockService implements IStockService {
         return sorted;
     }
 
-    //    public List<StockUnit> sortUnitsByDate(StockDao stockUnit){
-//        List<StockUnit> units = stockUnit.getAllUnits();
+    //    public List<StockUnit> sortUnitsByDate(StockService stockUnit){
+//        List<StockUnit> units = stockUnit.stockDao.getAllUnits();
 //        List<StockUnit> sorted = units.stream()
 //                .sorted(Comparator.comparing(StockUnit::getIncomingDate))
 //                .collect(Collectors.toList());
