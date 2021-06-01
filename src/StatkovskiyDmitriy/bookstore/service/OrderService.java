@@ -94,10 +94,11 @@ public class OrderService implements IOrderService {
                 .collect(Collectors.toList());
         return sorted;
     }
-    public List<Order> sortOrdersByPrice(OrderService orderDao){
+
+    public List<Order> sortOrdersByPrice(OrderService orderDao) {
         List<Order> orders = orderDao.orderDao.getAll();
         for (Order order : orders) {
-           order.setOrderPrice(calculateOrderPrice(order));
+            order.setOrderPrice(calculateOrderPrice(order));
         }
         List<Order> sorted = orders.stream()
                 .sorted(Comparator.comparing(o -> o.getOrderPrice()))

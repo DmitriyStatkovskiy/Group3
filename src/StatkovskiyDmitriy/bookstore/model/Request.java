@@ -60,6 +60,7 @@ public class Request {
     @Override
     public String toString() {
         return "Request{" +
+                "requestId='" + id + '\'' +
                 "requestStatus='" + status + '\'' +
                 ", requestedBookName='" + book.getName() + '\'' +
                 '}';

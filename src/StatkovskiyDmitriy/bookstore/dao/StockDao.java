@@ -30,6 +30,13 @@ public class StockDao implements IStockDao {
                 .filter(stockUnit -> status.equals(stockUnit.getStatus()))
                 .collect(Collectors.toList());
     }
+    public List<StockUnit> getStockUnitsByName(List<String> name, StockUnitStatus status) {
+
+        return stockUnits.stream()
+                .filter(stockUnit -> name.contains(stockUnit.getBook().getName()))
+                .filter(stockUnit -> status.equals(stockUnit.getStatus()))
+                .collect(Collectors.toList());
+    }
 
     public void changeBookStatus(String id, StockUnitStatus status) {
         StockUnit stockUnit = getStockUnitByBookId(id);

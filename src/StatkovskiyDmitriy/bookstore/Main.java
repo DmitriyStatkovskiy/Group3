@@ -41,7 +41,6 @@ public class Main {
         Book bookD = new Book("DDD", "4", 40, "ddd");
         Book bookE = new Book("EEE", "5", 50, "eee");
 
-
         stockDao.addBook(bookA);
         stockDao.addBook(bookB);
         stockDao.addBook(bookD);
@@ -60,7 +59,8 @@ public class Main {
         orderService.addBook(order2,bookE);
         orderService.addBook(order3,bookA);
 
-
+        requestService.createRequest(bookB);
+        requestService.createRequest(bookA);
         //orderService.cancelOrder(order);
         System.out.println(order);
         orderService.completeOrder(order);
@@ -73,6 +73,7 @@ public class Main {
         orderService.completeOrder(order);
         System.out.println(order);
 
+//        System.out.println(requestService.sortRequestsByBookName(requestService));
         //sort by order price
 //        System.out.println(orderService.calculateOrderPrice(order));
 //        System.out.println("Orders without sort:");

@@ -17,11 +17,6 @@ public class RequestDao implements IRequestDao {
         return requests;
     }
 
-    public void addRequest(String id, String requestedBookName) {
-        //   requests.add(new Request(id, requestedBookName));
-    }
-
-
     @Override
     public Request createRequest(Book book) {
         Request request = new Request(book);
@@ -37,6 +32,9 @@ public class RequestDao implements IRequestDao {
                 .get();
         request1.setStatus(status);
     }
+
+
+
 
     @Override
     public Request addBookToRequest(Book book) {

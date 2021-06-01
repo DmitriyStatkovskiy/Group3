@@ -58,6 +58,4 @@ public class OrderDao implements IOrderDao {
                 .filter(order -> order.getOrderFulfillmentDate().isAfter(from))
                 .collect(Collectors.toList());
     }
-
-
 }
