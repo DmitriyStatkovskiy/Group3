@@ -36,11 +36,6 @@ public class RequestService implements IRequestService {
                 .forEach(request -> request.setStatus(status));
     }
 
-    @Override
-    public Request addBookToRequest(Book book) {
-        return requestDao.addBookToRequest(book);
-    }
-
     public List<Request> sortRequestsByBookName(IRequestDao requestDao) {
         List<Request> books = requestDao.getAll();
         return books.stream()

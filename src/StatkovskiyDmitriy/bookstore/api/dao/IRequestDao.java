@@ -12,11 +12,6 @@ public interface IRequestDao {
 
     void changeRequestStatus(String id, RequestStatus status);
 
-    Request addBookToRequest(Book book);
-
     List<Request> getAll();
 
-    Request getRequest(String id);
-
-    Request delete(String id);
 }

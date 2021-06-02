@@ -18,5 +18,5 @@ public interface IRequestService {
 
     List<Request> sortRequestsByQuantity(IRequestDao requestDao);
 
-    Request addBookToRequest(Book book);
+
 }

@@ -1,6 +1,5 @@
 package StatkovskiyDmitriy.bookstore.model;
 
-import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -19,15 +18,12 @@ public class Book {
         this.description = description;
     }
 
-
     public Book() {
     }
 
     public String getId() {
         return id;
     }
-
-
 
     public String getDescription() {
         return description;
@@ -36,7 +32,6 @@ public class Book {
     public void setDescription(String description) {
         this.description = description;
     }
-
 
     public String getName() {
         return name;
@@ -61,8 +56,6 @@ public class Book {
     public void setPrice(double price) {
         this.price = price;
     }
-
-
 
 
     @Override

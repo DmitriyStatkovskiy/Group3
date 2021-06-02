@@ -25,5 +25,6 @@ public interface IStockService {
     List<StockUnit> sortOldBooksByIncomingDate(IStockUnitDao stockUnitDao);
 
     List<StockUnit> sortOldBooksByPrice(IStockUnitDao stockUnitDao);
+
     // List<StockUnit> sortUnitsByDate(StockDao stockUnit);
 }

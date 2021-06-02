@@ -15,7 +15,6 @@ public class TimeRange {
         ArrayList<LocalDate> dates = (ArrayList<LocalDate>) Stream.iterate(start, date -> date.plusDays(1))
                 .limit(ChronoUnit.DAYS.between(start, end))
                 .collect(Collectors.toList());
-
         return dates;
     }
 }

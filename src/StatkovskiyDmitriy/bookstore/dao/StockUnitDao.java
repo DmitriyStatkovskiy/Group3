@@ -15,7 +15,6 @@ public class StockUnitDao implements IStockUnitDao {
 
     public void addBook(Book book) {
         stockUnits.add(new StockUnit(book));
-
     }
 
     public List<StockUnit> getAllUnits() {
@@ -48,12 +47,6 @@ public class StockUnitDao implements IStockUnitDao {
                 .filter(unit -> unit.getBook().getId().equals(id))
                 .findFirst()
                 .orElse(null);
-    }
-
-    @Override
-    public Book getBook(Book book) {
-
-        return book;
     }
 
     public void printStock() {

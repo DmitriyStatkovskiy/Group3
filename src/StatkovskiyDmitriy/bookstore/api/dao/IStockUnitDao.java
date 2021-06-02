@@ -14,8 +14,6 @@ public interface IStockUnitDao {
 
     List<StockUnit> getStockUnitsByName(List<String> name, StockUnitStatus status);
 
-    Book getBook(Book book);
-
     List<StockUnit> getAllUnits();
 
 

@@ -32,25 +32,9 @@ public class RequestDao implements IRequestDao {
     }
 
     @Override
-    public Request addBookToRequest(Book book) {
-        return null;
-    }
-
-    @Override
     public List<Request> getAll() {
         return requests;
     }
-
-    @Override
-    public Request getRequest(String id) {
-        return null;
-    }
-
-    @Override
-    public Request delete(String id) {
-        return null;
-    }
-
 
     public void printRequests() {
         for (Request request : requests) {

@@ -59,8 +59,8 @@ public class Main {
 
         orderService.addBook(order, bookA);
         orderService.addBook(order, bookB);
-        orderService.addBook(order2,bookE);
-        orderService.addBook(order3,bookA);
+        orderService.addBook(order2, bookE);
+        orderService.addBook(order3, bookA);
 
         requestService.createRequest(bookB);
         requestService.createRequest(bookA);
@@ -71,6 +71,7 @@ public class Main {
         requestService.createRequest(bookC);
         requestService.createRequest(bookA);
         requestService.createRequest(bookA);
+
         orderService.cancelOrder(order);
         System.out.println(order);
         orderService.completeOrder(order);
@@ -82,13 +83,13 @@ public class Main {
         requestDao.getAll().forEach(System.out::println);
         orderService.completeOrder(order);
         System.out.println(order);
-     //  test sort stock by name
+        //  test sort stock by name
         System.out.println();
         stockUnitDao.printStock();
         System.out.println();
         stockUnitDao.printStock(stockService.sortBooksByName(stockUnitDao));
 
-       requestService.sortRequestsByBookName(requestDao).forEach(System.out::println);
+        requestService.sortRequestsByBookName(requestDao).forEach(System.out::println);
 //        sort by order price
         System.out.println(orderService.calculateOrderPrice(order));
         System.out.println("Orders without sort:");
@@ -97,7 +98,7 @@ public class Main {
         orderService.sortOrdersByPrice(orderDao).forEach(System.out::println);
 
 //        show book description
-         System.out.println(stockService.showBookDescription(stockUnitDao, "DDD"));
+        System.out.println(stockService.showBookDescription(stockUnitDao, "DDD"));
 
 //        test changeOrderStatus
         orderService.addBook(order2, bookD);

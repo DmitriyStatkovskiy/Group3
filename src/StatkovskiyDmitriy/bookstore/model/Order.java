@@ -38,25 +38,6 @@ public class Order {
         this.status = status;
     }
 
-    private String orderClosedDate() {
-
-        if (orderClosedDate==null) {
-            return "In progress";
-        }
-        if (orderClosedDate.equals(LocalDate.of(1970, 1, 1))) {
-            return "Canceled";
-        }
-        return orderClosedDate.toString();
-    }
-
-    private String printBooks() {
-        String message = "";
-        for (Book book : books) {
-            message += " " + book.getName() + " " + book.getPrice() + " ";
-        }
-        return message;
-    }
-
     public List<Book> getBooks() {
         return books;
     }
@@ -76,7 +57,6 @@ public class Order {
     public void setBookName(String bookName) {
         this.bookName = bookName;
     }
-
 
     public LocalDate getOrderCreatedDate() {
         return orderCreatedDate;
@@ -104,6 +84,25 @@ public class Order {
 
     public void setBooks(List<Book> books) {
         this.books = books;
+    }
+
+    private String orderClosedDate() {
+
+        if (orderClosedDate == null) {
+            return "In progress";
+        }
+        if (orderClosedDate.equals(LocalDate.of(1970, 1, 1))) {
+            return "Canceled";
+        }
+        return orderClosedDate.toString();
+    }
+
+    private String printBooks() {
+        String message = "";
+        for (Book book : books) {
+            message += " " + book.getName() + " " + book.getPrice() + " ";
+        }
+        return message;
     }
 
     @Override

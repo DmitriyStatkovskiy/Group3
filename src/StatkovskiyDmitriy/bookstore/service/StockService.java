@@ -39,7 +39,6 @@ public class StockService implements IStockService {
     public void addBook(Book book) {
         List<String> name = Arrays.asList(book.getId());
         if (stockDao.getStockUnitsByIds(name, StockUnitStatus.OUT_OF_STOCK).size() != 0) {
-            //  requestService.changeRequestStatus(book.getId(), RequestStatus.CLOSED);
             requestService.changeRequestStatusByBookName(book.getName(), RequestStatus.CLOSED);
         }
     }
