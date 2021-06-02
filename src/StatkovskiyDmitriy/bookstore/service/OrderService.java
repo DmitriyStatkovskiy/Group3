@@ -1,11 +1,14 @@
 package StatkovskiyDmitriy.bookstore.service;
 
 import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
+import StatkovskiyDmitriy.bookstore.api.dao.IStockUnitDao;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.api.service.IStockService;
+import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
+import StatkovskiyDmitriy.bookstore.model.StockUnit;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 
 import java.time.LocalDate;
@@ -154,14 +157,12 @@ public class OrderService implements IOrderService {
         int number = or.size();
         return number;
     }
-
-    @Override
-    public Order getOrder(String id) {
-        return null;
-    }
-
-    @Override
-    public Order delete(String id) {
-        return null;
+    public Order showOrderInformation(IOrderDao orderDao, String customerName) {
+        List<Order> units = orderDao.getAll();
+        Order details = units.stream()
+                .filter(order -> order.getCustomerName().equals(customerName))
+                .findFirst()
+                .get();
+        return details;
     }
 }

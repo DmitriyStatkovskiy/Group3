@@ -35,7 +35,5 @@ public interface IOrderService {
 
     double calculateEarnedMoneyFromRange(IOrderDao orderDao, LocalDate from, LocalDate to);
 
-    Order getOrder(String id);
-
-    Order delete(String id);
+    Order showOrderInformation(IOrderDao orderDao, String customerName);
 }

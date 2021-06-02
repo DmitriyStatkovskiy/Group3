@@ -1,7 +1,6 @@
 package StatkovskiyDmitriy.bookstore.dao;
 
 import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
-import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 
 import java.time.LocalDate;

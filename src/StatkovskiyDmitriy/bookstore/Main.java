@@ -110,5 +110,7 @@ public class Main {
 //      sort requests by quantity
         requestService.sortRequestsByQuantity(requestDao).forEach(System.out::println);
         System.out.println(orderService.numberOfCompletedOrdersFromRange(orderDao, LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 4)));
+
+
     }
 }
