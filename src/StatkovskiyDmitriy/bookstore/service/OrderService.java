@@ -102,6 +102,30 @@ public class OrderService implements IOrderService {
                 .collect(Collectors.toList());
     }
 
+    public List<Order> sortCompletedOrdersByPriceFromRange(IOrderDao orderDao, LocalDate from, LocalDate to) {
+        List<Order> orders = orderDao.getAll();
+        orders.stream()
+                .filter(order -> order.getOrderClosedDate().isBefore(to))
+                .filter(order -> order.getOrderClosedDate().isAfter(from))
+                .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
+                .forEach(order -> order.setOrderPrice(calculateOrderPrice(order)));
+
+        return orders.stream()
+                .sorted(Comparator.comparing(o -> o.getOrderPrice()))
+                .collect(Collectors.toList());
+    }
+
+    public List<Order> sortCompletedOrdersByCompletedDateFromRange(IOrderDao orderDao, LocalDate from, LocalDate to) {
+        List<Order> orders = orderDao.getAll();
+        return orders.stream()
+                .filter(order -> order.getOrderClosedDate().isBefore(to))
+                .filter(order -> order.getOrderClosedDate().isAfter(from))
+                .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
+                .sorted(Comparator.comparing(o -> o.getOrderClosedDate()))
+                .collect(Collectors.toList());
+    }
+
+
     @Override
     public Order getOrder(String id) {
         return null;

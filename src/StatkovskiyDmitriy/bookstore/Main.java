@@ -63,10 +63,13 @@ public class Main {
         requestService.createRequest(bookB);
         requestService.createRequest(bookA);
         requestService.createRequest(bookB);
+        requestService.createRequest(bookB);
+        requestService.createRequest(bookB);
+        requestService.createRequest(bookB);
         requestService.createRequest(bookC);
         requestService.createRequest(bookA);
         requestService.createRequest(bookA);
-        //orderService.cancelOrder(order);
+        orderService.cancelOrder(order);
         System.out.println(order);
         orderService.completeOrder(order);
 
@@ -83,7 +86,7 @@ public class Main {
         System.out.println();
         stockUnitDao.printStock(stockService.sortBooksByName(stockUnitDao));
 
-        System.out.println(requestService.sortRequestsByBookName(requestDao));
+       requestService.sortRequestsByBookName(requestDao).forEach(System.out::println);
 //        sort by order price
         System.out.println(orderService.calculateOrderPrice(order));
         System.out.println("Orders without sort:");
@@ -98,7 +101,9 @@ public class Main {
         orderService.addBook(order2, bookD);
         System.out.println(order2);
         orderService.changeOrderStatus(order2, OrderStatus.CANCELED);
+        orderService.completeOrder(order3);
         System.out.println(order2);
+        System.out.println(order3);
 //      sort requests by quantity
         requestService.sortRequestsByQuantity(requestDao).forEach(System.out::println);
     }

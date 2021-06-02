@@ -40,11 +40,4 @@ public class OrderDao implements IOrderDao {
         List<Book> books = order.getBooks();
         return books;
     }
-
-    public List<Order> findOrderByRange(LocalDate from, LocalDate to) {
-        return orders.stream()
-                .filter(order -> order.getOrderClosedDate().isBefore(to))
-                .filter(order -> order.getOrderClosedDate().isAfter(from))
-                .collect(Collectors.toList());
-    }
 }
