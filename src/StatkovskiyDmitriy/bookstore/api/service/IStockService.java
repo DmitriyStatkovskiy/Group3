@@ -1,6 +1,6 @@
 package StatkovskiyDmitriy.bookstore.api.service;
 
-import StatkovskiyDmitriy.bookstore.api.dao.IStockDao;
+import StatkovskiyDmitriy.bookstore.api.dao.IStockUnitDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.StockUnit;
@@ -12,13 +12,13 @@ public interface IStockService {
 
     void addBook(Book book);
 
-    List<StockUnit> sortBooksByName(IStockDao stockDao);
+    List<StockUnit> sortBooksByName(IStockUnitDao stockDao);
 
-    List<StockUnit> sortBooksByPrice(IStockDao stockDao);
+    List<StockUnit> sortBooksByPrice(IStockUnitDao stockDao);
 
-    List<StockUnit> sortUnitsByStatus(IStockDao stockUnit);
+    List<StockUnit> sortUnitsByStatus(IStockUnitDao stockUnit);
 
-    String showBookDescription(IStockDao stockUnit, String book);
+    String showBookDescription(IStockUnitDao stockUnit, String book);
 
     // List<StockUnit> sortUnitsByDate(StockDao stockUnit);
 }

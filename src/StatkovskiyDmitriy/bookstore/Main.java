@@ -6,7 +6,7 @@ import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.api.service.IStockService;
 import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.dao.RequestDao;
-import StatkovskiyDmitriy.bookstore.dao.StockDao;
+import StatkovskiyDmitriy.bookstore.dao.StockUnitDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
@@ -26,9 +26,9 @@ public class Main {
         IRequestDao requestDao = new RequestDao();
         IRequestService requestService = new RequestService(requestDao);
 
-        StockDao stockDao = new StockDao();
+        StockUnitDao stockUnitDao = new StockUnitDao();
 
-        IStockService stockService = new StockService(stockDao, requestService);
+        IStockService stockService = new StockService(stockUnitDao, requestService);
 
         OrderService orderService = new OrderService(orderDao, stockService, requestService);
 
@@ -42,12 +42,12 @@ public class Main {
         Book bookD = new Book("DDD", "4", 40, "ddd");
         Book bookE = new Book("EEE", "5", 50, "eee");
 
-        stockDao.addBook(bookA);
-        stockDao.addBook(bookB);
-        stockDao.addBook(bookD);
-        stockDao.addBook(bookE);
-        stockDao.addBook(bookC);
-        stockDao.changeBookStatus(bookB.getId(), StockUnitStatus.OUT_OF_STOCK);
+        stockUnitDao.addBook(bookA);
+        stockUnitDao.addBook(bookB);
+        stockUnitDao.addBook(bookD);
+        stockUnitDao.addBook(bookE);
+        stockUnitDao.addBook(bookC);
+        stockUnitDao.changeBookStatus(bookB.getId(), StockUnitStatus.OUT_OF_STOCK);
         //test sort methods
 //        stockService.sortBooksByName(stockDao);
 //        stockService.sortUnitsByStatus(stockDao);
@@ -73,27 +73,27 @@ public class Main {
         requestDao.getAll().forEach(System.out::println);
         orderService.completeOrder(order);
         System.out.println(order);
-//        //test sort stock by name
-//        System.out.println();
-//        stockDao.printStock();
-//        System.out.println();
-//        stockDao.printStock(stockService.sortBooksByName(stockDao));
+     //  test sort stock by name
+        System.out.println();
+        stockUnitDao.printStock();
+        System.out.println();
+        stockUnitDao.printStock(stockService.sortBooksByName(stockUnitDao));
 
-//        System.out.println(requestService.sortRequestsByBookName(requestService));
-        //sort by order price
-//        System.out.println(orderService.calculateOrderPrice(order));
-//        System.out.println("Orders without sort:");
-//        orderDao.getAll().forEach(System.out::println);
-//        System.out.println("sorted orders:");
-//        orderService.sortOrdersByPrice(orderService).forEach(System.out::println);
+        System.out.println(requestService.sortRequestsByBookName(requestDao));
+//        sort by order price
+        System.out.println(orderService.calculateOrderPrice(order));
+        System.out.println("Orders without sort:");
+        orderDao.getAll().forEach(System.out::println);
+        System.out.println("sorted orders:");
+        orderService.sortOrdersByPrice(orderDao).forEach(System.out::println);
 
-////        show book description
-//         System.out.println(stockService.showBookDescription(stockDao, "DDD"));
-//
-////        test changeOrderStatus
-//        orderService.addBook(order2, bookD);
-//        System.out.println(order2);
-//        orderService.changeOrderStatus(order2, OrderStatus.CANCELED);
-//        System.out.println(order2);
+//        show book description
+         System.out.println(stockService.showBookDescription(stockUnitDao, "DDD"));
+
+//        test changeOrderStatus
+        orderService.addBook(order2, bookD);
+        System.out.println(order2);
+        orderService.changeOrderStatus(order2, OrderStatus.CANCELED);
+        System.out.println(order2);
     }
 }

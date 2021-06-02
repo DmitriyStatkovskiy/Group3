@@ -1,6 +1,6 @@
 package StatkovskiyDmitriy.bookstore.dao;
 
-import StatkovskiyDmitriy.bookstore.api.dao.IStockDao;
+import StatkovskiyDmitriy.bookstore.api.dao.IStockUnitDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.StockUnit;
 import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
@@ -9,10 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StockDao implements IStockDao {
+public class StockUnitDao implements IStockUnitDao {
 
     private List<StockUnit> stockUnits = new ArrayList<>();
-
 
     public void addBook(Book book) {
         stockUnits.add(new StockUnit(book));
@@ -30,6 +29,7 @@ public class StockDao implements IStockDao {
                 .filter(stockUnit -> status.equals(stockUnit.getStatus()))
                 .collect(Collectors.toList());
     }
+
     public List<StockUnit> getStockUnitsByName(List<String> name, StockUnitStatus status) {
 
         return stockUnits.stream()

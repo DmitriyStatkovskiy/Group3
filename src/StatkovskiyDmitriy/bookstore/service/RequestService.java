@@ -44,10 +44,15 @@ public class RequestService implements IRequestService {
 
     public List<Request> sortRequestsByBookName(IRequestDao requestDao) {
         List<Request> books = requestDao.getAll();
-        List<Request> sorted = books.stream()
+        return books.stream()
                 .sorted(Comparator.comparing(o -> o.getBook().getName()))
                 .collect(Collectors.toList());
-        return sorted;
+
     }
 
+    public List<Request> sortRequestsByQuantity(IRequestDao requestDao) {
+        List<Request> requests = requestDao.getAll();
+
+        return null;
+    }
 }

@@ -17,7 +17,7 @@ public class OrderDao implements IOrderDao {
     public Order createOrder() {
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
-        order.setOrderCreationDate(LocalDate.now());
+        order.setOrderCreatedDate(LocalDate.now());
         orders.add(order);
         return order;
     }
@@ -54,8 +54,8 @@ public class OrderDao implements IOrderDao {
 
     public List<Order> findOrderByRange(LocalDate from, LocalDate to) {
         return orders.stream()
-                .filter(order -> order.getOrderFulfillmentDate().isBefore(to))
-                .filter(order -> order.getOrderFulfillmentDate().isAfter(from))
+                .filter(order -> order.getOrderClosedDate().isBefore(to))
+                .filter(order -> order.getOrderClosedDate().isAfter(from))
                 .collect(Collectors.toList());
     }
 }

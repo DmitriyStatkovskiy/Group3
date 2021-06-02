@@ -6,7 +6,7 @@ import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
 
 import java.util.List;
 
-public interface IStockDao {
+public interface IStockUnitDao {
 
     void addBook(Book book);
 

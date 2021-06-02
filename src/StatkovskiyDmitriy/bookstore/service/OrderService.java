@@ -44,7 +44,7 @@ public class OrderService implements IOrderService {
         }
         List<Book> outOfStockBooks = stockService.getOutOfStockBooks(order);
         if (outOfStockBooks.size() == 0) {
-            order.setOrderFulfillmentDate(LocalDate.now());
+            order.setOrderClosedDate(LocalDate.now());
             order.setStatus(OrderStatus.COMPLETED);
         } else {
             for (Book book : outOfStockBooks) {
@@ -70,28 +70,26 @@ public class OrderService implements IOrderService {
     public double calculateOrderPrice(Order order) {
         double result = 0;
         List<Book> books = order.getBooks();
-        result = books.stream()
+        return books.stream()
                 .map(book -> book.getPrice())
                 .mapToDouble(Double::doubleValue)
                 .sum();
 
-        return result;
     }
 
     public List<Order> sortOrdersByFulfillmentDate(IOrderDao orderDao) {
         List<Order> orders = orderDao.getAll();
-        List<Order> sorted = orders.stream()
-                .sorted(Comparator.comparing(o -> o.getOrderFulfillmentDate()))
+        return orders.stream()
+                .sorted(Comparator.comparing(o -> o.getOrderClosedDate()))
                 .collect(Collectors.toList());
-        return sorted;
+
     }
 
     public List<Order> sortOrdersByStatus(IOrderDao orderDao) {
         List<Order> orders = orderDao.getAll();
-        List<Order> sorted = orders.stream()
-                .sorted(Comparator.comparing(o -> o.getOrderStatus()))
+        return orders.stream()
+                .sorted(Comparator.comparing(o -> o.getStatus()))
                 .collect(Collectors.toList());
-        return sorted;
     }
 
     public List<Order> sortOrdersByPrice(IOrderDao orderDao) {
@@ -99,10 +97,10 @@ public class OrderService implements IOrderService {
         for (Order order : orders) {
             order.setOrderPrice(calculateOrderPrice(order));
         }
-        List<Order> sorted = orders.stream()
+        return orders.stream()
                 .sorted(Comparator.comparing(o -> o.getOrderPrice()))
                 .collect(Collectors.toList());
-        return sorted;
+
     }
 
     @Override

@@ -1,9 +1,8 @@
 package StatkovskiyDmitriy.bookstore.service;
 
-import StatkovskiyDmitriy.bookstore.api.dao.IStockDao;
+import StatkovskiyDmitriy.bookstore.api.dao.IStockUnitDao;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.api.service.IStockService;
-import StatkovskiyDmitriy.bookstore.dao.StockDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.StockUnit;
@@ -16,10 +15,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class StockService implements IStockService {
-    private IStockDao stockDao;
+    private IStockUnitDao stockDao;
     private IRequestService requestService;
 
-    public StockService(IStockDao stockDao, IRequestService requestService) {
+    public StockService(IStockUnitDao stockDao, IRequestService requestService) {
         this.stockDao = stockDao;
         this.requestService = requestService;
     }
@@ -44,53 +43,46 @@ public class StockService implements IStockService {
         }
     }
 
-    public List<StockUnit> sortBooksByName(IStockDao stockDao) {
+    public List<StockUnit> sortBooksByName(IStockUnitDao stockDao) {
         List<StockUnit> books = stockDao.getAllUnits();
 
-        List<StockUnit> sorted = books.stream()
+        return books.stream()
                 .sorted(Comparator.comparing(o -> o.getBook().getName()))
                 .collect(Collectors.toList());
 
-        return sorted;
     }
 
-    public List<StockUnit> sortBooksByPrice(IStockDao stockDao) {
+    public List<StockUnit> sortBooksByPrice(IStockUnitDao stockDao) {
         List<StockUnit> books = stockDao.getAllUnits();
 
-        List<StockUnit> sorted = books.stream()
+        return books.stream()
                 .sorted(Comparator.comparing(o -> o.getBook().getPrice()))
                 .collect(Collectors.toList());
 
-        return sorted;
     }
 
-//        public List<StockUnit> sortUnitsByDate(IStockDao stockUnit){
+    //        public List<StockUnit> sortUnitsByDate(IStockDao stockUnit){
 //        List<StockUnit> units = stockUnit.getAllUnits();
-//        List<StockUnit> sorted = units.stream()
+//        return units.stream()
 //                .sorted(Comparator.comparing(StockUnit::getIncomingDate))
 //                .collect(Collectors.toList());
-//        for (StockUnit unit : sorted) {
-//            System.out.println(unit);
-//        }
-//        return sorted;
+//
 //    }
-    public List<StockUnit> sortUnitsByStatus(IStockDao stockUnit) {
+    public List<StockUnit> sortUnitsByStatus(IStockUnitDao stockUnit) {
         List<StockUnit> units = stockUnit.getAllUnits();
-        List<StockUnit> sorted = units.stream()
+        return units.stream()
                 .sorted(Comparator.comparing(StockUnit::getStatus))
                 .collect(Collectors.toList());
 
-        return sorted;
     }
 
-    public String showBookDescription(IStockDao stockUnit, String book) {
+    public String showBookDescription(IStockUnitDao stockUnit, String book) {
         List<StockUnit> units = stockUnit.getAllUnits();
         StockUnit filteredBook = units.stream()
                 .filter(unit -> unit.getBook().getName().equals(book))
                 .findFirst()
                 .get();
-        String description = filteredBook.getBook().getDescription();
-        return description;
-    }
+        return filteredBook.getBook().getDescription();
 
+    }
 }

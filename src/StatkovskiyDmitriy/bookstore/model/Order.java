@@ -12,21 +12,12 @@ public class Order {
     private String customerName;
     private String orderNumber;
     private String bookName;
-    private String orderStatus;
     private OrderStatus status = OrderStatus.NEW;
-    private LocalDate orderCreationDate;
-    private LocalDate orderFulfillmentDate;
+    private LocalDate orderCreatedDate;
+    private LocalDate orderClosedDate;
     private double orderPrice;
 
     private List<Book> books = new ArrayList<>();
-
-    public Order(String customerName, String orderNumber, String bookName, String orderStatus, LocalDate orderCreationDate) {
-        this.customerName = customerName;
-        this.orderNumber = orderNumber;
-        this.bookName = bookName;
-        this.orderStatus = orderStatus;
-        this.orderCreationDate = orderCreationDate;
-    }
 
     public Order() {
     }
@@ -47,15 +38,15 @@ public class Order {
         this.status = status;
     }
 
-    private String fulfillmentDate() {
+    private String orderClosedDate() {
 
-        if (orderFulfillmentDate == null) {
+        if (orderClosedDate == null) {
             return "In progress";
         }
-        if (orderFulfillmentDate.equals(LocalDate.of(1970, 1, 1))) {
+        if (orderClosedDate.equals(LocalDate.of(1970, 1, 1))) {
             return "Canceled";
         }
-        return orderFulfillmentDate.toString();
+        return orderClosedDate.toString();
     }
 
     private String printBooks() {
@@ -86,28 +77,21 @@ public class Order {
         this.bookName = bookName;
     }
 
-    public String getOrderStatus() {
-        return orderStatus;
+
+    public LocalDate getOrderCreatedDate() {
+        return orderCreatedDate;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setOrderCreatedDate(LocalDate orderCreatedDate) {
+        this.orderCreatedDate = orderCreatedDate;
     }
 
-    public LocalDate getOrderCreationDate() {
-        return orderCreationDate;
+    public LocalDate getOrderClosedDate() {
+        return orderClosedDate;
     }
 
-    public void setOrderCreationDate(LocalDate orderCreationDate) {
-        this.orderCreationDate = orderCreationDate;
-    }
-
-    public LocalDate getOrderFulfillmentDate() {
-        return orderFulfillmentDate;
-    }
-
-    public void setOrderFulfillmentDate(LocalDate orderFulfillmentDate) {
-        this.orderFulfillmentDate = orderFulfillmentDate;
+    public void setOrderClosedDate(LocalDate orderClosedDate) {
+        this.orderClosedDate = orderClosedDate;
     }
 
     public String getCustomerName() {
@@ -127,9 +111,9 @@ public class Order {
         return "Order{" +
                 "orderNumber='" + orderNumber + '\'' +
                 ", orderStatus='" + status + '\'' +
-                ", orderCreationDate=" + orderCreationDate +
+                ", orderCreationDate=" + orderCreatedDate +
                 ", Books" + printBooks() +
-                ", orderFulfillmentDate=" + fulfillmentDate() +
+                ", orderClosedDate=" + orderClosedDate() +
                 '}';
     }
 
@@ -138,16 +122,18 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(customerName, order.customerName) &&
+        return Double.compare(order.getOrderPrice(), getOrderPrice()) == 0 &&
+                Objects.equals(getCustomerName(), order.getCustomerName()) &&
                 Objects.equals(getOrderNumber(), order.getOrderNumber()) &&
                 Objects.equals(getBookName(), order.getBookName()) &&
-                Objects.equals(getOrderStatus(), order.getOrderStatus()) &&
-                Objects.equals(getOrderCreationDate(), order.getOrderCreationDate()) &&
-                Objects.equals(getOrderFulfillmentDate(), order.getOrderFulfillmentDate());
+                getStatus() == order.getStatus() &&
+                Objects.equals(getOrderCreatedDate(), order.getOrderCreatedDate()) &&
+                Objects.equals(getOrderClosedDate(), order.getOrderClosedDate()) &&
+                Objects.equals(getBooks(), order.getBooks());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(customerName, getOrderNumber(), getBookName(), getOrderStatus(), getOrderCreationDate(), getOrderFulfillmentDate());
+        return Objects.hash(getCustomerName(), getOrderNumber(), getBookName(), getStatus(), getOrderCreatedDate(), getOrderClosedDate(), getOrderPrice(), getBooks());
     }
 }

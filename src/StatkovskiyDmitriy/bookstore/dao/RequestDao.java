@@ -8,8 +8,6 @@ import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.Comparator.comparing;
-
 public class RequestDao implements IRequestDao {
     private List<Request> requests = new ArrayList<>();
 
@@ -32,9 +30,6 @@ public class RequestDao implements IRequestDao {
                 .get();
         request1.setStatus(status);
     }
-
-
-
 
     @Override
     public Request addBookToRequest(Book book) {
