@@ -29,12 +29,9 @@ public class RequestService implements IRequestService {
 
     public void changeRequestStatusByBookName(String bookName, RequestStatus status) {
         List<Request> requests = requestDao.getAll();
-
-        for (Request request : requests) {
-            if (request.getBook().getName().equals(bookName)) {
-                request.setStatus(status);
-            }
-        }
+        requests.stream()
+                .filter(request -> request.getBook().getName().equals(bookName))
+                .forEach(request -> request.setStatus(status));
     }
 
     @Override
@@ -47,7 +44,6 @@ public class RequestService implements IRequestService {
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getBook().getName()))
                 .collect(Collectors.toList());
-
     }
 
     public List<Request> sortRequestsByQuantity(IRequestDao requestDao) {

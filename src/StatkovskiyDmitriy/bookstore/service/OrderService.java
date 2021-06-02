@@ -47,9 +47,11 @@ public class OrderService implements IOrderService {
             order.setOrderClosedDate(LocalDate.now());
             order.setStatus(OrderStatus.COMPLETED);
         } else {
-            for (Book book : outOfStockBooks) {
-                requestService.createRequest(book);
-            }
+            outOfStockBooks.stream()
+                    .forEach(book -> requestService.createRequest(book));
+//            for (Book book : outOfStockBooks) {
+//                requestService.createRequest(book);
+//            }
         }
         return order;
     }
@@ -57,7 +59,7 @@ public class OrderService implements IOrderService {
     @Override
     public Order cancelOrder(Order order) {
         if (order.getStatus().equals(OrderStatus.NEW)) {
-            order = orderDao.cancelOrder(order);
+            order.setStatus(OrderStatus.CANCELED);
         }
         return order;
     }
@@ -68,13 +70,12 @@ public class OrderService implements IOrderService {
     }
 
     public double calculateOrderPrice(Order order) {
-        double result = 0;
+
         List<Book> books = order.getBooks();
         return books.stream()
                 .map(book -> book.getPrice())
                 .mapToDouble(Double::doubleValue)
                 .sum();
-
     }
 
     public List<Order> sortOrdersByFulfillmentDate(IOrderDao orderDao) {
@@ -82,7 +83,6 @@ public class OrderService implements IOrderService {
         return orders.stream()
                 .sorted(Comparator.comparing(o -> o.getOrderClosedDate()))
                 .collect(Collectors.toList());
-
     }
 
     public List<Order> sortOrdersByStatus(IOrderDao orderDao) {
@@ -100,7 +100,6 @@ public class OrderService implements IOrderService {
         return orders.stream()
                 .sorted(Comparator.comparing(o -> o.getOrderPrice()))
                 .collect(Collectors.toList());
-
     }
 
     @Override

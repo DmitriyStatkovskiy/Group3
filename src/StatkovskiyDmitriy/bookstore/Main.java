@@ -49,11 +49,11 @@ public class Main {
         stockUnitDao.addBook(bookC);
         stockUnitDao.changeBookStatus(bookB.getId(), StockUnitStatus.OUT_OF_STOCK);
         //test sort methods
-//        stockService.sortBooksByName(stockDao);
-//        stockService.sortUnitsByStatus(stockDao);
-//        stockDao.printStock();//
-//        stockDao.printStock(stockService.sortBooksByName(stockDao));
-//        stockDao.printStock(stockService.sortUnitsByStatus(stockDao));
+//        stockService.sortBooksByName(stockUnitDao);
+//        stockService.sortUnitsByStatus(stockUnitDao);
+//        stockUnitDao.printStock();//
+//        stockUnitDao.printStock(stockService.sortBooksByName(stockUnitDao));
+//        stockUnitDao.printStock(stockService.sortUnitsByStatus(stockUnitDao));
 
         orderService.addBook(order, bookA);
         orderService.addBook(order, bookB);

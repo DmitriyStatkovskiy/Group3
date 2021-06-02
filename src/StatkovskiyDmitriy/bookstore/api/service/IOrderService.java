@@ -17,12 +17,11 @@ public interface IOrderService {
     double calculateOrderPrice(Order order);
 
     List<Order> sortOrdersByPrice(IOrderDao orderDao);
+    Order changeOrderStatus(Order order, OrderStatus status);
 
     List<Order> sortOrdersByStatus(IOrderDao orderDao);
 
     List<Order> sortOrdersByFulfillmentDate(IOrderDao orderDao);
-
-    Order changeOrderStatus(Order order, OrderStatus status);
 
     Order cancelOrder(Order order);
 

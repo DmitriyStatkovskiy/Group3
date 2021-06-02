@@ -32,24 +32,13 @@ public class OrderDao implements IOrderDao {
         return null;
     }
 
-    @Override
-    public Order cancelOrder(Order order) {
-        order.setStatus(OrderStatus.CANCELED);
-        return order;
-    }
-    public List<Order> getAll(){
+    public List<Order> getAll() {
         return orders;
     }
 
-    public List<Book> getBooksFromOrder (Order order){
+    public List<Book> getBooksFromOrder(Order order) {
         List<Book> books = order.getBooks();
         return books;
-    }
-    
-    @Override
-    public Order changeOrderStatus(Order order, OrderStatus status) {
-        order.setStatus(status);
-        return order;
     }
 
     public List<Order> findOrderByRange(LocalDate from, LocalDate to) {
