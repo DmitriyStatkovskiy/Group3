@@ -49,7 +49,6 @@ public class StockService implements IStockService {
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getBook().getName()))
                 .collect(Collectors.toList());
-
     }
 
     public List<StockUnit> sortBooksByPrice(IStockUnitDao stockDao) {
@@ -73,7 +72,6 @@ public class StockService implements IStockService {
         return units.stream()
                 .sorted(Comparator.comparing(StockUnit::getStatus))
                 .collect(Collectors.toList());
-
     }
 
     public String showBookDescription(IStockUnitDao stockUnit, String book) {
@@ -83,6 +81,5 @@ public class StockService implements IStockService {
                 .findFirst()
                 .get();
         return filteredBook.getBook().getDescription();
-
     }
 }

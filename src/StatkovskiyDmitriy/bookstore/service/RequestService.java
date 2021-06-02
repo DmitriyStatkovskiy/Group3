@@ -6,8 +6,10 @@ import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Request;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class RequestService implements IRequestService {
@@ -47,8 +49,30 @@ public class RequestService implements IRequestService {
     }
 
     public List<Request> sortRequestsByQuantity(IRequestDao requestDao) {
-        List<Request> requests = requestDao.getAll();
+        List<Request> requests = requestDao.getAll();             //комметы для себя, потом удалю
+        List<String> allBookNames = requests.stream().            //все названия книг
+                map(book->book.getBook().getName())
+                .collect(Collectors.toList());
+        Set<String> uniqName = requests.stream()                  //получаю все уникальные
+                .map(book -> book.getBook().getName())
+                .collect(Collectors.toSet());
+        String[] requestedBookNames = new String[uniqName.size()];//делаю из сет массив стрингов
+        uniqName.toArray(requestedBookNames);
+        int[] numberOfRepetitions = new int[uniqName.size()];     //массив для количества повторений
 
-        return null;
+        for (int i = 0; i < requestedBookNames.length; i++) {     //беру уникальное имя из массива,
+            for (int j = 0; j <requests.size() ; j++) {           //прохожу по всем именам и записываю количество повторений
+                numberOfRepetitions[i] = Collections.frequency(allBookNames, requestedBookNames[i]);
+            }
+        }
+        for (int i = 0; i < requestedBookNames.length; i++) {     //заполняю Request.quantity
+            int j = i;
+            requests.stream()
+                    .filter(request -> request.getBook().getName().equals(requestedBookNames[j]))
+                    .forEach(request -> request.setQuantity(numberOfRepetitions[j]));
+        }
+        return requests.stream()
+                .sorted(Comparator.comparing(o->o.getQuantity()))
+                .collect(Collectors.toList());
     }
 }

@@ -7,11 +7,19 @@ import java.util.UUID;
 
 public class Request {
     private RequestStatus status = RequestStatus.OPEN;
-
+    private int quantity;
     private Book book;
     private String id = UUID.randomUUID().toString();
 
     public Request() {
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public Request(Book book) {

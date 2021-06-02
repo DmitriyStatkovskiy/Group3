@@ -94,9 +94,9 @@ public class OrderService implements IOrderService {
 
     public List<Order> sortOrdersByPrice(IOrderDao orderDao) {
         List<Order> orders = orderDao.getAll();
-        for (Order order : orders) {
-            order.setOrderPrice(calculateOrderPrice(order));
-        }
+        orders.stream()
+                .forEach(order -> order.setOrderPrice(calculateOrderPrice(order)));
+
         return orders.stream()
                 .sorted(Comparator.comparing(o -> o.getOrderPrice()))
                 .collect(Collectors.toList());

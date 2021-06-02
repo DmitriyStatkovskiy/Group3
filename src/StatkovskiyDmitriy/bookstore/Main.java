@@ -62,6 +62,10 @@ public class Main {
 
         requestService.createRequest(bookB);
         requestService.createRequest(bookA);
+        requestService.createRequest(bookB);
+        requestService.createRequest(bookC);
+        requestService.createRequest(bookA);
+        requestService.createRequest(bookA);
         //orderService.cancelOrder(order);
         System.out.println(order);
         orderService.completeOrder(order);
@@ -95,5 +99,7 @@ public class Main {
         System.out.println(order2);
         orderService.changeOrderStatus(order2, OrderStatus.CANCELED);
         System.out.println(order2);
+//      sort requests by quantity
+        requestService.sortRequestsByQuantity(requestDao).forEach(System.out::println);
     }
 }
