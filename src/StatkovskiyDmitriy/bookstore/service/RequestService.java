@@ -51,7 +51,7 @@ public class RequestService implements IRequestService {
     public List<Request> sortRequestsByQuantity(IRequestDao requestDao) {
         List<Request> requests = requestDao.getAll();             //комметы для себя, потом удалю
         List<String> allBookNames = requests.stream().            //все названия книг
-                map(book->book.getBook().getName())
+                map(book -> book.getBook().getName())
                 .collect(Collectors.toList());
         Set<String> uniqName = requests.stream()                  //получаю все уникальные
                 .map(book -> book.getBook().getName())
@@ -61,7 +61,7 @@ public class RequestService implements IRequestService {
         int[] numberOfRepetitions = new int[uniqName.size()];     //массив для количества повторений
 
         for (int i = 0; i < requestedBookNames.length; i++) {     //беру уникальное имя из массива,
-            for (int j = 0; j <requests.size() ; j++) {           //прохожу по всем именам и записываю количество повторений
+            for (int j = 0; j < requests.size(); j++) {           //прохожу по всем именам и записываю количество повторений
                 numberOfRepetitions[i] = Collections.frequency(allBookNames, requestedBookNames[i]);
             }
         }
@@ -72,7 +72,7 @@ public class RequestService implements IRequestService {
                     .forEach(request -> request.setQuantity(numberOfRepetitions[j]));
         }
         return requests.stream()
-                .sorted(Comparator.comparing(o->o.getQuantity()))
+                .sorted(Comparator.comparing(o -> o.getQuantity()))
                 .collect(Collectors.toList());
     }
 }

@@ -14,7 +14,7 @@ public class Order {
     private String bookName;
     private OrderStatus status = OrderStatus.NEW;
     private LocalDate orderCreatedDate;
-    private LocalDate orderClosedDate;
+    private LocalDate orderClosedDate = null;
     private double orderPrice;
 
     private List<Book> books = new ArrayList<>();
@@ -40,7 +40,7 @@ public class Order {
 
     private String orderClosedDate() {
 
-        if (orderClosedDate == null) {
+        if (orderClosedDate==null) {
             return "In progress";
         }
         if (orderClosedDate.equals(LocalDate.of(1970, 1, 1))) {

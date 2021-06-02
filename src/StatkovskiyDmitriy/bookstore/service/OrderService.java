@@ -60,6 +60,7 @@ public class OrderService implements IOrderService {
     public Order cancelOrder(Order order) {
         if (order.getStatus().equals(OrderStatus.NEW)) {
             order.setStatus(OrderStatus.CANCELED);
+            ;
         }
         return order;
     }
@@ -105,6 +106,7 @@ public class OrderService implements IOrderService {
     public List<Order> sortCompletedOrdersByPriceFromRange(IOrderDao orderDao, LocalDate from, LocalDate to) {
         List<Order> orders = orderDao.getAll();
         orders.stream()
+                .filter(order -> order.getOrderClosedDate() != null)
                 .filter(order -> order.getOrderClosedDate().isBefore(to))
                 .filter(order -> order.getOrderClosedDate().isAfter(from))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
@@ -118,6 +120,7 @@ public class OrderService implements IOrderService {
     public List<Order> sortCompletedOrdersByCompletedDateFromRange(IOrderDao orderDao, LocalDate from, LocalDate to) {
         List<Order> orders = orderDao.getAll();
         return orders.stream()
+                .filter(order -> order.getOrderClosedDate() != null)
                 .filter(order -> order.getOrderClosedDate().isBefore(to))
                 .filter(order -> order.getOrderClosedDate().isAfter(from))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
@@ -125,6 +128,32 @@ public class OrderService implements IOrderService {
                 .collect(Collectors.toList());
     }
 
+    public double calculateEarnedMoneyFromRange(IOrderDao orderDao, LocalDate from, LocalDate to) {
+        List<Order> orders = orderDao.getAll();
+        orders.stream()
+                .filter(order -> order.getOrderClosedDate() != null)
+                .filter(order -> order.getOrderClosedDate().isBefore(to))
+                .filter(order -> order.getOrderClosedDate().isAfter(from))
+                .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
+                .forEach(order -> order.setOrderPrice(calculateOrderPrice(order)));
+
+        return orders.stream()
+                .map(order -> order.getOrderPrice())
+                .mapToDouble(Double::doubleValue)
+                .sum();
+    }
+
+    public int numberOfCompletedOrdersFromRange(IOrderDao orderDao, LocalDate from, LocalDate to) {
+        List<Order> orders = orderDao.getAll();
+        List<Order> or = orders.stream()
+                .filter(order -> order.getOrderClosedDate() != null)
+                .filter(order -> order.getOrderClosedDate().isAfter(from))
+                .filter(date -> date.getOrderClosedDate().isBefore(to))
+                .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
+                .collect(Collectors.toList());
+        int number = or.size();
+        return number;
+    }
 
     @Override
     public Order getOrder(String id) {

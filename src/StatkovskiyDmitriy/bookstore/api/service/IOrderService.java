@@ -31,6 +31,10 @@ public interface IOrderService {
 
     List<Order> sortCompletedOrdersByCompletedDateFromRange(IOrderDao orderDao, LocalDate from, LocalDate to);
 
+    int numberOfCompletedOrdersFromRange(IOrderDao orderDao, LocalDate from, LocalDate to);
+
+    double calculateEarnedMoneyFromRange(IOrderDao orderDao, LocalDate from, LocalDate to);
+
     Order getOrder(String id);
 
     Order delete(String id);

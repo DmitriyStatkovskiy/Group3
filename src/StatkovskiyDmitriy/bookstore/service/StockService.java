@@ -9,6 +9,7 @@ import StatkovskiyDmitriy.bookstore.model.StockUnit;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -81,5 +82,26 @@ public class StockService implements IStockService {
                 .findFirst()
                 .get();
         return filteredBook.getBook().getDescription();
+    }
+
+    public List<StockUnit> getOldBooks(IStockUnitDao stockUnitDao) {
+        List<StockUnit> books = stockUnitDao.getAllUnits();
+        return books.stream()
+                .filter(unit -> unit.getIncomingDate().isBefore(LocalDate.now().minusMonths(6)))
+                .collect(Collectors.toList());
+    }
+
+    public List<StockUnit> sortOldBooksByIncomingDate(IStockUnitDao stockUnitDao) {
+        List<StockUnit> books = getOldBooks(stockUnitDao);
+        return books.stream()
+                .sorted(Comparator.comparing(o -> o.getIncomingDate()))
+                .collect(Collectors.toList());
+    }
+
+    public List<StockUnit> sortOldBooksByPrice(IStockUnitDao stockUnitDao) {
+        List<StockUnit> books = getOldBooks(stockUnitDao);
+        return books.stream()
+                .sorted(Comparator.comparing(o -> o.getBook().getPrice()))
+                .collect(Collectors.toList());
     }
 }

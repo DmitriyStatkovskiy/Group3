@@ -15,6 +15,8 @@ import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
 import StatkovskiyDmitriy.bookstore.service.StockService;
 
+import java.time.LocalDate;
+
 /**
  *
  */
@@ -106,5 +108,6 @@ public class Main {
         System.out.println(order3);
 //      sort requests by quantity
         requestService.sortRequestsByQuantity(requestDao).forEach(System.out::println);
+        System.out.println(orderService.numberOfCompletedOrdersFromRange(orderDao, LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 4)));
     }
 }
