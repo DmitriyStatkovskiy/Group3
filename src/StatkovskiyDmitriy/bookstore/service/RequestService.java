@@ -26,7 +26,7 @@ public class RequestService implements IRequestService {
 
     @Override
     public void changeRequestStatus(String id, RequestStatus status) {
-        requestDao.changeRequestStatus(id, status);
+        requestDao.getRequestById(id).setStatus(status);
     }
 
     public void changeRequestStatusByBookName(String bookName, RequestStatus status) {

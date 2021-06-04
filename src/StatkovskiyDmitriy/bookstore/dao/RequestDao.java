@@ -3,6 +3,7 @@ package StatkovskiyDmitriy.bookstore.dao;
 import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Request;
+import StatkovskiyDmitriy.bookstore.model.StockUnit;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
 
 import java.util.ArrayList;
@@ -22,13 +23,11 @@ public class RequestDao implements IRequestDao {
         return request;
     }
 
-    @Override
-    public void changeRequestStatus(String id, RequestStatus status) {
-        Request request1 = requests.stream()
+    public Request getRequestById(String id) {
+        return requests.stream()
                 .filter(request -> request.getBook().getId().equals(id))
                 .findFirst()
-                .get();
-        request1.setStatus(status);
+                .orElse(null);
     }
 
     @Override

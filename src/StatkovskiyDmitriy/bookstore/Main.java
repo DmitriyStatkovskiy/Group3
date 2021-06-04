@@ -49,7 +49,7 @@ public class Main {
         stockUnitDao.addBook(bookD);
         stockUnitDao.addBook(bookE);
         stockUnitDao.addBook(bookC);
-        stockUnitDao.changeBookStatus(bookB.getId(), StockUnitStatus.OUT_OF_STOCK);
+        stockService.changeBookStatus(stockUnitDao.getStockUnitByBookId(bookB.getId()),StockUnitStatus.OUT_OF_STOCK);
         //test sort methods
 //        stockService.sortBooksByName(stockUnitDao);
 //        stockService.sortUnitsByStatus(stockUnitDao);
@@ -109,7 +109,7 @@ public class Main {
         System.out.println(order3);
 //      sort requests by quantity
         requestService.sortRequestsByQuantity(requestDao).forEach(System.out::println);
-        System.out.println(orderService.numberOfCompletedOrdersFromRange(orderDao, LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 4)));
+        System.out.println(orderService.numberOfCompletedOrdersFromRange(orderDao, LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 12)));
 
 
     }

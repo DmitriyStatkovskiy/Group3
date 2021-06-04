@@ -16,5 +16,5 @@ public interface IStockUnitDao {
 
     List<StockUnit> getAllUnits();
 
-
+    public StockUnit getStockUnitByBookId(String id);
 }

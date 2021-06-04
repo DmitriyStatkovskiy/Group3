@@ -6,6 +6,7 @@ import StatkovskiyDmitriy.bookstore.api.service.IStockService;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.StockUnit;
+import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
 
@@ -103,4 +104,10 @@ public class StockService implements IStockService {
                 .sorted(Comparator.comparing(o -> o.getBook().getPrice()))
                 .collect(Collectors.toList());
     }
+
+    public StockUnit changeBookStatus(StockUnit stockUnit, StockUnitStatus status) {
+        stockUnit.setStatus(status);
+        return stockUnit;
+    }
+
 }

@@ -37,11 +37,6 @@ public class StockUnitDao implements IStockUnitDao {
                 .collect(Collectors.toList());
     }
 
-    public void changeBookStatus(String id, StockUnitStatus status) {
-        StockUnit stockUnit = getStockUnitByBookId(id);
-        stockUnit.setStatus(status);
-    }
-
     public StockUnit getStockUnitByBookId(String id) {
         return stockUnits.stream()
                 .filter(unit -> unit.getBook().getId().equals(id))
