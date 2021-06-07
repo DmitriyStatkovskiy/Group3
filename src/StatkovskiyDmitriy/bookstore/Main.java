@@ -3,7 +3,7 @@ package StatkovskiyDmitriy.bookstore;
 import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
-import StatkovskiyDmitriy.bookstore.api.service.IStockService;
+import StatkovskiyDmitriy.bookstore.api.service.IStockUnitService;
 import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.dao.RequestDao;
 import StatkovskiyDmitriy.bookstore.dao.StockUnitDao;
@@ -13,7 +13,7 @@ import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
-import StatkovskiyDmitriy.bookstore.service.StockService;
+import StatkovskiyDmitriy.bookstore.service.StockUnitService;
 
 import java.time.LocalDate;
 
@@ -30,7 +30,7 @@ public class Main {
 
         StockUnitDao stockUnitDao = new StockUnitDao();
 
-        IStockService stockService = new StockService(stockUnitDao, requestService);
+        IStockUnitService stockService = new StockUnitService(stockUnitDao, requestService);
 
         OrderService orderService = new OrderService(orderDao, stockService, requestService);
 

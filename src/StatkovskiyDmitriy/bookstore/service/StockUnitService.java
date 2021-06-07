@@ -2,26 +2,24 @@ package StatkovskiyDmitriy.bookstore.service;
 
 import StatkovskiyDmitriy.bookstore.api.dao.IStockUnitDao;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
-import StatkovskiyDmitriy.bookstore.api.service.IStockService;
+import StatkovskiyDmitriy.bookstore.api.service.IStockUnitService;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.StockUnit;
-import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class StockService implements IStockService {
+public class StockUnitService implements IStockUnitService {
     private IStockUnitDao stockDao;
     private IRequestService requestService;
 
-    public StockService(IStockUnitDao stockDao, IRequestService requestService) {
+    public StockUnitService(IStockUnitDao stockDao, IRequestService requestService) {
         this.stockDao = stockDao;
         this.requestService = requestService;
     }

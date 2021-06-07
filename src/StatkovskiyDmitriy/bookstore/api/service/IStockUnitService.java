@@ -8,7 +8,7 @@ import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
 
 import java.util.List;
 
-public interface IStockService {
+public interface IStockUnitService {
     List<Book> getOutOfStockBooks(Order order);
 
     void addBook(Book book);

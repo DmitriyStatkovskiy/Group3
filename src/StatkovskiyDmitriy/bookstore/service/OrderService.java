@@ -3,7 +3,7 @@ package StatkovskiyDmitriy.bookstore.service;
 import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
-import StatkovskiyDmitriy.bookstore.api.service.IStockService;
+import StatkovskiyDmitriy.bookstore.api.service.IStockUnitService;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 public class OrderService implements IOrderService {
 
     private IOrderDao orderDao;
-    private IStockService stockService;
+    private IStockUnitService stockService;
     private IRequestService requestService;
 
 
-    public OrderService(IOrderDao orderDao, IStockService stockService, IRequestService requestService) {
+    public OrderService(IOrderDao orderDao, IStockUnitService stockService, IRequestService requestService) {
         this.orderDao = orderDao;
         this.stockService = stockService;
         this.requestService = requestService;
