@@ -1,14 +1,11 @@
 package StatkovskiyDmitriy.bookstore.service;
 
 import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
-import StatkovskiyDmitriy.bookstore.api.dao.IStockUnitDao;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.api.service.IStockService;
-import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
-import StatkovskiyDmitriy.bookstore.model.StockUnit;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 
 import java.time.LocalDate;
@@ -50,7 +47,7 @@ public class OrderService implements IOrderService {
             order.setOrderClosedDate(LocalDate.now());
             order.setStatus(OrderStatus.COMPLETED);
         } else {
-            outOfStockBooks.stream()
+            outOfStockBooks
                     .forEach(book -> requestService.createRequest(book));
 //            for (Book book : outOfStockBooks) {
 //                requestService.createRequest(book);
@@ -98,9 +95,7 @@ public class OrderService implements IOrderService {
 
     public List<Order> sortOrdersByPrice(IOrderDao orderDao) {
         List<Order> orders = orderDao.getAll();
-        orders.stream()
-                .forEach(order -> order.setOrderPrice(calculateOrderPrice(order)));
-
+        orders.forEach(order -> order.setOrderPrice(calculateOrderPrice(order)));
         return orders.stream()
                 .sorted(Comparator.comparing(o -> o.getOrderPrice()))
                 .collect(Collectors.toList());
@@ -157,6 +152,7 @@ public class OrderService implements IOrderService {
         int number = completedOrders.size();
         return number;
     }
+
     public Order showOrderInformation(IOrderDao orderDao, String customerName) {
         List<Order> units = orderDao.getAll();
         Order details = units.stream()

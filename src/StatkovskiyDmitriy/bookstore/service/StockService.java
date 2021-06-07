@@ -12,6 +12,7 @@ import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,7 +39,7 @@ public class StockService implements IStockService {
 
     @Override
     public void addBook(Book book) {
-        List<String> name = Arrays.asList(book.getId());
+        List<String> name = Collections.singletonList(book.getId());
         if (stockDao.getStockUnitsByIds(name, StockUnitStatus.OUT_OF_STOCK).size() != 0) {
             requestService.changeRequestStatusByBookName(book.getName(), RequestStatus.CLOSED);
         }
