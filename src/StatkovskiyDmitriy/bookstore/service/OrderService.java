@@ -148,13 +148,13 @@ public class OrderService implements IOrderService {
 
     public int numberOfCompletedOrdersFromRange(IOrderDao orderDao, LocalDate from, LocalDate to) {
         List<Order> orders = orderDao.getAll();
-        List<Order> or = orders.stream()
+        List<Order> completedOrders = orders.stream()
                 .filter(order -> order.getOrderClosedDate() != null)
                 .filter(order -> order.getOrderClosedDate().isAfter(from))
                 .filter(date -> date.getOrderClosedDate().isBefore(to))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
                 .collect(Collectors.toList());
-        int number = or.size();
+        int number = completedOrders.size();
         return number;
     }
     public Order showOrderInformation(IOrderDao orderDao, String customerName) {
