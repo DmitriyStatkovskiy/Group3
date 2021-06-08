@@ -2,7 +2,6 @@ package StatkovskiyDmitriy.bookstore.api.dao;
 
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Request;
-import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
 
 import java.util.List;
 

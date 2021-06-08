@@ -53,11 +53,9 @@ public class StockUnitService implements IStockUnitService {
 
     public List<StockUnit> sortBooksByPrice(IStockUnitDao stockDao) {
         List<StockUnit> books = stockDao.getAllUnits();
-
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getBook().getPrice()))
                 .collect(Collectors.toList());
-
     }
 
     //        public List<StockUnit> sortUnitsByDate(IStockDao stockUnit){

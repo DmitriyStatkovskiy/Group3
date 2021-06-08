@@ -10,7 +10,6 @@ public class Book {
     private double price;
     private String description;
 
-
     public Book(String name, String edition, double price, String description) {
         this.name = name;
         this.edition = edition;
