@@ -3,7 +3,7 @@ package StatkovskiyDmitriy.bookstoreUI.actions;
 import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.api.dao.IStockUnitDao;
 
-public class AddBookToStock extends AbstractAction implements IAction{
+public class ActionOne extends AbstractAction implements IAction{
 
     @Override
     public void execute() {
