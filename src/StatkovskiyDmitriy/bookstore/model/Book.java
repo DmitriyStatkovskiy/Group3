@@ -29,6 +29,16 @@ public class Book {
     public Book() {
     }
 
+    public Book(BookStatus status, LocalDate incomingDate, String id, String name, String edition, double price, String description) {
+        this.status = status;
+        this.incomingDate = incomingDate;
+        this.id = id;
+        this.name = name;
+        this.edition = edition;
+        this.price = price;
+        this.description = description;
+    }
+
     public BookStatus getStatus() {
         return status;
     }

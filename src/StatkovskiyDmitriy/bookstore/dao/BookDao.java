@@ -13,7 +13,7 @@ public class BookDao implements IBookDao {
     private List<Book> books = new ArrayList<>();
 
     public void addBook(Book book) {
-        books.add(new Book());
+        books.add(book);
     }
 
     public List<Book> getAllUnits() {
@@ -44,9 +44,7 @@ public class BookDao implements IBookDao {
     }
 
     public void printStock() {
-        for (Book book : books) {
-            System.out.println(book);
-        }
+        System.out.println(books);
     }
 
     public void printStock(List<Book> book) {
