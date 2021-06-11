@@ -2,18 +2,18 @@ package StatkovskiyDmitriy.bookstore;
 
 import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
+import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
-import StatkovskiyDmitriy.bookstore.api.service.IStockUnitService;
+import StatkovskiyDmitriy.bookstore.dao.BookDao;
 import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.dao.RequestDao;
-import StatkovskiyDmitriy.bookstore.dao.StockUnitDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
+import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
-import StatkovskiyDmitriy.bookstore.model.enums.StockUnitStatus;
+import StatkovskiyDmitriy.bookstore.service.BookService;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
-import StatkovskiyDmitriy.bookstore.service.StockUnitService;
 
 import java.time.LocalDate;
 
@@ -28,11 +28,11 @@ public class Main {
         IRequestDao requestDao = new RequestDao();
         IRequestService requestService = new RequestService(requestDao);
 
-        StockUnitDao stockUnitDao = new StockUnitDao();
+        BookDao bookDao = new BookDao();
 
-        IStockUnitService stockService = new StockUnitService(stockUnitDao, requestService);
+        IBookService bookService = new BookService(bookDao, requestService);
 
-        OrderService orderService = new OrderService(orderDao, stockService, requestService);
+        OrderService orderService = new OrderService(orderDao, bookService, requestService);
 
         Order order = orderService.createNew();
         Order order2 = orderService.createNew();
@@ -44,18 +44,18 @@ public class Main {
         Book bookD = new Book("DDD", "4", 40, "ddd");
         Book bookE = new Book("EEE", "5", 50, "eee");
 
-        stockUnitDao.addBook(bookA);
-        stockUnitDao.addBook(bookB);
-        stockUnitDao.addBook(bookD);
-        stockUnitDao.addBook(bookE);
-        stockUnitDao.addBook(bookC);
-        stockService.changeBookStatus(stockUnitDao.getStockUnitByBookId(bookB.getId()),StockUnitStatus.OUT_OF_STOCK);
+        bookDao.addBook(bookA);
+        bookDao.addBook(bookB);
+        bookDao.addBook(bookD);
+        bookDao.addBook(bookE);
+        bookDao.addBook(bookC);
+      //  bookService.changeBookStatus(bookDao.getStockUnitByBookId(bookB.getId()), BookStatus.OUT_OF_STOCK);
         //test sort methods
-//        stockService.sortBooksByName(stockUnitDao);
-//        stockService.sortUnitsByStatus(stockUnitDao);
-//        stockUnitDao.printStock();//
-//        stockUnitDao.printStock(stockService.sortBooksByName(stockUnitDao));
-//        stockUnitDao.printStock(stockService.sortUnitsByStatus(stockUnitDao));
+//        bookService.sortBooksByName(bookDao);
+//        bookService.sortUnitsByStatus(bookDao);
+//        bookDao.printStock();//
+//        bookDao.printStock(bookService.sortBooksByName(bookDao));
+//        bookDao.printStock(bookService.sortUnitsByStatus(bookDao));
 
         orderService.addBook(order, bookA);
         orderService.addBook(order, bookB);
@@ -79,15 +79,15 @@ public class Main {
         System.out.println(order);
         System.out.println("Created requests:");
         requestDao.getAll().forEach(System.out::println);
-        stockService.addBook(bookB);
+        bookService.addBook(bookB);
         requestDao.getAll().forEach(System.out::println);
         orderService.completeOrder(order);
         System.out.println(order);
         //  test sort stock by name
         System.out.println();
-        stockUnitDao.printStock();
+        bookDao.printStock();
         System.out.println();
-        stockUnitDao.printStock(stockService.sortBooksByName(stockUnitDao));
+        bookDao.printStock(bookService.sortBooksByName(bookDao));
 
         requestService.sortRequestsByBookName(requestDao).forEach(System.out::println);
 //        sort by order price
@@ -98,7 +98,7 @@ public class Main {
         orderService.sortOrdersByPrice(orderDao).forEach(System.out::println);
 
 //        show book description
-        System.out.println(stockService.showBookDescription(stockUnitDao, "DDD"));
+        System.out.println(bookService.showBookDescription(bookDao, "DDD"));
 
 //        test changeOrderStatus
         orderService.addBook(order2, bookD);

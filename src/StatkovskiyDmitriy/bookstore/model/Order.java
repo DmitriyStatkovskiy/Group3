@@ -17,7 +17,7 @@ public class Order {
     private LocalDate orderClosedDate = null;
     private double orderPrice;
 
-    private List<Book> books = new ArrayList<>();
+    private List<Book> bookOlds = new ArrayList<>();
 
     public Order() {
     }
@@ -38,8 +38,8 @@ public class Order {
         this.status = status;
     }
 
-    public List<Book> getBooks() {
-        return books;
+    public List<Book> getBookOlds() {
+        return bookOlds;
     }
 
     public String getOrderNumber() {
@@ -82,8 +82,8 @@ public class Order {
         this.customerName = customerName;
     }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    public void setBookOlds(List<Book> bookOlds) {
+        this.bookOlds = bookOlds;
     }
 
     private String orderClosedDate() {
@@ -99,8 +99,8 @@ public class Order {
 
     private String printBooks() {
         String message = "";
-        for (Book book : books) {
-            message += " " + book.getName() + " " + book.getPrice() + " ";
+        for (Book bookOld : bookOlds) {
+            message += " " + bookOld.getName() + " " + bookOld.getPrice() + " ";
         }
         return message;
     }
@@ -128,11 +128,11 @@ public class Order {
                 getStatus() == order.getStatus() &&
                 Objects.equals(getOrderCreatedDate(), order.getOrderCreatedDate()) &&
                 Objects.equals(getOrderClosedDate(), order.getOrderClosedDate()) &&
-                Objects.equals(getBooks(), order.getBooks());
+                Objects.equals(getBookOlds(), order.getBookOlds());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCustomerName(), getOrderNumber(), getBookName(), getStatus(), getOrderCreatedDate(), getOrderClosedDate(), getOrderPrice(), getBooks());
+        return Objects.hash(getCustomerName(), getOrderNumber(), getBookName(), getStatus(), getOrderCreatedDate(), getOrderClosedDate(), getOrderPrice(), getBookOlds());
     }
 }

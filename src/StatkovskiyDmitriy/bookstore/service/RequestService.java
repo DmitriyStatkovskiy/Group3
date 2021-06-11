@@ -20,8 +20,8 @@ public class RequestService implements IRequestService {
     }
 
     @Override
-    public Request createRequest(Book book) {
-        return requestDao.createRequest(book);
+    public Request createRequest(Book bookOld) {
+        return requestDao.createRequest(bookOld);
     }
 
     @Override
@@ -32,24 +32,24 @@ public class RequestService implements IRequestService {
     public void changeRequestStatusByBookName(String bookName, RequestStatus status) {
         List<Request> requests = requestDao.getAll();
         requests.stream()
-                .filter(request -> request.getBook().getName().equals(bookName))
+                .filter(request -> request.getBookOld().getName().equals(bookName))
                 .forEach(request -> request.setStatus(status));
     }
 
     public List<Request> sortRequestsByBookName(IRequestDao requestDao) {
         List<Request> books = requestDao.getAll();
         return books.stream()
-                .sorted(Comparator.comparing(o -> o.getBook().getName()))
+                .sorted(Comparator.comparing(o -> o.getBookOld().getName()))
                 .collect(Collectors.toList());
     }
 
     public List<Request> sortRequestsByQuantity(IRequestDao requestDao) {
         List<Request> requests = requestDao.getAll();             //комметы для себя, потом удалю
         List<String> allBookNames = requests.stream().            //все названия книг
-                map(book -> book.getBook().getName())
+                map(book -> book.getBookOld().getName())
                 .collect(Collectors.toList());
         Set<String> uniqName = requests.stream()                  //получаю все уникальные
-                .map(book -> book.getBook().getName())
+                .map(book -> book.getBookOld().getName())
                 .collect(Collectors.toSet());
         String[] requestedBookNames = new String[uniqName.size()];//делаю из сет массив стрингов
         uniqName.toArray(requestedBookNames);
@@ -63,7 +63,7 @@ public class RequestService implements IRequestService {
         for (int i = 0; i < requestedBookNames.length; i++) {     //заполняю Request.quantity
             int j = i;
             requests.stream()
-                    .filter(request -> request.getBook().getName().equals(requestedBookNames[j]))
+                    .filter(request -> request.getBookOld().getName().equals(requestedBookNames[j]))
                     .forEach(request -> request.setQuantity(numberOfRepetitions[j]));
         }
         return requests.stream()
