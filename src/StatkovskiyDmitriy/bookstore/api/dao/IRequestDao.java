@@ -9,7 +9,7 @@ public interface IRequestDao {
 
     Request createRequest(Book book);
 
-   // void changeRequestStatus(String id, RequestStatus status);
+    // void changeRequestStatus(String id, RequestStatus status);
 
     List<Request> getAll();
 

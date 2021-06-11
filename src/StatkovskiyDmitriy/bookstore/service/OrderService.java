@@ -1,9 +1,9 @@
 package StatkovskiyDmitriy.bookstore.service;
 
 import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
+import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
-import StatkovskiyDmitriy.bookstore.api.service.IStockUnitService;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 public class OrderService implements IOrderService {
 
     private IOrderDao orderDao;
-    private IStockUnitService stockService;
+    private IBookService stockService;
     private IRequestService requestService;
 
 
-    public OrderService(IOrderDao orderDao, IStockUnitService stockService, IRequestService requestService) {
+    public OrderService(IOrderDao orderDao, IBookService stockService, IRequestService requestService) {
         this.orderDao = orderDao;
         this.stockService = stockService;
         this.requestService = requestService;
@@ -32,8 +32,8 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Order addBook(Order order, Book book) {
-        order.getBooks().add(book);
+    public Order addBook(Order order, Book bookOld) {
+        order.getBookOlds().add(bookOld);
         return order;
     }
 
@@ -42,12 +42,12 @@ public class OrderService implements IOrderService {
         if (!order.getStatus().equals(OrderStatus.NEW)) {
             return order;
         }
-        List<Book> outOfStockBooks = stockService.getOutOfStockBooks(order);
-        if (outOfStockBooks.size() == 0) {
+        List<Book> outOfStockBookOlds = stockService.getOutOfStockBooks(order);
+        if (outOfStockBookOlds.size() == 0) {
             order.setOrderClosedDate(LocalDate.now());
             order.setStatus(OrderStatus.COMPLETED);
         } else {
-            outOfStockBooks
+            outOfStockBookOlds
                     .forEach(book -> requestService.createRequest(book));
 //            for (Book book : outOfStockBooks) {
 //                requestService.createRequest(book);
@@ -72,8 +72,8 @@ public class OrderService implements IOrderService {
 
     public double calculateOrderPrice(Order order) {
 
-        List<Book> books = order.getBooks();
-        return books.stream()
+        List<Book> bookOlds = order.getBookOlds();
+        return bookOlds.stream()
                 .map(book -> book.getPrice())
                 .mapToDouble(Double::doubleValue)
                 .sum();
