@@ -28,7 +28,7 @@ public class BookService implements IBookService {
         List<String> bookIds = bookOlds.stream()
                 .map(book -> book.getId())
                 .collect(Collectors.toList());
-        List<Book> books = stockDao.getStockUnitsByIds(bookIds, BookStatus.OUT_OF_STOCK);
+        List<Book> books = stockDao.getBooksByIds(bookIds, BookStatus.OUT_OF_STOCK);
         return books;
 //        return books.stream()
 //                .map(stockUnit -> stockUnit.getBook())
@@ -38,13 +38,13 @@ public class BookService implements IBookService {
     @Override
     public void addBook(Book bookOld) {
         List<String> name = Collections.singletonList(bookOld.getId());
-        if (stockDao.getStockUnitsByIds(name, BookStatus.OUT_OF_STOCK).size() != 0) {
+        if (stockDao.getBooksByIds(name, BookStatus.OUT_OF_STOCK).size() != 0) {
             requestService.changeRequestStatusByBookName(bookOld.getName(), RequestStatus.CLOSED);
         }
     }
 
     public List<Book> sortBooksByName(IBookDao bookDao) {
-        List<Book> books = bookDao.getAllUnits();
+        List<Book> books = bookDao.getAllBooks();
 
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getName()))
@@ -52,7 +52,7 @@ public class BookService implements IBookService {
     }
 
     public List<Book> sortBooksByPrice(IBookDao stockDao) {
-        List<Book> books = stockDao.getAllUnits();
+        List<Book> books = stockDao.getAllBooks();
 
         return books.stream()
                 .sorted(Comparator.comparing(book -> book.getPrice()))
@@ -67,15 +67,15 @@ public class BookService implements IBookService {
 //                .collect(Collectors.toList());
 //
 //    }
-    public List<Book> sortUnitsByStatus(IBookDao stockUnit) {
-        List<Book> units = stockUnit.getAllUnits();
+    public List<Book> sortBooksByStatus(IBookDao stockUnit) {
+        List<Book> units = stockUnit.getAllBooks();
         return units.stream()
                 .sorted(Comparator.comparing(Book::getStatus))
                 .collect(Collectors.toList());
     }
 
     public String showBookDescription(IBookDao stockUnit, String book) {
-        List<Book> units = stockUnit.getAllUnits();
+        List<Book> units = stockUnit.getAllBooks();
         Book filteredBook = units.stream()
                 .filter(unit -> unit.getName().equals(book))
                 .findFirst()
@@ -84,7 +84,7 @@ public class BookService implements IBookService {
     }
 
     public List<Book> getOldBooks(IBookDao stockUnitDao) {
-        List<Book> books = stockUnitDao.getAllUnits();
+        List<Book> books = stockUnitDao.getAllBooks();
         return books.stream()
                 .filter(unit -> unit.getIncomingDate().isBefore(LocalDate.now().minusMonths(6)))
                 .collect(Collectors.toList());

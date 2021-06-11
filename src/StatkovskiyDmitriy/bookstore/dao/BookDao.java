@@ -16,11 +16,11 @@ public class BookDao implements IBookDao {
         books.add(book);
     }
 
-    public List<Book> getAllUnits() {
+    public List<Book> getAllBooks() {
         return books;
     }
 
-    public List<Book> getStockUnitsByIds(List<String> ids, BookStatus status) {
+    public List<Book> getBooksByIds(List<String> ids, BookStatus status) {
 
         return books.stream()
                 .filter(book -> ids.contains(book.getId()))
@@ -28,7 +28,7 @@ public class BookDao implements IBookDao {
                 .collect(Collectors.toList());
     }
 
-    public List<Book> getStockUnitsByName(List<String> name, BookStatus status) {
+    public List<Book> getBooksByName(List<String> name, BookStatus status) {
 
         return books.stream()
                 .filter(book -> name.contains(book.getName()))
@@ -36,7 +36,7 @@ public class BookDao implements IBookDao {
                 .collect(Collectors.toList());
     }
 
-    public Book getStockUnitByBookId(String id) {
+    public Book getBookByBookId(String id) {
         return books.stream()
                 .filter(book -> book.getId().equals(id))
                 .findFirst()

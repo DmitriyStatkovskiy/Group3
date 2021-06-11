@@ -16,7 +16,7 @@ public interface IBookService {
 
     List<Book> sortBooksByPrice(IBookDao bookDao);
 
-    List<Book> sortUnitsByStatus(IBookDao book);
+    List<Book> sortBooksByStatus(IBookDao book);
 
     String showBookDescription(IBookDao bookDao, String book);
 

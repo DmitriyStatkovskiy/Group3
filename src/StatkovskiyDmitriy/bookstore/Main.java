@@ -49,13 +49,13 @@ public class Main {
         bookDao.addBook(bookD);
         bookDao.addBook(bookE);
         bookDao.addBook(bookC);
-        bookService.changeBookStatus(bookDao.getStockUnitByBookId(bookB.getId()), BookStatus.OUT_OF_STOCK);
+        bookService.changeBookStatus(bookDao.getBookByBookId(bookB.getId()), BookStatus.OUT_OF_STOCK);
        // test sort methods
         bookService.sortBooksByName(bookDao);
-        bookService.sortUnitsByStatus(bookDao);
+        bookService.sortBooksByStatus(bookDao);
         bookDao.printStock();//
         bookDao.printStock(bookService.sortBooksByName(bookDao));
-        bookDao.printStock(bookService.sortUnitsByStatus(bookDao));
+        bookDao.printStock(bookService.sortBooksByStatus(bookDao));
 
         orderService.addBook(order, bookA);
         orderService.addBook(order, bookB);

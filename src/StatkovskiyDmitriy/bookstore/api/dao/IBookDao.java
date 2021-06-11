@@ -9,11 +9,11 @@ public interface IBookDao {
 
     void addBook(Book book);
 
-    List<Book> getStockUnitsByIds(List<String> ids, BookStatus status);
+    List<Book> getBooksByIds(List<String> ids, BookStatus status);
 
-    List<Book> getStockUnitsByName(List<String> name, BookStatus status);
+    List<Book> getBooksByName(List<String> name, BookStatus status);
 
-    List<Book> getAllUnits();
+    List<Book> getAllBooks();
 
-    public Book getStockUnitByBookId(String id);
+    public Book getBookByBookId(String id);
 }
