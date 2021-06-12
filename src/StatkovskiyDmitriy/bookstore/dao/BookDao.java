@@ -42,15 +42,4 @@ public class BookDao implements IBookDao {
                 .findFirst()
                 .orElse(null);
     }
-
-    public void printStock() {
-        System.out.println(books);
-    }
-
-    public void printStock(List<Book> book) {
-        for (Book unit : book
-        ) {
-            System.out.println(unit);
-        }
-    }
 }

@@ -15,5 +15,5 @@ public interface IBookDao {
 
     List<Book> getAllBooks();
 
-    public Book getBookByBookId(String id);
+    Book getBookByBookId(String id);
 }

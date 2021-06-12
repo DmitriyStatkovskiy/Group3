@@ -32,11 +32,5 @@ public class RequestDao implements IRequestDao {
     public List<Request> getAll() {
         return requests;
     }
-
-    public void printRequests() {
-        for (Request request : requests) {
-            System.out.println(request);
-        }
-        System.out.println();
-    }
+    
 }

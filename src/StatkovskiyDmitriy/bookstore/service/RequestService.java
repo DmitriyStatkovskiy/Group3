@@ -44,23 +44,23 @@ public class RequestService implements IRequestService {
     }
 
     public List<Request> sortRequestsByQuantity() {
-        List<Request> requests = requestDao.getAll();             //комметы для себя, потом удалю
-        List<String> allBookNames = requests.stream().            //все названия книг
+        List<Request> requests = requestDao.getAll();
+        List<String> allBookNames = requests.stream().
                 map(book -> book.getBookOld().getName())
                 .collect(Collectors.toList());
-        Set<String> uniqName = requests.stream()                  //получаю все уникальные
+        Set<String> uniqName = requests.stream()
                 .map(book -> book.getBookOld().getName())
                 .collect(Collectors.toSet());
-        String[] requestedBookNames = new String[uniqName.size()];//делаю из сет массив стрингов
+        String[] requestedBookNames = new String[uniqName.size()];
         uniqName.toArray(requestedBookNames);
 
-        int[] numberOfRepetitions = new int[uniqName.size()];     //массив для количества повторений
+        int[] numberOfRepetitions = new int[uniqName.size()];
 
-        for (int i = 0; i < requestedBookNames.length; i++) {                                     //беру уникальное имя из массива,
-            numberOfRepetitions[i] = Collections.frequency(allBookNames, requestedBookNames[i]);  //прохожу по всем именам и записываю количество повторений
+        for (int i = 0; i < requestedBookNames.length; i++) {
+            numberOfRepetitions[i] = Collections.frequency(allBookNames, requestedBookNames[i]);
         }
 
-        for (int i = 0; i < requestedBookNames.length; i++) {     //заполняю Request.quantity
+        for (int i = 0; i < requestedBookNames.length; i++) {
             int j = i;
             requests.stream()
                     .filter(request -> request.getBookOld().getName().equals(requestedBookNames[j]))

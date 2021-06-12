@@ -30,9 +30,6 @@ public class BookService implements IBookService {
                 .collect(Collectors.toList());
         List<Book> books = bookDao.getBooksByIds(bookIds, BookStatus.OUT_OF_STOCK);
         return books;
-//        return books.stream()
-//                .map(stockUnit -> stockUnit.getBook())
-//                .collect(Collectors.toList());
     }
 
     @Override
@@ -60,13 +57,6 @@ public class BookService implements IBookService {
 
     }
 
-    //        public List<StockUnit> sortUnitsByDate(IStockDao stockUnit){
-//        List<StockUnit> units = stockUnit.getAllUnits();
-//        return units.stream()
-//                .sorted(Comparator.comparing(StockUnit::getIncomingDate))
-//                .collect(Collectors.toList());
-//
-//    }
     public List<Book> sortBooksByStatus() {
         List<Book> units = bookDao.getAllBooks();
         return units.stream()
@@ -108,5 +98,13 @@ public class BookService implements IBookService {
         book.setStatus(status);
         return book;
     }
-
+    public void printStock(List<Book> book) {
+        for (Book unit : book
+        ) {
+            System.out.println(unit);
+        }
+    }
+    public void printStock() {
+        System.out.println(bookDao.getAllBooks());
+    }
 }

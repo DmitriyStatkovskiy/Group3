@@ -28,5 +28,4 @@ public interface IBookService {
 
     Book changeBookStatus(Book book, BookStatus status);
 
-    // List<StockUnit> sortUnitsByDate(StockDao stockUnit);
 }
