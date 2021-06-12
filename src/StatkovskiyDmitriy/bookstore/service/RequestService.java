@@ -36,14 +36,14 @@ public class RequestService implements IRequestService {
                 .forEach(request -> request.setStatus(status));
     }
 
-    public List<Request> sortRequestsByBookName(IRequestDao requestDao) {
+    public List<Request> sortRequestsByBookName() {
         List<Request> books = requestDao.getAll();
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getBookOld().getName()))
                 .collect(Collectors.toList());
     }
 
-    public List<Request> sortRequestsByQuantity(IRequestDao requestDao) {
+    public List<Request> sortRequestsByQuantity() {
         List<Request> requests = requestDao.getAll();             //комметы для себя, потом удалю
         List<String> allBookNames = requests.stream().            //все названия книг
                 map(book -> book.getBookOld().getName())

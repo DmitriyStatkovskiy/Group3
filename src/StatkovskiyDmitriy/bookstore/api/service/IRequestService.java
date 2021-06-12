@@ -14,9 +14,9 @@ public interface IRequestService {
 
     void changeRequestStatusByBookName(String bookName, RequestStatus status);
 
-    List<Request> sortRequestsByBookName(IRequestDao requestDao);
+    List<Request> sortRequestsByBookName();
 
-    List<Request> sortRequestsByQuantity(IRequestDao requestDao);
+    List<Request> sortRequestsByQuantity();
 
 
 }

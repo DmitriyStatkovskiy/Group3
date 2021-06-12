@@ -89,7 +89,7 @@ public class Main {
         System.out.println();
         bookDao.printStock(bookService.sortBooksByName(bookDao));
 
-        requestService.sortRequestsByBookName(requestDao).forEach(System.out::println);
+        requestService.sortRequestsByBookName().forEach(System.out::println);
 //        sort by order price
         System.out.println(orderService.calculateOrderPrice(order));
         System.out.println("Orders without sort:");
@@ -108,7 +108,7 @@ public class Main {
         System.out.println(order2);
         System.out.println(order3);
 //      sort requests by quantity
-        requestService.sortRequestsByQuantity(requestDao).forEach(System.out::println);
+        requestService.sortRequestsByQuantity().forEach(System.out::println);
         System.out.println(orderService.numberOfCompletedOrdersFromRange(orderDao, LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 12)));
 
     }
