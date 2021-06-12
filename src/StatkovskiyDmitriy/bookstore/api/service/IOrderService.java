@@ -17,23 +17,23 @@ public interface IOrderService {
 
     double calculateOrderPrice(Order order);
 
-    List<Order> sortOrdersByPrice(IOrderDao orderDao);
+    List<Order> sortOrdersByPrice();
 
     Order changeOrderStatus(Order order, OrderStatus status);
 
-    List<Order> sortOrdersByStatus(IOrderDao orderDao);
+    List<Order> sortOrdersByStatus();
 
-    List<Order> sortOrdersByFulfillmentDate(IOrderDao orderDao);
+    List<Order> sortOrdersByFulfillmentDate();
 
     Order cancelOrder(Order order);
 
-    List<Order> sortCompletedOrdersByPriceFromRange(IOrderDao orderDao, LocalDate from, LocalDate to);
+    List<Order> sortCompletedOrdersByPriceFromRange(LocalDate from, LocalDate to);
 
-    List<Order> sortCompletedOrdersByCompletedDateFromRange(IOrderDao orderDao, LocalDate from, LocalDate to);
+    List<Order> sortCompletedOrdersByCompletedDateFromRange(LocalDate from, LocalDate to);
 
-    int numberOfCompletedOrdersFromRange(IOrderDao orderDao, LocalDate from, LocalDate to);
+    int numberOfCompletedOrdersFromRange(LocalDate from, LocalDate to);
 
-    double calculateEarnedMoneyFromRange(IOrderDao orderDao, LocalDate from, LocalDate to);
+    double calculateEarnedMoneyFromRange(LocalDate from, LocalDate to);
 
-    Order showOrderInformation(IOrderDao orderDao, String customerName);
+    Order showOrderInformation(String customerName);
 }

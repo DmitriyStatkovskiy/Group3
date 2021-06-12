@@ -50,12 +50,12 @@ public class Main {
         bookDao.addBook(bookE);
         bookDao.addBook(bookC);
         bookService.changeBookStatus(bookDao.getBookByBookId(bookB.getId()), BookStatus.OUT_OF_STOCK);
-       // test sort methods
-        bookService.sortBooksByName(bookDao);
-        bookService.sortBooksByStatus(bookDao);
+        // test sort methods
+        bookService.sortBooksByName();
+        bookService.sortBooksByStatus();
         bookDao.printStock();//
-        bookDao.printStock(bookService.sortBooksByName(bookDao));
-        bookDao.printStock(bookService.sortBooksByStatus(bookDao));
+        bookDao.printStock(bookService.sortBooksByName());
+        bookDao.printStock(bookService.sortBooksByStatus());
 
         orderService.addBook(order, bookA);
         orderService.addBook(order, bookB);
@@ -87,7 +87,7 @@ public class Main {
         System.out.println();
         bookDao.printStock();
         System.out.println();
-        bookDao.printStock(bookService.sortBooksByName(bookDao));
+        bookDao.printStock(bookService.sortBooksByName());
 
         requestService.sortRequestsByBookName().forEach(System.out::println);
 //        sort by order price
@@ -95,10 +95,10 @@ public class Main {
         System.out.println("Orders without sort:");
         orderDao.getAll().forEach(System.out::println);
         System.out.println("sorted orders:");
-        orderService.sortOrdersByPrice(orderDao).forEach(System.out::println);
+        orderService.sortOrdersByPrice().forEach(System.out::println);
 
 //        show book description
-        System.out.println(bookService.showBookDescription(bookDao, "DDD"));
+        System.out.println(bookService.showBookDescription("DDD"));
 
 //        test changeOrderStatus
         orderService.addBook(order2, bookD);
@@ -109,7 +109,7 @@ public class Main {
         System.out.println(order3);
 //      sort requests by quantity
         requestService.sortRequestsByQuantity().forEach(System.out::println);
-        System.out.println(orderService.numberOfCompletedOrdersFromRange(orderDao, LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 12)));
+        System.out.println(orderService.numberOfCompletedOrdersFromRange(LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 12)));
 
     }
 }
