@@ -79,21 +79,21 @@ public class OrderService implements IOrderService {
                 .sum();
     }
 
-    public List<Order> sortOrdersByFulfillmentDate(IOrderDao orderDao) {
+    public List<Order> sortOrdersByFulfillmentDate() {
         List<Order> orders = orderDao.getAll();
         return orders.stream()
                 .sorted(Comparator.comparing(o -> o.getOrderClosedDate()))
                 .collect(Collectors.toList());
     }
 
-    public List<Order> sortOrdersByStatus(IOrderDao orderDao) {
+    public List<Order> sortOrdersByStatus() {
         List<Order> orders = orderDao.getAll();
         return orders.stream()
                 .sorted(Comparator.comparing(o -> o.getStatus()))
                 .collect(Collectors.toList());
     }
 
-    public List<Order> sortOrdersByPrice(IOrderDao orderDao) {
+    public List<Order> sortOrdersByPrice() {
         List<Order> orders = orderDao.getAll();
         orders.forEach(order -> order.setOrderPrice(calculateOrderPrice(order)));
         return orders.stream()
@@ -101,7 +101,7 @@ public class OrderService implements IOrderService {
                 .collect(Collectors.toList());
     }
 
-    public List<Order> sortCompletedOrdersByPriceFromRange(IOrderDao orderDao, LocalDate from, LocalDate to) {
+    public List<Order> sortCompletedOrdersByPriceFromRange(LocalDate from, LocalDate to) {
         List<Order> orders = orderDao.getAll();
         orders.stream()
                 .filter(order -> order.getOrderClosedDate() != null)
@@ -115,7 +115,7 @@ public class OrderService implements IOrderService {
                 .collect(Collectors.toList());
     }
 
-    public List<Order> sortCompletedOrdersByCompletedDateFromRange(IOrderDao orderDao, LocalDate from, LocalDate to) {
+    public List<Order> sortCompletedOrdersByCompletedDateFromRange(LocalDate from, LocalDate to) {
         List<Order> orders = orderDao.getAll();
         return orders.stream()
                 .filter(order -> order.getOrderClosedDate() != null)
@@ -126,7 +126,7 @@ public class OrderService implements IOrderService {
                 .collect(Collectors.toList());
     }
 
-    public double calculateEarnedMoneyFromRange(IOrderDao orderDao, LocalDate from, LocalDate to) {
+    public double calculateEarnedMoneyFromRange(LocalDate from, LocalDate to) {
         List<Order> orders = orderDao.getAll();
         orders.stream()
                 .filter(order -> order.getOrderClosedDate() != null)
@@ -141,7 +141,7 @@ public class OrderService implements IOrderService {
                 .sum();
     }
 
-    public int numberOfCompletedOrdersFromRange(IOrderDao orderDao, LocalDate from, LocalDate to) {
+    public int numberOfCompletedOrdersFromRange(LocalDate from, LocalDate to) {
         List<Order> orders = orderDao.getAll();
         List<Order> completedOrders = orders.stream()
                 .filter(order -> order.getOrderClosedDate() != null)
@@ -153,7 +153,7 @@ public class OrderService implements IOrderService {
         return number;
     }
 
-    public Order showOrderInformation(IOrderDao orderDao, String customerName) {
+    public Order showOrderInformation(String customerName) {
         List<Order> units = orderDao.getAll();
         Order details = units.stream()
                 .filter(order -> order.getCustomerName().equals(customerName))

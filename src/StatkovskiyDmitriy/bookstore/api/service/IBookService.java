@@ -12,21 +12,20 @@ public interface IBookService {
 
     void addBook(Book book);
 
-    List<Book> sortBooksByName(IBookDao bookDao);
+    List<Book> sortBooksByName();
 
-    List<Book> sortBooksByPrice(IBookDao bookDao);
+    List<Book> sortBooksByPrice();
 
-    List<Book> sortBooksByStatus(IBookDao book);
+    List<Book> sortBooksByStatus();
 
-    String showBookDescription(IBookDao bookDao, String book);
+    String showBookDescription(String book);
 
-    List<Book> getOldBooks(IBookDao bookDao);
+    List<Book> getOldBooks();
 
-    List<Book> sortOldBooksByIncomingDate(IBookDao bookDao);
+    List<Book> sortOldBooksByIncomingDate();
 
-    List<Book> sortOldBooksByPrice(IBookDao bookDao);
+    List<Book> sortOldBooksByPrice();
 
     Book changeBookStatus(Book book, BookStatus status);
 
-    // List<StockUnit> sortUnitsByDate(StockDao stockUnit);
 }
