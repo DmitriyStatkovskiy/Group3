@@ -6,6 +6,7 @@ import java.util.List;
 public class Menu {
     private String name;
     List<MenuItem> menuItems = new ArrayList<>();
+    ;
 
     public String getName() {
         return name;
@@ -15,4 +16,14 @@ public class Menu {
         this.name = name;
     }
 
+    public List<MenuItem> getMenuItems() {
+        if (menuItems == null) {
+            menuItems = new ArrayList<>();
+        }
+        return menuItems;
+    }
+
+    public void addMenuItem(MenuItem item) {
+        menuItems.add(item);
+    }
 }

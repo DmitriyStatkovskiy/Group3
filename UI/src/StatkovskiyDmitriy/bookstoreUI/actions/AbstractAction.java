@@ -1,7 +1,8 @@
 package StatkovskiyDmitriy.bookstoreUI.actions;
 
-import StatkovskiyDmitriy.bookstore.api.dao.IStockUnitDao;
+import StatkovskiyDmitriy.bookstoreUI.FacadeMock;
 
 public abstract class AbstractAction {
-    abstract public void method();
+    protected FacadeMock facade = new FacadeMock();
+
 }
