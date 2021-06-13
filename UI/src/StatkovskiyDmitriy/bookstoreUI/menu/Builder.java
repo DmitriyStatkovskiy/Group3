@@ -1,6 +1,7 @@
 package StatkovskiyDmitriy.bookstoreUI.menu;
 
-import StatkovskiyDmitriy.bookstoreUI.actions.AddBook;
+import StatkovskiyDmitriy.bookstoreUI.actions.AddBookAction;
+import StatkovskiyDmitriy.bookstoreUI.actions.GetBooksAction;
 
 public class Builder {
     private static Builder instance;
@@ -18,10 +19,10 @@ public class Builder {
     }
 
     public void buildMenu() {
-        rootMenu = new Menu();
+        rootMenu = new Menu("Main menu");
         rootMenu.addMenuItem(new MenuItem("Book Menu", () -> {
-            System.out.println("book menu:");
-        }, createBookMenu()));
+            System.out.println("");
+        }, createBookMenu(), rootMenu));
     }
 
     public Menu getRootMenu() {
@@ -29,11 +30,13 @@ public class Builder {
     }
 
     private Menu createBookMenu() {
-        Menu bookMenu = new Menu();
-        bookMenu.addMenuItem(new MenuItem("some action", () -> {
-            System.out.println("tratata");
-        }, bookMenu));
-        rootMenu.addMenuItem(new MenuItem("Add book to stock", new AddBook(), rootMenu));
+        Menu bookMenu = new Menu("Book Menu");
+        MenuItem showAllBooks = new MenuItem("Show all books", new GetBooksAction(), bookMenu, rootMenu);
+        MenuItem addBook = new MenuItem("add book", new AddBookAction(), bookMenu, rootMenu);
+
+        bookMenu.addMenuItem(showAllBooks);
+        bookMenu.addMenuItem(addBook);
         return bookMenu;
     }
+
 }

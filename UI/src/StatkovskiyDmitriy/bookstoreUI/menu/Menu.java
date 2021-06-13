@@ -4,22 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Menu {
-    private String name;
-    List<MenuItem> menuItems = new ArrayList<>();
-    ;
+    private final String name;
+    private List<MenuItem> menuItems = new ArrayList<>();
+
+    public Menu(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<MenuItem> getMenuItems() {
-        if (menuItems == null) {
-            menuItems = new ArrayList<>();
-        }
+
         return menuItems;
     }
 

@@ -28,7 +28,7 @@ public class Main {
         IRequestDao requestDao = new RequestDao();
         IRequestService requestService = new RequestService(requestDao);
 
-        BookDao bookDao = new BookDao();
+        BookDao bookDao = BookDao.getInstance();
 
         IBookService bookService = new BookService(bookDao, requestService);
 
@@ -79,7 +79,7 @@ public class Main {
         System.out.println(order);
         System.out.println("Created requests:");
         requestDao.getAll().forEach(System.out::println);
-        bookService.addBook(bookB);
+        bookService.addBookToStock(bookB);
         requestDao.getAll().forEach(System.out::println);
         orderService.completeOrder(order);
         System.out.println(order);
