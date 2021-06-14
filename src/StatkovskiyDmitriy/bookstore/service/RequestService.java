@@ -2,6 +2,7 @@ package StatkovskiyDmitriy.bookstore.service;
 
 import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
+import StatkovskiyDmitriy.bookstore.dao.RequestDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Request;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
@@ -13,11 +14,23 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class RequestService implements IRequestService {
-    private final IRequestDao requestDao;
+    private static RequestService instance;
+    private final IRequestDao requestDao = RequestDao.getInstance();
 
-    public RequestService(IRequestDao requestDao) {
-        this.requestDao = requestDao;
+    private RequestService() {
+
     }
+
+    public static RequestService getInstance() {
+        if (instance == null) {
+            instance = new RequestService();
+        }
+        return instance;
+    }
+
+//    public RequestService(IRequestDao requestDao) {
+//        this.requestDao = requestDao;
+//    }
 
     @Override
     public Request createRequest(Book bookOld) {

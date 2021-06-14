@@ -9,7 +9,19 @@ import java.util.List;
 import java.util.UUID;
 
 public class OrderDao implements IOrderDao {
+    private static OrderDao instance;
     List<Order> orders = new ArrayList<>();
+
+    private OrderDao() {
+
+    }
+
+    public static OrderDao getInstance() {
+        if (instance == null) {
+            instance = new OrderDao();
+        }
+        return instance;
+    }
 
     public Order createOrder() {
         Order order = new Order();

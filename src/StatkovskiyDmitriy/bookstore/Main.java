@@ -24,11 +24,11 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
 
-        IOrderDao orderDao = new OrderDao();
-        IRequestDao requestDao = new RequestDao();
-        IRequestService requestService = new RequestService(requestDao);
+        IOrderDao orderDao = OrderDao.getInstance();
+        IRequestDao requestDao = RequestDao.getInstance();
+        IRequestService requestService = RequestService.getInstance();
 
-        BookDao bookDao = new BookDao();
+        BookDao bookDao = BookDao.getInstance();
 
         IBookService bookService = new BookService(bookDao, requestService);
 
@@ -79,7 +79,7 @@ public class Main {
         System.out.println(order);
         System.out.println("Created requests:");
         requestDao.getAll().forEach(System.out::println);
-        bookService.addBook(bookB);
+        bookService.addBookToStock(bookB);
         requestDao.getAll().forEach(System.out::println);
         orderService.completeOrder(order);
         System.out.println(order);

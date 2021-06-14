@@ -10,7 +10,7 @@ import java.util.List;
 public interface IBookService {
     List<Book> getOutOfStockBooks(Order order);
 
-    void addBook(Book book);
+    void addBookToStock(Book book);
 
     List<Book> sortBooksByName();
 
@@ -27,5 +27,9 @@ public interface IBookService {
     List<Book> sortOldBooksByPrice();
 
     Book changeBookStatus(Book book, BookStatus status);
+
+    List<Book> getAllBooks();
+
+    void addBook(Book book);
 
 }

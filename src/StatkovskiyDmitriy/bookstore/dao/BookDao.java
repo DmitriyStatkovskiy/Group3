@@ -9,12 +9,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BookDao implements IBookDao {
-
+    private static BookDao instance;
     private List<Book> books = new ArrayList<>();
+
+    private BookDao() {
+
+    }
+
+    public static BookDao getInstance() {
+        if (instance == null) {
+            instance = new BookDao();
+        }
+        return instance;
+    }
 
     public void addBook(Book book) {
         books.add(book);
     }
+
 
     public List<Book> getAllBooks() {
         return books;

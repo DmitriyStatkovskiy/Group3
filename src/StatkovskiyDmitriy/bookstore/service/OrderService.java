@@ -4,6 +4,7 @@ import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
+import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
@@ -14,15 +15,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OrderService implements IOrderService {
-
-    private IOrderDao orderDao;
-    private IBookService stockService;
+    private static OrderService instance;
+    private IOrderDao orderDao = OrderDao.getInstance();
+    private IBookService bookService = BookService.getInstance();
     private IRequestService requestService;
 
+    private OrderService() {
 
-    public OrderService(IOrderDao orderDao, IBookService stockService, IRequestService requestService) {
+    }
+
+    public static OrderService getInstance() {
+        if (instance == null) {
+            instance = new OrderService();
+        }
+        return instance;
+    }
+
+    public OrderService(IOrderDao orderDao, IBookService bookService, IRequestService requestService) {
         this.orderDao = orderDao;
-        this.stockService = stockService;
+        this.bookService = bookService;
         this.requestService = requestService;
     }
 
@@ -42,7 +53,7 @@ public class OrderService implements IOrderService {
         if (!order.getStatus().equals(OrderStatus.NEW)) {
             return order;
         }
-        List<Book> outOfStockBookOlds = stockService.getOutOfStockBooks(order);
+        List<Book> outOfStockBookOlds = bookService.getOutOfStockBooks(order);
         if (outOfStockBookOlds.size() == 0) {
             order.setOrderClosedDate(LocalDate.now());
             order.setStatus(OrderStatus.COMPLETED);

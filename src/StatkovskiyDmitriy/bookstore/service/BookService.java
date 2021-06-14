@@ -3,6 +3,7 @@ package StatkovskiyDmitriy.bookstore.service;
 import StatkovskiyDmitriy.bookstore.api.dao.IBookDao;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
+import StatkovskiyDmitriy.bookstore.dao.BookDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
@@ -15,8 +16,20 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BookService implements IBookService {
-    private IBookDao bookDao;
+    private static BookService instance;
+    private IBookDao bookDao = BookDao.getInstance();
     private IRequestService requestService;
+
+    private BookService() {
+
+    }
+
+    public static BookService getInstance() {
+        if (instance == null) {
+            instance = new BookService();
+        }
+        return instance;
+    }
 
     public BookService(IBookDao stockDao, IRequestService requestService) {
         this.bookDao = stockDao;
@@ -33,7 +46,7 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public void addBook(Book bookOld) {
+    public void addBookToStock(Book bookOld) {
         List<String> name = Collections.singletonList(bookOld.getId());
         if (bookDao.getBooksByIds(name, BookStatus.OUT_OF_STOCK).size() != 0) {
             requestService.changeRequestStatusByBookName(bookOld.getName(), RequestStatus.CLOSED);
@@ -98,12 +111,24 @@ public class BookService implements IBookService {
         book.setStatus(status);
         return book;
     }
+
+    @Override
+    public List<Book> getAllBooks() {
+        return bookDao.getAllBooks();
+    }
+
+    @Override
+    public void addBook(Book book) {
+        bookDao.addBook(book);
+    }
+
     public void printStock(List<Book> book) {
         for (Book unit : book
         ) {
             System.out.println(unit);
         }
     }
+
     public void printStock() {
         System.out.println(bookDao.getAllBooks());
     }
