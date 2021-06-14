@@ -177,4 +177,12 @@ public class OrderService implements IOrderService {
     public List<Order> getAll() {
         return orderDao.getAll();
     }
+
+    public Order getOrderById(String id){
+        Order order = orderDao.getAll().stream()
+                .filter(order1 -> order1.getOrderNumber().equals(id))
+                .findFirst()
+                .get();
+        return order;
+    }
 }

@@ -33,4 +33,6 @@ public interface IBookService {
 
     List<Book> getOutBooks();
 
+    Book getBookByName(String name);
+
 }

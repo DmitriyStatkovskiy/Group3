@@ -37,4 +37,6 @@ public interface IOrderService {
     Order showOrderInformation(String customerName);
 
     List<Order> getAll();
+
+    Order getOrderById(String id);
 }

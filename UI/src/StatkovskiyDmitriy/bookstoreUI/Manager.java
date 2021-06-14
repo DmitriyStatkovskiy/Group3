@@ -80,12 +80,22 @@ public class Manager {
     public List<Book> sortOldByPrice() {
         return bookService.sortOldBooksByPrice();
     }
+
     public List<Order> getOrders() {
         return orderService.getAll();
     }
 
-    public void addOrder(){
+    public void addOrder() {
         orderService.createNew();
     }
 
+    public void addBookToOrder(String orderId, String bookName) {
+        Order order = orderService.getOrderById(orderId);
+        Book book = bookService.getBookByName(bookName);
+        orderService.addBook(order, book);
+    }
+    public void completeOrder(String orderId){
+        Order order = orderService.getOrderById(orderId);
+        orderService.completeOrder(order);
+    }
 }

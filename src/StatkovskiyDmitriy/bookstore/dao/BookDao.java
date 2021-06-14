@@ -54,4 +54,11 @@ public class BookDao implements IBookDao {
                 .findFirst()
                 .orElse(null);
     }
+
+    public Book getBookByName(String name) {
+        return books.stream()
+                .filter(book -> book.getName().equals(name))
+                .findFirst()
+                .orElse(null);
+    }
 }
