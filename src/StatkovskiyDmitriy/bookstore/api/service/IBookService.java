@@ -1,6 +1,5 @@
 package StatkovskiyDmitriy.bookstore.api.service;
 
-import StatkovskiyDmitriy.bookstore.api.dao.IBookDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
@@ -31,5 +30,7 @@ public interface IBookService {
     List<Book> getAllBooks();
 
     void addBook(Book book);
+
+    List<Book> getOutBooks();
 
 }

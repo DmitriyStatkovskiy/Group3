@@ -44,6 +44,12 @@ public class BookService implements IBookService {
         List<Book> books = bookDao.getBooksByIds(bookIds, BookStatus.OUT_OF_STOCK);
         return books;
     }
+    public List<Book> getOutBooks(){
+        List<Book> books = bookDao.getAllBooks();
+        return  books.stream()
+                .filter(book -> book.getStatus().equals(BookStatus.OUT_OF_STOCK))
+                .collect(Collectors.toList());
+    }
 
     @Override
     public void addBookToStock(Book bookOld) {

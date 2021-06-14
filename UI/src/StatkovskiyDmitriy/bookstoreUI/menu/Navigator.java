@@ -36,13 +36,7 @@ public class Navigator {
     public void navigate(Integer index) {
 
         if (currentMenu != null) {
-//            if (index == -2) {
-//                currentMenu = currentMenu.getMenuItems().stream()
-//                        .findFirst()
-//                        .get()
-//                        .getPreviousMenu();
-//                return;
-//            }
+
             MenuItem menuItem = currentMenu.getMenuItems().get(index);
 
             menuItem.doAction();
