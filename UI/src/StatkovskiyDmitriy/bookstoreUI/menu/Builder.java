@@ -2,8 +2,7 @@ package StatkovskiyDmitriy.bookstoreUI.menu;
 
 import StatkovskiyDmitriy.bookstoreUI.actions.book.*;
 import StatkovskiyDmitriy.bookstoreUI.actions.order.*;
-import StatkovskiyDmitriy.bookstoreUI.actions.request.AddRequestAction;
-import StatkovskiyDmitriy.bookstoreUI.actions.request.GetRequestsAction;
+import StatkovskiyDmitriy.bookstoreUI.actions.request.*;
 
 public class Builder {
     private static Builder instance;
@@ -46,7 +45,7 @@ public class Builder {
         MenuItem changeStatus = new MenuItem("change status", new ChangeStatusAction(), bookMenu);
         MenuItem showDescription = new MenuItem("show book description", new GetDescriptionAction(), bookMenu);
 
-        MenuItem sort = new MenuItem("sort", () -> {
+        MenuItem sort = new MenuItem("sort menu", () -> {
         }, sortMenu);
         MenuItem previousMenu = new MenuItem("previous menu", () -> {
         }, rootMenu);
@@ -90,11 +89,11 @@ public class Builder {
         MenuItem completeOrder = new MenuItem("complete order", new CompleteOrderAction(), orderMenu);
         MenuItem cancelOrder = new MenuItem("cancel order", new CancelOrderAction(), orderMenu);
         MenuItem changeStatus = new MenuItem("change order status", new ChangeOrderStatusAction(), orderMenu);
-        MenuItem getOrderDetails= new MenuItem("show order details", new GetOrderDetails(), orderMenu);
+        MenuItem getOrderDetails = new MenuItem("show order details", new GetOrderDetails(), orderMenu);
         MenuItem showCompletedOrders = new MenuItem("show completed orders value", new GetProfitAction(), orderMenu);
         MenuItem showProfitOverATime = new MenuItem("show earned money over a time", new GetProfitAction(), orderMenu);
 
-        MenuItem sort = new MenuItem("sort", () -> {
+        MenuItem sort = new MenuItem("sort menu", () -> {
         }, sortMenu);
 
         MenuItem previousMenu = new MenuItem("previous menu", () -> {
@@ -139,15 +138,35 @@ public class Builder {
 
     private Menu createRequestMenu() {
         Menu requestMenu = new Menu("--Request Menu--");
+        Menu sortMenu = createRequestSortMenu();
         MenuItem getAll = new MenuItem("show all requests", new GetRequestsAction(), requestMenu);
         MenuItem add = new MenuItem("create request", new AddRequestAction(), requestMenu);
+        MenuItem changeStatus = new MenuItem("change status", new ChangeRequestStatusAction(), requestMenu);
+        MenuItem sort = new MenuItem("sort menu", () -> {
+        }, sortMenu);
 
         MenuItem previousMenu = new MenuItem("previous menu", () -> {
         }, rootMenu);
 
         requestMenu.addMenuItem(getAll);
         requestMenu.addMenuItem(add);
+        requestMenu.addMenuItem(changeStatus);
+        requestMenu.addMenuItem(sort);
         requestMenu.addMenuItem(previousMenu);
         return requestMenu;
+    }
+
+    private Menu createRequestSortMenu() {
+        Menu sortMenu = new Menu("--Sort Requests--");
+        MenuItem sortByQuantity = new MenuItem("sort by quantity", new SortByQuantityAction(), sortMenu);
+        MenuItem sortByName = new MenuItem("sort by book name", new SortRequestsByBookNameAction(), sortMenu);
+
+        MenuItem previousMenu = new MenuItem("previous menu", () -> {
+        }, rootMenu);
+
+        sortMenu.addMenuItem(sortByQuantity);
+        sortMenu.addMenuItem(sortByName);
+        sortMenu.addMenuItem(previousMenu);
+        return sortMenu;
     }
 }

@@ -9,6 +9,7 @@ import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.Request;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
+import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
 import StatkovskiyDmitriy.bookstore.service.BookService;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
@@ -140,10 +141,12 @@ public class Manager {
     public List<Order> sortCompletedOrdersByDate(LocalDate from, LocalDate to) {
         return orderService.sortCompletedOrdersByCompletedDateFromRange(from, to);
     }
-    public void showOrderDetails(String id){
+
+    public void showOrderDetails(String id) {
         Order order = orderService.getOrderById(id);
         System.out.println(order);
     }
+
     public double showProfit(LocalDate from, LocalDate to) {
 
         return orderService.calculateEarnedMoneyFromRange(from, to);
@@ -162,4 +165,20 @@ public class Manager {
         return requestService.getAll();
     }
 
+    public void changeRequestStatus(String name) {
+        Request request = requestService.getRequestByName(name);
+        if (request.getStatus().equals(RequestStatus.OPEN)) {
+            requestService.changeRequestStatusByBookName(name, RequestStatus.CLOSED);
+        } else {
+            requestService.changeRequestStatusByBookName(name, RequestStatus.OPEN);
+        }
+    }
+
+    public List<Request> sortRequestsQuantity() {
+        return requestService.sortRequestsByQuantity();
+    }
+
+    public List<Request> sortRequestsByBookName() {
+        return requestService.sortRequestsByBookName();
+    }
 }

@@ -37,7 +37,13 @@ public class RequestService implements IRequestService {
     public void changeRequestStatus(String id, RequestStatus status) {
         requestDao.getRequestById(id).setStatus(status);
     }
-
+    public Request getRequestByName(String name){
+        Request request = requestDao.getAll().stream()
+                .filter(request1 -> request1.getBookOld().getName().equals(name))
+                .findFirst()
+                .get();
+        return request;
+    }
     public void changeRequestStatusByBookName(String bookName, RequestStatus status) {
         List<Request> requests = requestDao.getAll();
         requests.stream()
