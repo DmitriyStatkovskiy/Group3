@@ -30,4 +30,20 @@ public class Manager {
     public List<Book> sortByName() {
         return bookService.sortBooksByName();
     }
+
+    public List<Book> sortByPrice() {
+        return bookService.sortBooksByPrice();
+    }
+
+    public List<Book> sortByStatus() {
+        return bookService.sortBooksByStatus();
+    }
+
+    public List<Book> sortOldByIncDate() {
+        return bookService.sortOldBooksByIncomingDate();
+    }
+
+    public List<Book> sortOldByPrice() {
+        return bookService.sortOldBooksByPrice();
+    }
 }

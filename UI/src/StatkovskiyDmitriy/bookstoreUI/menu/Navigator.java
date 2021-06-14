@@ -31,19 +31,18 @@ public class Navigator {
             System.out.println(i + " " + menuItems.get(i).getTitle());
         }
 
-        System.out.println("-2 for previous menu");
     }
 
     public void navigate(Integer index) {
 
         if (currentMenu != null) {
-            if (index == -2) {
-                currentMenu = currentMenu.getMenuItems().stream()
-                        .findFirst()
-                        .get()
-                        .getPreviousMenu();
-                return;
-            }
+//            if (index == -2) {
+//                currentMenu = currentMenu.getMenuItems().stream()
+//                        .findFirst()
+//                        .get()
+//                        .getPreviousMenu();
+//                return;
+//            }
             MenuItem menuItem = currentMenu.getMenuItems().get(index);
 
             menuItem.doAction();
