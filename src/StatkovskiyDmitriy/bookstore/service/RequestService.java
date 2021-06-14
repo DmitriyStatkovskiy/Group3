@@ -27,11 +27,7 @@ public class RequestService implements IRequestService {
         }
         return instance;
     }
-
-//    public RequestService(IRequestDao requestDao) {
-//        this.requestDao = requestDao;
-//    }
-
+    public List<Request> getAll(){return requestDao.getAll();}
     @Override
     public Request createRequest(Book bookOld) {
         return requestDao.createRequest(bookOld);

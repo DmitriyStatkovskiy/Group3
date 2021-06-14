@@ -3,12 +3,15 @@ package StatkovskiyDmitriy.bookstoreUI;
 
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
+import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
+import StatkovskiyDmitriy.bookstore.model.Request;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 import StatkovskiyDmitriy.bookstore.service.BookService;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
+import StatkovskiyDmitriy.bookstore.service.RequestService;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,6 +21,7 @@ public class Manager {
     private static Manager instance;
     private final IBookService bookService = BookService.getInstance();
     private final IOrderService orderService = OrderService.getInstance();
+    private final IRequestService requestService = RequestService.getInstance();
 
     public static Manager getInstance() {
         if (instance == null) {
@@ -136,6 +140,26 @@ public class Manager {
     public List<Order> sortCompletedOrdersByDate(LocalDate from, LocalDate to) {
         return orderService.sortCompletedOrdersByCompletedDateFromRange(from, to);
     }
+    public void showOrderDetails(String id){
+        Order order = orderService.getOrderById(id);
+        System.out.println(order);
+    }
+    public double showProfit(LocalDate from, LocalDate to) {
 
+        return orderService.calculateEarnedMoneyFromRange(from, to);
+    }
+
+    public int showCompletedOrderValue(LocalDate from, LocalDate to) {
+        return orderService.numberOfCompletedOrdersFromRange(from, to);
+    }
+
+    public void createRequest(String name) {
+        Book book = bookService.getBookByName(name);
+        requestService.createRequest(book);
+    }
+
+    public List<Request> getRequests() {
+        return requestService.getAll();
+    }
 
 }

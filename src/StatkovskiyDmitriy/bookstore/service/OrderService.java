@@ -43,8 +43,8 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Order addBook(Order order, Book bookOld) {
-        order.getBooks().add(bookOld);
+    public Order addBook(Order order, Book book) {
+        order.getBooks().add(book);
         return order;
     }
 
@@ -53,16 +53,15 @@ public class OrderService implements IOrderService {
         if (!order.getStatus().equals(OrderStatus.NEW)) {
             return order;
         }
-        List<Book> outOfStockBookOlds = bookService.getOutOfStockBooks(order);
-        if (outOfStockBookOlds.size() == 0) {
+        List<Book> outOfStockBook = bookService.getOutOfStockBooks(order);
+        if (outOfStockBook.size() == 0) {
             order.setOrderClosedDate(LocalDate.now());
             order.setStatus(OrderStatus.COMPLETED);
         } else {
-            outOfStockBookOlds
-                    .forEach(book -> requestService.createRequest(book));
-//            for (Book book : outOfStockBooks) {
-//                requestService.createRequest(book);
-//            }
+            Book book = outOfStockBook.stream()
+                    .findFirst()
+                    .get();
+            requestService.createRequest(book);
         }
         return order;
     }
@@ -71,7 +70,6 @@ public class OrderService implements IOrderService {
     public Order cancelOrder(Order order) {
         if (order.getStatus().equals(OrderStatus.NEW)) {
             order.setStatus(OrderStatus.CANCELED);
-
         }
         return order;
     }
@@ -93,7 +91,7 @@ public class OrderService implements IOrderService {
     public List<Order> sortOrdersByFulfillmentDate() {
         List<Order> orders = orderDao.getAll();
         return orders.stream()
-                .filter(order -> order.getOrderClosedDate()!=null)
+                .filter(order -> order.getOrderClosedDate() != null)
                 .sorted(Comparator.comparing(o -> o.getOrderClosedDate()))
                 .collect(Collectors.toList());
     }
@@ -179,7 +177,7 @@ public class OrderService implements IOrderService {
         return orderDao.getAll();
     }
 
-    public Order getOrderById(String id){
+    public Order getOrderById(String id) {
         Order order = orderDao.getAll().stream()
                 .filter(order1 -> order1.getOrderNumber().equals(id))
                 .findFirst()

@@ -9,6 +9,8 @@ import java.util.List;
 public interface IBookService {
     List<Book> getOutOfStockBooks(Order order);
 
+    List<Book> getOutOfStockBooks();
+
     void addBookToStock(Book book);
 
     List<Book> sortBooksByName();

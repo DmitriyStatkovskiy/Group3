@@ -2,6 +2,8 @@ package StatkovskiyDmitriy.bookstoreUI.menu;
 
 import StatkovskiyDmitriy.bookstoreUI.actions.book.*;
 import StatkovskiyDmitriy.bookstoreUI.actions.order.*;
+import StatkovskiyDmitriy.bookstoreUI.actions.request.AddRequestAction;
+import StatkovskiyDmitriy.bookstoreUI.actions.request.GetRequestsAction;
 
 public class Builder {
     private static Builder instance;
@@ -25,6 +27,9 @@ public class Builder {
         rootMenu.addMenuItem(new MenuItem("Order Menu", () -> {
             System.out.println("");
         }, createOrderMenu()));
+        rootMenu.addMenuItem(new MenuItem("Request Menu", () -> {
+            System.out.println("");
+        }, createRequestMenu()));
     }
 
     public Menu getRootMenu() {
@@ -63,7 +68,7 @@ public class Builder {
         MenuItem sortByPrice = new MenuItem("Sort by price", new SortByPriceAction(), sortBooksSortMenu);
         MenuItem sortByStatus = new MenuItem("Sort by status", new SortByStatusAction(), sortBooksSortMenu);
         MenuItem sortOldByIncDate = new MenuItem("Sort old books by incoming date", new SortOldByIncomingDateAction(), sortBooksSortMenu);
-        MenuItem sortOldByPrice = new MenuItem("Sort old books by price", new SortOldByPrice(), sortBooksSortMenu);
+        MenuItem sortOldByPrice = new MenuItem("Sort old books by price", new SortOldByPriceAction(), sortBooksSortMenu);
         MenuItem previousMenu = new MenuItem("main menu", () -> {
         }, rootMenu);
 
@@ -85,6 +90,10 @@ public class Builder {
         MenuItem completeOrder = new MenuItem("complete order", new CompleteOrderAction(), orderMenu);
         MenuItem cancelOrder = new MenuItem("cancel order", new CancelOrderAction(), orderMenu);
         MenuItem changeStatus = new MenuItem("change order status", new ChangeOrderStatusAction(), orderMenu);
+        MenuItem getOrderDetails= new MenuItem("show order details", new GetOrderDetails(), orderMenu);
+        MenuItem showCompletedOrders = new MenuItem("show completed orders value", new GetProfitAction(), orderMenu);
+        MenuItem showProfitOverATime = new MenuItem("show earned money over a time", new GetProfitAction(), orderMenu);
+
         MenuItem sort = new MenuItem("sort", () -> {
         }, sortMenu);
 
@@ -97,6 +106,9 @@ public class Builder {
         orderMenu.addMenuItem(completeOrder);
         orderMenu.addMenuItem(cancelOrder);
         orderMenu.addMenuItem(changeStatus);
+        orderMenu.addMenuItem(getOrderDetails);
+        orderMenu.addMenuItem(showCompletedOrders);
+        orderMenu.addMenuItem(showProfitOverATime);
         orderMenu.addMenuItem(sort);
         orderMenu.addMenuItem(previousMenu);
 
@@ -106,11 +118,11 @@ public class Builder {
     private Menu createOrderSortMenu() {
         Menu sortOrderMenu = new Menu("--Sort Orders Menu--");
 
-        MenuItem sortByCompletedDate = new MenuItem("Sort by completed date", new SortOrdersByCompletedDateAction(), sortOrderMenu);
-        MenuItem sortByPrice = new MenuItem("Sort by price", new SortOrdersByPriceAction(), sortOrderMenu);
-        MenuItem sortByStatus = new MenuItem("Sort by status", new SortOrdersByStatusAction(), sortOrderMenu);
-        MenuItem sortCompletedOrdersByDate = new MenuItem("Sort completed orders by complete date over a period of time", new SortOrdersByCompletedDateAction(), sortOrderMenu);
-        MenuItem sortCompletedOrdersByPrice = new MenuItem("Sort completed orders by price over a period of time", new SortCompletedOrdersByPrice(), sortOrderMenu);
+        MenuItem sortByCompletedDate = new MenuItem("sort by completed date", new SortOrdersByCompletedDateAction(), sortOrderMenu);
+        MenuItem sortByPrice = new MenuItem("sort by price", new SortOrdersByPriceAction(), sortOrderMenu);
+        MenuItem sortByStatus = new MenuItem("sort by status", new SortOrdersByStatusAction(), sortOrderMenu);
+        MenuItem sortCompletedOrdersByDate = new MenuItem("sort completed orders by complete date over a period of time", new SortOrdersByCompletedDateAction(), sortOrderMenu);
+        MenuItem sortCompletedOrdersByPrice = new MenuItem("sort completed orders by price over a period of time", new SortCompletedOrdersByPrice(), sortOrderMenu);
 
         MenuItem previousMenu = new MenuItem("main menu", () -> {
         }, rootMenu);
@@ -126,7 +138,16 @@ public class Builder {
     }
 
     private Menu createRequestMenu() {
-        Menu requestMenu = new Menu("Request Menu");
+        Menu requestMenu = new Menu("--Request Menu--");
+        MenuItem getAll = new MenuItem("show all requests", new GetRequestsAction(), requestMenu);
+        MenuItem add = new MenuItem("create request", new AddRequestAction(), requestMenu);
+
+        MenuItem previousMenu = new MenuItem("previous menu", () -> {
+        }, rootMenu);
+
+        requestMenu.addMenuItem(getAll);
+        requestMenu.addMenuItem(add);
+        requestMenu.addMenuItem(previousMenu);
         return requestMenu;
     }
 }

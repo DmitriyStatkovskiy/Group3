@@ -10,7 +10,7 @@ public class AddAction extends AbstractAction implements IAction {
     public void execute() {
         String name, edition, description;
         double price;
-        System.out.println("name',edition, price, description");
+        System.out.println("name/edition/description/price");
         name = enterString("Enter book name: ");
         edition = enterString("Enter edition: ");
         description = enterString("Enter description: ");

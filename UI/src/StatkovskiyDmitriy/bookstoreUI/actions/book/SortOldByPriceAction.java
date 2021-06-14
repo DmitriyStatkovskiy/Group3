@@ -6,7 +6,7 @@ import StatkovskiyDmitriy.bookstoreUI.actions.IAction;
 
 import java.util.List;
 
-public class SortOldByPrice extends AbstractAction implements IAction {
+public class SortOldByPriceAction extends AbstractAction implements IAction {
     @Override
     public void execute() {
         List<Book> books = manager.sortOldByPrice();

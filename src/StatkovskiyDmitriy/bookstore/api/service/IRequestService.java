@@ -18,5 +18,6 @@ public interface IRequestService {
 
     List<Request> sortRequestsByQuantity();
 
+    List<Request> getAll();
 
 }
