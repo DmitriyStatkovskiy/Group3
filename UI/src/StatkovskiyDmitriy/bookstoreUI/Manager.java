@@ -10,6 +10,7 @@ import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 import StatkovskiyDmitriy.bookstore.service.BookService;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -108,11 +109,33 @@ public class Manager {
 
     public void changeOrderStatus(String orderId, String status) {
         Order order = orderService.getOrderById(orderId);
-        if (status.equalsIgnoreCase("cancel")) {
-            orderService.changeOrderStatus(order, OrderStatus.CANCELED);
+        if (status.equals("cancel")) {
+            cancelOrder(orderId);
         }
-        if (status.equalsIgnoreCase("complete")) {
-            orderService.changeOrderStatus(order, OrderStatus.COMPLETED);
+        if (status.equals("complete")) {
+            completeOrder(orderId);
         } else orderService.changeOrderStatus(order, OrderStatus.NEW);
     }
+
+    public List<Order> sortOrdersByPrice() {
+        return orderService.sortOrdersByPrice();
+    }
+
+    public List<Order> sortOrdersByCompletedDate() {
+        return orderService.sortOrdersByFulfillmentDate();
+    }
+
+    public List<Order> sortOrdersByStatus() {
+        return orderService.sortOrdersByStatus();
+    }
+
+    public List<Order> sortCompletedOrdersByPrice(LocalDate from, LocalDate to) {
+        return orderService.sortCompletedOrdersByPriceFromRange(from, to);
+    }
+
+    public List<Order> sortCompletedOrdersByDate(LocalDate from, LocalDate to) {
+        return orderService.sortCompletedOrdersByCompletedDateFromRange(from, to);
+    }
+
+
 }

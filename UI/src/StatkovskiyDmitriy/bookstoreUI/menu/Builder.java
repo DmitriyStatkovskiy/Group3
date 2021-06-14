@@ -84,7 +84,12 @@ public class Builder {
         MenuItem addBookToOrder = new MenuItem("add book to order", new AddBookToOrderAction(), orderMenu);
         MenuItem completeOrder = new MenuItem("complete order", new CompleteOrderAction(), orderMenu);
         MenuItem cancelOrder = new MenuItem("cancel order", new CancelOrderAction(), orderMenu);
-        MenuItem changeStatus = new MenuItem("chance order status", new ChangeStatusAction(), orderMenu);
+        MenuItem changeStatus = new MenuItem("change order status", new ChangeOrderStatusAction(), orderMenu);
+        MenuItem sort = new MenuItem("sort", () -> {
+        }, sortMenu);
+
+        MenuItem previousMenu = new MenuItem("previous menu", () -> {
+        }, rootMenu);
 
         orderMenu.addMenuItem(showAll);
         orderMenu.addMenuItem(addOrder);
@@ -92,32 +97,36 @@ public class Builder {
         orderMenu.addMenuItem(completeOrder);
         orderMenu.addMenuItem(cancelOrder);
         orderMenu.addMenuItem(changeStatus);
+        orderMenu.addMenuItem(sort);
+        orderMenu.addMenuItem(previousMenu);
+
         return orderMenu;
     }
 
     private Menu createOrderSortMenu() {
         Menu sortOrderMenu = new Menu("--Sort Orders Menu--");
 
-        MenuItem sortByName = new MenuItem("Sort by name", new SortByNameAction(), sortOrderMenu);
-        MenuItem sortByPrice = new MenuItem("Sort by price", new SortByPriceAction(), sortOrderMenu);
-        MenuItem sortByStatus = new MenuItem("Sort by status", new SortByStatusAction(), sortOrderMenu);
-        MenuItem sortOldByIncDate = new MenuItem("Sort old books by incoming date", new SortOldByIncomingDateAction(), sortOrderMenu);
-        MenuItem sortOldByPrice = new MenuItem("Sort old books by price", new SortOldByPrice(), sortOrderMenu);
+        MenuItem sortByCompletedDate = new MenuItem("Sort by completed date", new SortOrdersByCompletedDateAction(), sortOrderMenu);
+        MenuItem sortByPrice = new MenuItem("Sort by price", new SortOrdersByPriceAction(), sortOrderMenu);
+        MenuItem sortByStatus = new MenuItem("Sort by status", new SortOrdersByStatusAction(), sortOrderMenu);
+        MenuItem sortCompletedOrdersByDate = new MenuItem("Sort completed orders by complete date over a period of time", new SortOrdersByCompletedDateAction(), sortOrderMenu);
+        MenuItem sortCompletedOrdersByPrice = new MenuItem("Sort completed orders by price over a period of time", new SortCompletedOrdersByPrice(), sortOrderMenu);
+
         MenuItem previousMenu = new MenuItem("main menu", () -> {
         }, rootMenu);
 
-        sortOrderMenu.addMenuItem(sortByName);
+        sortOrderMenu.addMenuItem(sortByCompletedDate);
         sortOrderMenu.addMenuItem(sortByPrice);
         sortOrderMenu.addMenuItem(sortByStatus);
-        sortOrderMenu.addMenuItem(sortOldByIncDate);
-        sortOrderMenu.addMenuItem(sortOldByPrice);
+        sortOrderMenu.addMenuItem(sortCompletedOrdersByDate);
+        sortOrderMenu.addMenuItem(sortCompletedOrdersByPrice);
+
         sortOrderMenu.addMenuItem(previousMenu);
         return sortOrderMenu;
     }
 
     private Menu createRequestMenu() {
         Menu requestMenu = new Menu("Request Menu");
-
         return requestMenu;
     }
 }

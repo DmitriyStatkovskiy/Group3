@@ -93,6 +93,7 @@ public class OrderService implements IOrderService {
     public List<Order> sortOrdersByFulfillmentDate() {
         List<Order> orders = orderDao.getAll();
         return orders.stream()
+                .filter(order -> order.getOrderClosedDate()!=null)
                 .sorted(Comparator.comparing(o -> o.getOrderClosedDate()))
                 .collect(Collectors.toList());
     }

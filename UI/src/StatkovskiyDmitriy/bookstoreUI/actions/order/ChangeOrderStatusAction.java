@@ -9,7 +9,7 @@ public class ChangeOrderStatusAction extends AbstractAction implements IAction {
         String orderId;
         String status;
         orderId = enterString("Enter order ID");
-        status = enterString("Enter status");
+        status = enterString("Enter status (complete, cancel, new)");
         manager.changeOrderStatus(orderId,status);
     }
 }
