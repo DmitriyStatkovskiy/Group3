@@ -71,7 +71,7 @@ public class OrderService implements IOrderService {
     public Order cancelOrder(Order order) {
         if (order.getStatus().equals(OrderStatus.NEW)) {
             order.setStatus(OrderStatus.CANCELED);
-            ;
+
         }
         return order;
     }

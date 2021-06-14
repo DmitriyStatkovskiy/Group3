@@ -18,5 +18,4 @@ public abstract class AbstractAction {
         return scanner.nextDouble();
     }
 
-
 }

@@ -1,10 +1,7 @@
 package StatkovskiyDmitriy.bookstoreUI.menu;
 
 import StatkovskiyDmitriy.bookstoreUI.actions.book.*;
-import StatkovskiyDmitriy.bookstoreUI.actions.order.AddBookToOrderAction;
-import StatkovskiyDmitriy.bookstoreUI.actions.order.AddOrderAction;
-import StatkovskiyDmitriy.bookstoreUI.actions.order.CompleteOrderAction;
-import StatkovskiyDmitriy.bookstoreUI.actions.order.GetAllOrdersAction;
+import StatkovskiyDmitriy.bookstoreUI.actions.order.*;
 
 public class Builder {
     private static Builder instance;
@@ -81,16 +78,41 @@ public class Builder {
 
     private Menu createOrderMenu() {
         Menu orderMenu = new Menu("--Order Menu--");
+        Menu sortMenu = createOrderSortMenu();
         MenuItem showAll = new MenuItem("show all orders", new GetAllOrdersAction(), orderMenu);
         MenuItem addOrder = new MenuItem("create new order", new AddOrderAction(), orderMenu);
         MenuItem addBookToOrder = new MenuItem("add book to order", new AddBookToOrderAction(), orderMenu);
         MenuItem completeOrder = new MenuItem("complete order", new CompleteOrderAction(), orderMenu);
+        MenuItem cancelOrder = new MenuItem("cancel order", new CancelOrderAction(), orderMenu);
+        MenuItem changeStatus = new MenuItem("chance order status", new ChangeStatusAction(), orderMenu);
 
         orderMenu.addMenuItem(showAll);
         orderMenu.addMenuItem(addOrder);
         orderMenu.addMenuItem(addBookToOrder);
         orderMenu.addMenuItem(completeOrder);
+        orderMenu.addMenuItem(cancelOrder);
+        orderMenu.addMenuItem(changeStatus);
         return orderMenu;
+    }
+
+    private Menu createOrderSortMenu() {
+        Menu sortOrderMenu = new Menu("--Sort Orders Menu--");
+
+        MenuItem sortByName = new MenuItem("Sort by name", new SortByNameAction(), sortOrderMenu);
+        MenuItem sortByPrice = new MenuItem("Sort by price", new SortByPriceAction(), sortOrderMenu);
+        MenuItem sortByStatus = new MenuItem("Sort by status", new SortByStatusAction(), sortOrderMenu);
+        MenuItem sortOldByIncDate = new MenuItem("Sort old books by incoming date", new SortOldByIncomingDateAction(), sortOrderMenu);
+        MenuItem sortOldByPrice = new MenuItem("Sort old books by price", new SortOldByPrice(), sortOrderMenu);
+        MenuItem previousMenu = new MenuItem("main menu", () -> {
+        }, rootMenu);
+
+        sortOrderMenu.addMenuItem(sortByName);
+        sortOrderMenu.addMenuItem(sortByPrice);
+        sortOrderMenu.addMenuItem(sortByStatus);
+        sortOrderMenu.addMenuItem(sortOldByIncDate);
+        sortOrderMenu.addMenuItem(sortOldByPrice);
+        sortOrderMenu.addMenuItem(previousMenu);
+        return sortOrderMenu;
     }
 
     private Menu createRequestMenu() {

@@ -6,6 +6,7 @@ import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
+import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 import StatkovskiyDmitriy.bookstore.service.BookService;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 
@@ -94,8 +95,24 @@ public class Manager {
         Book book = bookService.getBookByName(bookName);
         orderService.addBook(order, book);
     }
-    public void completeOrder(String orderId){
+
+    public void completeOrder(String orderId) {
         Order order = orderService.getOrderById(orderId);
         orderService.completeOrder(order);
+    }
+
+    public void cancelOrder(String orderId) {
+        Order order = orderService.getOrderById(orderId);
+        orderService.cancelOrder(order);
+    }
+
+    public void changeOrderStatus(String orderId, String status) {
+        Order order = orderService.getOrderById(orderId);
+        if (status.equalsIgnoreCase("cancel")) {
+            orderService.changeOrderStatus(order, OrderStatus.CANCELED);
+        }
+        if (status.equalsIgnoreCase("complete")) {
+            orderService.changeOrderStatus(order, OrderStatus.COMPLETED);
+        } else orderService.changeOrderStatus(order, OrderStatus.NEW);
     }
 }
