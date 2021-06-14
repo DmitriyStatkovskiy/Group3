@@ -9,7 +9,7 @@ import java.util.List;
 public class SortByNameAction extends AbstractAction implements IAction {
     @Override
     public void execute() {
-        List<Book> books = facade.sortByName();
+        List<Book> books = manager.sortByName();
         books.forEach(System.out::println);
     }
 }

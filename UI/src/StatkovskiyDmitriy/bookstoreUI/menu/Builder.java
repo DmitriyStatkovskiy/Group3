@@ -1,6 +1,7 @@
 package StatkovskiyDmitriy.bookstoreUI.menu;
 
 import StatkovskiyDmitriy.bookstoreUI.actions.book.*;
+import StatkovskiyDmitriy.bookstoreUI.actions.order.AddOrderAction;
 import StatkovskiyDmitriy.bookstoreUI.actions.order.GetAllOrdersAction;
 
 public class Builder {
@@ -79,8 +80,10 @@ public class Builder {
     private Menu createOrderMenu() {
         Menu orderMenu = new Menu("--Order Menu--");
         MenuItem showAll = new MenuItem("show all orders", new GetAllOrdersAction(), orderMenu);
+        MenuItem addOrder = new MenuItem("add new order", new AddOrderAction(), orderMenu);
 
         orderMenu.addMenuItem(showAll);
+        orderMenu.addMenuItem(addOrder);
         return orderMenu;
     }
 

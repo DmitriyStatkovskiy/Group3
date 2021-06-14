@@ -5,7 +5,7 @@ import StatkovskiyDmitriy.bookstoreUI.Manager;
 import java.util.Scanner;
 
 public abstract class AbstractAction {
-    protected Manager facade = Manager.getInstance();
+    protected Manager manager = Manager.getInstance();
     protected Scanner scanner = new Scanner(System.in);
 
     protected String enterString(String name) {

@@ -10,7 +10,7 @@ public class GetAllAction extends AbstractAction implements IAction {
 
     @Override
     public void execute() {
-        List<Book> books = facade.getBooks();
+        List<Book> books = manager.getBooks();
         books.stream().forEach(System.out::println);
     }
 }

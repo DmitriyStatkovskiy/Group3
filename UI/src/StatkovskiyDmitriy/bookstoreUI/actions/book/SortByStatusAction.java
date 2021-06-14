@@ -9,7 +9,7 @@ import java.util.List;
 public class SortByStatusAction extends AbstractAction implements IAction {
     @Override
     public void execute() {
-        List<Book> books = facade.sortByStatus();
+        List<Book> books = manager.sortByStatus();
         books.forEach(System.out::println);
     }
 }

@@ -10,6 +10,6 @@ public class ChangeStatusAction extends AbstractAction implements IAction {
         System.out.println("Change status");
         name = enterString("Enter book name: ");
 
-        facade.changeStatus(name);
+        manager.changeStatus(name);
     }
 }

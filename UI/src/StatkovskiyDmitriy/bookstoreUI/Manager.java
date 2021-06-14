@@ -34,11 +34,11 @@ public class Manager {
     }
 
     public void changeStatus(String name) {
-        List<Book> book = bookService.getAllBooks().stream()
+        List<Book> books = bookService.getAllBooks().stream()
                 .filter(book1 -> book1.getName().equals(name))
                 .filter(book1 -> book1.getStatus().equals(BookStatus.IN_STOCK))
                 .collect(Collectors.toList());
-        if (book.size() != 0) {
+        if (books.size() != 0) {
             bookService.getAllBooks().stream()
                     .filter(book1 -> book1.getName().equals(name))
                     .forEach(book2 -> book2.setStatus(BookStatus.OUT_OF_STOCK));

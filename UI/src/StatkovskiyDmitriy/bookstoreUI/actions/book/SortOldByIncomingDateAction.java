@@ -9,7 +9,7 @@ import java.util.List;
 public class SortOldByIncomingDateAction extends AbstractAction implements IAction {
     @Override
     public void execute() {
-        List<Book> books = facade.sortOldByIncDate();
+        List<Book> books = manager.sortOldByIncDate();
         books.forEach(System.out::println);
     }
 }

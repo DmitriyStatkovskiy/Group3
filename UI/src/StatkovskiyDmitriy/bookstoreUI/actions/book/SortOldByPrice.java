@@ -9,7 +9,7 @@ import java.util.List;
 public class SortOldByPrice extends AbstractAction implements IAction {
     @Override
     public void execute() {
-        List<Book> books = facade.sortOldByPrice();
+        List<Book> books = manager.sortOldByPrice();
         books.forEach(System.out::println);
     }
 }

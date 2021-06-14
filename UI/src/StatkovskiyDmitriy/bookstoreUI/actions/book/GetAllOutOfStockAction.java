@@ -9,7 +9,7 @@ import java.util.List;
 public class GetAllOutOfStockAction extends AbstractAction implements IAction {
     @Override
     public void execute() {
-        List<Book> books = facade.getOutOfStock();
+        List<Book> books = manager.getOutOfStock();
         books.stream().forEach(System.out::println);
     }
 }
