@@ -2,6 +2,7 @@ package StatkovskiyDmitriy.bookstoreUI.menu;
 
 import StatkovskiyDmitriy.bookstoreUI.actions.AddBookAction;
 import StatkovskiyDmitriy.bookstoreUI.actions.GetBooksAction;
+import StatkovskiyDmitriy.bookstoreUI.actions.SortBooksByName;
 
 public class Builder {
     private static Builder instance;
@@ -31,18 +32,22 @@ public class Builder {
 
     private Menu createBookMenu() {
         Menu bookMenu = new Menu("Book Menu");
+        Menu sortMenu = createBookSortMenu();
         MenuItem showAllBooks = new MenuItem("Show all books", new GetBooksAction(), bookMenu, rootMenu);
         MenuItem addBook = new MenuItem("add book", new AddBookAction(), bookMenu, rootMenu);
+        MenuItem sortByName = new MenuItem("sort", ()->{},sortMenu,rootMenu);
 
         bookMenu.addMenuItem(showAllBooks);
         bookMenu.addMenuItem(addBook);
+        bookMenu.addMenuItem(sortByName);
         return bookMenu;
     }
 
     private Menu createBookSortMenu(){
         Menu sortBooksSortMenu = new Menu("Sort Books");
-        MenuItem sortByName = new MenuItem("Sort by name", new SortBooksByNameAction, sortBooksSortMenu, rootMenu);
+        MenuItem sortByName = new MenuItem("Sort by name", new SortBooksByName(), sortBooksSortMenu, rootMenu);
 
+        sortBooksSortMenu.addMenuItem(sortByName);
         return sortBooksSortMenu;
     }
 

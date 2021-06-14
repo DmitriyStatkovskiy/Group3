@@ -45,8 +45,8 @@ public class MenuController {
         Book bookE = new Book("EEE", "5", 50, "eee");
         instance.addBook(bookA);
         instance.addBook(bookB);
-        instance.addBook(bookC);
         instance.addBook(bookD);
         instance.addBook(bookE);
+        instance.addBook(bookC);
     }
 }

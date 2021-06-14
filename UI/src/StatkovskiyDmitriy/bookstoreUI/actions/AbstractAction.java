@@ -1,11 +1,11 @@
 package StatkovskiyDmitriy.bookstoreUI.actions;
 
-import StatkovskiyDmitriy.bookstoreUI.BookStoreApplicationFacade;
+import StatkovskiyDmitriy.bookstoreUI.Manager;
 
 import java.util.Scanner;
 
 public abstract class AbstractAction {
-    protected BookStoreApplicationFacade facade = BookStoreApplicationFacade.getInstance();
+    protected Manager facade = Manager.getInstance();
     protected Scanner scanner = new Scanner(System.in);
 
     protected String enterString(String name) {

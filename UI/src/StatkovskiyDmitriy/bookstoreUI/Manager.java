@@ -7,13 +7,13 @@ import StatkovskiyDmitriy.bookstore.service.BookService;
 
 import java.util.List;
 
-public class BookStoreApplicationFacade {
-    private static BookStoreApplicationFacade instance;
+public class Manager {
+    private static Manager instance;
     private final IBookService bookService = BookService.getInstance();
 
-    public static BookStoreApplicationFacade getInstance() {
+    public static Manager getInstance() {
         if (instance == null) {
-            instance = new BookStoreApplicationFacade();
+            instance = new Manager();
         }
         return instance;
     }
@@ -25,5 +25,9 @@ public class BookStoreApplicationFacade {
 
     public List<Book> getBooks() {
         return bookService.getAllBooks();
+    }
+
+    public List<Book> sortByName() {
+        return bookService.sortBooksByName();
     }
 }
