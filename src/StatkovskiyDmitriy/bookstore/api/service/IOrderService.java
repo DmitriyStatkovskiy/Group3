@@ -1,6 +1,5 @@
 package StatkovskiyDmitriy.bookstore.api.service;
 
-import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
@@ -36,4 +35,6 @@ public interface IOrderService {
     double calculateEarnedMoneyFromRange(LocalDate from, LocalDate to);
 
     Order showOrderInformation(String customerName);
+
+    List<Order> getAll();
 }

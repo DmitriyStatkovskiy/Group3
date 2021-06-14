@@ -37,7 +37,7 @@ public class BookService implements IBookService {
     }
 
     public List<Book> getOutOfStockBooks(Order order) {
-        List<Book> bookOlds = order.getBookOlds();
+        List<Book> bookOlds = order.getBooks();
         List<String> bookIds = bookOlds.stream()
                 .map(book -> book.getId())
                 .collect(Collectors.toList());

@@ -2,9 +2,12 @@ package StatkovskiyDmitriy.bookstoreUI;
 
 
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
+import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.model.Book;
+import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 import StatkovskiyDmitriy.bookstore.service.BookService;
+import StatkovskiyDmitriy.bookstore.service.OrderService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,6 +15,7 @@ import java.util.stream.Collectors;
 public class Manager {
     private static Manager instance;
     private final IBookService bookService = BookService.getInstance();
+    private final IOrderService orderService = OrderService.getInstance();
 
     public static Manager getInstance() {
         if (instance == null) {
@@ -75,6 +79,13 @@ public class Manager {
 
     public List<Book> sortOldByPrice() {
         return bookService.sortOldBooksByPrice();
+    }
+    public List<Order> getOrders() {
+        return orderService.getAll();
+    }
+
+    public void addOrder(){
+        orderService.createNew();
     }
 
 }

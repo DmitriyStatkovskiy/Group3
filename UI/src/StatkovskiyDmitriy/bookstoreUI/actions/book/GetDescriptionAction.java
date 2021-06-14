@@ -1,8 +1,10 @@
-package StatkovskiyDmitriy.bookstoreUI.actions;
+package StatkovskiyDmitriy.bookstoreUI.actions.book;
 
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
+import StatkovskiyDmitriy.bookstoreUI.actions.AbstractAction;
+import StatkovskiyDmitriy.bookstoreUI.actions.IAction;
 
-public class GetBookDescriptionAction extends AbstractAction implements IAction {
+public class GetDescriptionAction extends AbstractAction implements IAction {
     public void execute() {
         String name;
         System.out.println("Show book description:");

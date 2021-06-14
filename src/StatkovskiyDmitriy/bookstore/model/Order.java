@@ -17,7 +17,7 @@ public class Order {
     private LocalDate orderClosedDate = null;
     private double orderPrice;
 
-    private List<Book> bookOlds = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
     public Order() {
     }
@@ -38,8 +38,8 @@ public class Order {
         this.status = status;
     }
 
-    public List<Book> getBookOlds() {
-        return bookOlds;
+    public List<Book> getBooks() {
+        return books;
     }
 
     public String getOrderNumber() {
@@ -82,8 +82,8 @@ public class Order {
         this.customerName = customerName;
     }
 
-    public void setBookOlds(List<Book> bookOlds) {
-        this.bookOlds = bookOlds;
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     private String orderClosedDate() {
@@ -99,8 +99,8 @@ public class Order {
 
     private String printBooks() {
         String message = "";
-        for (Book bookOld : bookOlds) {
-            message += " " + bookOld.getName() + " " + bookOld.getPrice() + " ";
+        for (Book bookOld : books) {
+            message += " name" + bookOld.getName() + " price" + bookOld.getPrice() + "/";
         }
         return message;
     }
@@ -111,7 +111,7 @@ public class Order {
                 "orderNumber='" + orderNumber + '\'' +
                 ", orderStatus='" + status + '\'' +
                 ", orderCreationDate=" + orderCreatedDate +
-                ", Books" + printBooks() +
+                ", Books:" + printBooks() +
                 ", orderClosedDate=" + orderClosedDate() +
                 '}';
     }
@@ -128,11 +128,11 @@ public class Order {
                 getStatus() == order.getStatus() &&
                 Objects.equals(getOrderCreatedDate(), order.getOrderCreatedDate()) &&
                 Objects.equals(getOrderClosedDate(), order.getOrderClosedDate()) &&
-                Objects.equals(getBookOlds(), order.getBookOlds());
+                Objects.equals(getBooks(), order.getBooks());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCustomerName(), getOrderNumber(), getBookName(), getStatus(), getOrderCreatedDate(), getOrderClosedDate(), getOrderPrice(), getBookOlds());
+        return Objects.hash(getCustomerName(), getOrderNumber(), getBookName(), getStatus(), getOrderCreatedDate(), getOrderClosedDate(), getOrderPrice(), getBooks());
     }
 }
