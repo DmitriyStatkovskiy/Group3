@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class MenuController {
     private static MenuController instance;
-    private Builder builder;
-    private Navigator navigator;
+    private final Builder builder;
+    private final Navigator navigator;
 
     private MenuController() {
         builder = Builder.getInstance();

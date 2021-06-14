@@ -39,4 +39,22 @@ public class Builder {
         return bookMenu;
     }
 
+    private Menu createBookSortMenu(){
+        Menu sortBooksSortMenu = new Menu("Sort Books");
+        MenuItem sortByName = new MenuItem("Sort by name", new SortBooksByNameAction, sortBooksSortMenu, rootMenu);
+
+        return sortBooksSortMenu;
+    }
+
+    private Menu createOrderMenu(){
+        Menu orderMenu = new Menu("Order Menu");
+
+        return orderMenu;
+    }
+
+    private Menu createRequestMenu(){
+        Menu requestMenu = new Menu("Request Menu");
+
+        return requestMenu;
+    }
 }
