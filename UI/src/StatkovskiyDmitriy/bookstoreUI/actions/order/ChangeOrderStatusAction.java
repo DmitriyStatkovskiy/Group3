@@ -10,6 +10,6 @@ public class ChangeOrderStatusAction extends AbstractAction implements IAction {
         String status;
         orderId = enterString("Enter order ID");
         status = enterString("Enter status (complete, cancel, new)");
-        manager.changeOrderStatus(orderId,status);
+        manager.changeOrderStatus(orderId, status);
     }
 }

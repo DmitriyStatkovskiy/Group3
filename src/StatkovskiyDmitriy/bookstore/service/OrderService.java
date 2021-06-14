@@ -115,7 +115,7 @@ public class OrderService implements IOrderService {
         List<Order> orders = orderDao.getAll();
         orders.stream()
                 .filter(order -> order.getOrderClosedDate() != null)
-                .filter(order -> order.getOrderClosedDate().isBefore(to))
+                .filter(order -> order.getOrderClosedDate().isBefore(to.plusDays(1)))
                 .filter(order -> order.getOrderClosedDate().isAfter(from))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
                 .forEach(order -> order.setOrderPrice(calculateOrderPrice(order)));
@@ -129,7 +129,7 @@ public class OrderService implements IOrderService {
         List<Order> orders = orderDao.getAll();
         return orders.stream()
                 .filter(order -> order.getOrderClosedDate() != null)
-                .filter(order -> order.getOrderClosedDate().isBefore(to))
+                .filter(order -> order.getOrderClosedDate().isBefore(to.plusDays(1)))
                 .filter(order -> order.getOrderClosedDate().isAfter(from))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
                 .sorted(Comparator.comparing(o -> o.getOrderClosedDate()))
@@ -140,7 +140,7 @@ public class OrderService implements IOrderService {
         List<Order> orders = orderDao.getAll();
         orders.stream()
                 .filter(order -> order.getOrderClosedDate() != null)
-                .filter(order -> order.getOrderClosedDate().isBefore(to))
+                .filter(order -> order.getOrderClosedDate().isBefore(to.plusDays(1)))
                 .filter(order -> order.getOrderClosedDate().isAfter(from))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
                 .forEach(order -> order.setOrderPrice(calculateOrderPrice(order)));
@@ -156,7 +156,7 @@ public class OrderService implements IOrderService {
         List<Order> completedOrders = orders.stream()
                 .filter(order -> order.getOrderClosedDate() != null)
                 .filter(order -> order.getOrderClosedDate().isAfter(from))
-                .filter(date -> date.getOrderClosedDate().isBefore(to))
+                .filter(date -> date.getOrderClosedDate().isBefore(to.plusDays(1)))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
                 .collect(Collectors.toList());
         int number = completedOrders.size();

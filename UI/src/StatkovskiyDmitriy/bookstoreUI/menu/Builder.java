@@ -90,7 +90,7 @@ public class Builder {
         MenuItem cancelOrder = new MenuItem("cancel order", new CancelOrderAction(), orderMenu);
         MenuItem changeStatus = new MenuItem("change order status", new ChangeOrderStatusAction(), orderMenu);
         MenuItem getOrderDetails = new MenuItem("show order details", new GetOrderDetails(), orderMenu);
-        MenuItem showCompletedOrders = new MenuItem("show completed orders value", new GetProfitAction(), orderMenu);
+        MenuItem showCompletedOrders = new MenuItem("show completed orders value", new GetCompletedOrdersValueAction(), orderMenu);
         MenuItem showProfitOverATime = new MenuItem("show earned money over a time", new GetProfitAction(), orderMenu);
 
         MenuItem sort = new MenuItem("sort menu", () -> {

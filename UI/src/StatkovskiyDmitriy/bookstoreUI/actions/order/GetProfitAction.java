@@ -14,7 +14,7 @@ public class GetProfitAction extends AbstractAction implements IAction {
         dateFrom = getDate();
         System.out.println("Enter date 'To'");
         dateTo = getDate();
-        double profit = manager.showProfit(dateFrom,dateTo);
+        double profit = manager.showProfit(dateFrom, dateTo);
         System.out.println(profit);
     }
 }

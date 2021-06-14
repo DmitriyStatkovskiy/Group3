@@ -14,7 +14,7 @@ public class GetCompletedOrdersValueAction extends AbstractAction implements IAc
         dateFrom = getDate();
         System.out.println("Enter date 'To'");
         dateTo = getDate();
-        int count = manager.showCompletedOrderValue(dateFrom,dateTo);
+        int count = manager.showCompletedOrderValue(dateFrom, dateTo);
         System.out.println(count);
     }
 }

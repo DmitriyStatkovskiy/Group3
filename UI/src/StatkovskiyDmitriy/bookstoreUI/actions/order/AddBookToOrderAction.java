@@ -13,6 +13,6 @@ public class AddBookToOrderAction extends AbstractAction implements IAction {
         orderId = enterString("Enter order ID");
         bookName = enterString("Enter book name");
 
-        manager.addBookToOrder(orderId,bookName);
+        manager.addBookToOrder(orderId, bookName);
     }
 }

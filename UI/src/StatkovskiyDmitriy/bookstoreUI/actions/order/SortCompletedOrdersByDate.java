@@ -16,7 +16,7 @@ public class SortCompletedOrdersByDate extends AbstractAction implements IAction
         dateFrom = getDate();
         System.out.println("Enter date 'To'");
         dateTo = getDate();
-        List<Order> orders = manager.sortCompletedOrdersByDate(dateFrom,dateTo);
+        List<Order> orders = manager.sortCompletedOrdersByDate(dateFrom, dateTo);
         orders.forEach(System.out::println);
     }
 }
