@@ -8,7 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RequestDao implements IRequestDao {
+    private static RequestDao instance;
     private List<Request> requests = new ArrayList<>();
+
+    private RequestDao() {
+
+    }
+
+    public static RequestDao getInstance() {
+        if (instance == null) {
+            instance = new RequestDao();
+        }
+        return instance;
+    }
 
     public List<Request> getRequests() {
         return requests;
@@ -32,5 +44,5 @@ public class RequestDao implements IRequestDao {
     public List<Request> getAll() {
         return requests;
     }
-    
+
 }

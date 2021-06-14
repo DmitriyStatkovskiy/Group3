@@ -24,9 +24,9 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) {
 
-        IOrderDao orderDao = new OrderDao();
-        IRequestDao requestDao = new RequestDao();
-        IRequestService requestService = new RequestService(requestDao);
+        IOrderDao orderDao = OrderDao.getInstance();
+        IRequestDao requestDao = RequestDao.getInstance();
+        IRequestService requestService = RequestService.getInstance();
 
         BookDao bookDao = BookDao.getInstance();
 
