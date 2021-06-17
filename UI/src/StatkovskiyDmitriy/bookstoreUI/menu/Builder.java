@@ -3,6 +3,10 @@ package StatkovskiyDmitriy.bookstoreUI.menu;
 import StatkovskiyDmitriy.bookstoreUI.actions.book.*;
 import StatkovskiyDmitriy.bookstoreUI.actions.order.*;
 import StatkovskiyDmitriy.bookstoreUI.actions.request.*;
+import StatkovskiyDmitriy.bookstoreUI.exception.TestException;
+
+import java.io.IOException;
+
 
 public class Builder {
     private static Builder instance;
@@ -18,7 +22,8 @@ public class Builder {
         return instance;
     }
 
-    public void buildMenu() {
+    public void buildMenu() throws TestException {
+
         rootMenu = new Menu("Main menu");
         rootMenu.addMenuItem(new MenuItem("Book Menu", () -> {
             System.out.println("");
