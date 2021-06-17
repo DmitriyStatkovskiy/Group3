@@ -41,7 +41,7 @@ public class Navigator {
                 currentMenu = menuItem.getNextMenu();
             }
         } catch (IndexOutOfBoundsException exception) {
-            System.out.println("exception from navigate " + exception.getMessage());
+            System.out.println("there's no such menu point " + exception.getMessage());
         }
 
     }

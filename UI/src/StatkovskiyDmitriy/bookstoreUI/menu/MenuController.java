@@ -41,8 +41,8 @@ public class MenuController {
             try {
                 index = scanner.nextInt();
             } catch (InputMismatchException exception) {
-                System.out.println("there's no such value");
-                scanner.nextLine();
+                System.out.println("there's no such menu point");
+                scanner.next();
             }
             navigator.navigate(index);
             navigator.printMenu();
