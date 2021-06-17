@@ -9,6 +9,7 @@ import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuController {
@@ -36,8 +37,13 @@ public class MenuController {
         navigator.setCurrentMenu(builder.getRootMenu());
         navigator.printMenu();
 
-        while (!index.equals(123)) {
-            index = scanner.nextInt();
+        while (!index.equals(80085)) {
+            try {
+                index = scanner.nextInt();
+            } catch (InputMismatchException exception) {
+                System.out.println("there's no such value");
+                scanner.nextLine();
+            }
             navigator.navigate(index);
             navigator.printMenu();
         }
