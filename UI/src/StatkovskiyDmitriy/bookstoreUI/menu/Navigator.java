@@ -1,5 +1,6 @@
 package StatkovskiyDmitriy.bookstoreUI.menu;
 
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class Navigator {
@@ -34,13 +35,14 @@ public class Navigator {
     }
 
     public void navigate(Integer index) {
-
-        if (currentMenu != null) {
-
-            MenuItem menuItem = currentMenu.getMenuItems().get(index);
-
-            menuItem.doAction();
-            currentMenu = menuItem.getNextMenu();
+        try {
+            if (currentMenu != null) {
+                MenuItem menuItem = currentMenu.getMenuItems().get(index);
+                menuItem.doAction();
+                currentMenu = menuItem.getNextMenu();
+            }
+        } catch (IndexOutOfBoundsException exception) {
+            System.out.println(exception.getMessage());
         }
 
     }

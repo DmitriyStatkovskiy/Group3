@@ -5,8 +5,6 @@ import StatkovskiyDmitriy.bookstoreUI.actions.order.*;
 import StatkovskiyDmitriy.bookstoreUI.actions.request.*;
 import StatkovskiyDmitriy.bookstoreUI.exception.TestException;
 
-import java.io.IOException;
-
 
 public class Builder {
     private static Builder instance;
@@ -22,7 +20,7 @@ public class Builder {
         return instance;
     }
 
-    public void buildMenu() throws TestException {
+    public void buildMenu() {
 
         rootMenu = new Menu("Main menu");
         rootMenu.addMenuItem(new MenuItem("Book Menu", () -> {

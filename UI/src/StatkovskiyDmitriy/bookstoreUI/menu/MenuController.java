@@ -30,16 +30,19 @@ public class MenuController {
     }
 
     public void run() {
-        initDao();
-        Integer index = -1;
         Scanner scanner = new Scanner(System.in);
+        Integer index = -1;
+        initDao();
         navigator.setCurrentMenu(builder.getRootMenu());
         navigator.printMenu();
+
         while (!index.equals(123)) {
             index = scanner.nextInt();
             navigator.navigate(index);
             navigator.printMenu();
         }
+
+
     }
 
     private void initDao() {
