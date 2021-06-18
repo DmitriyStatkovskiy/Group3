@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class BookDao implements IBookDao {
     private static BookDao instance;
-    private List<Book> books = new ArrayList<>();
+    private final List<Book> books = new ArrayList<>();
 
     private BookDao() {
 

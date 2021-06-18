@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public class OrderDao implements IOrderDao {
     private static OrderDao instance;
-    List<Order> orders = new ArrayList<>();
+    private final List<Order> orders = new ArrayList<>();
 
     private OrderDao() {
 
