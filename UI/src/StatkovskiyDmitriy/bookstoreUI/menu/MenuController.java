@@ -8,11 +8,15 @@ import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuController {
+    static Logger logger = LoggerFactory.getLogger(MenuController.class);
+
     private static MenuController instance;
     private final Builder builder;
     private final Navigator navigator;
@@ -41,14 +45,13 @@ public class MenuController {
             try {
                 index = scanner.nextInt();
             } catch (InputMismatchException exception) {
-                System.out.println("there's no such menu point");
+
+                logger.error("entered String instead int");
                 scanner.next();
             }
             navigator.navigate(index);
             navigator.printMenu();
         }
-
-
     }
 
     private void initDao() {
@@ -76,6 +79,5 @@ public class MenuController {
         orderService.addBook(order2, bookC);
 
         requestService.createRequest(bookE);
-
     }
 }

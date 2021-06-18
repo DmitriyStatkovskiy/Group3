@@ -1,8 +1,12 @@
 package StatkovskiyDmitriy.bookstoreUI.menu;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 public class Navigator {
+    static Logger logger = LoggerFactory.getLogger(Navigator.class);
     private static Navigator instance;
     private Menu currentMenu;
 
@@ -41,7 +45,7 @@ public class Navigator {
                 currentMenu = menuItem.getNextMenu();
             }
         } catch (IndexOutOfBoundsException exception) {
-            System.out.println("there's no such menu point " + exception.getMessage());
+            logger.warn("outOfBound");
         }
 
     }
