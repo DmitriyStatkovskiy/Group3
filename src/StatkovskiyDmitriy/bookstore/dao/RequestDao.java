@@ -12,7 +12,6 @@ public class RequestDao implements IRequestDao {
     private final List<Request> requests = new ArrayList<>();
 
     private RequestDao() {
-
     }
 
     public static RequestDao getInstance() {
