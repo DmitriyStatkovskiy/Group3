@@ -43,8 +43,8 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Order addBook(Order order, Book bookOld) {
-        order.getBookOlds().add(bookOld);
+    public Order addBook(Order order, Book book) {
+        order.getBooks().add(book);
         return order;
     }
 
@@ -53,16 +53,15 @@ public class OrderService implements IOrderService {
         if (!order.getStatus().equals(OrderStatus.NEW)) {
             return order;
         }
-        List<Book> outOfStockBookOlds = bookService.getOutOfStockBooks(order);
-        if (outOfStockBookOlds.size() == 0) {
+        List<Book> outOfStockBook = bookService.getOutOfStockBooks(order);
+        if (outOfStockBook.size() == 0) {
             order.setOrderClosedDate(LocalDate.now());
             order.setStatus(OrderStatus.COMPLETED);
         } else {
-            outOfStockBookOlds
-                    .forEach(book -> requestService.createRequest(book));
-//            for (Book book : outOfStockBooks) {
-//                requestService.createRequest(book);
-//            }
+            Book book = outOfStockBook.stream()
+                    .findFirst()
+                    .get();
+            requestService.createRequest(book);
         }
         return order;
     }
@@ -71,7 +70,6 @@ public class OrderService implements IOrderService {
     public Order cancelOrder(Order order) {
         if (order.getStatus().equals(OrderStatus.NEW)) {
             order.setStatus(OrderStatus.CANCELED);
-            ;
         }
         return order;
     }
@@ -83,7 +81,7 @@ public class OrderService implements IOrderService {
 
     public double calculateOrderPrice(Order order) {
 
-        List<Book> bookOlds = order.getBookOlds();
+        List<Book> bookOlds = order.getBooks();
         return bookOlds.stream()
                 .map(book -> book.getPrice())
                 .mapToDouble(Double::doubleValue)
@@ -93,6 +91,7 @@ public class OrderService implements IOrderService {
     public List<Order> sortOrdersByFulfillmentDate() {
         List<Order> orders = orderDao.getAll();
         return orders.stream()
+                .filter(order -> order.getOrderClosedDate() != null)
                 .sorted(Comparator.comparing(o -> o.getOrderClosedDate()))
                 .collect(Collectors.toList());
     }
@@ -116,7 +115,7 @@ public class OrderService implements IOrderService {
         List<Order> orders = orderDao.getAll();
         orders.stream()
                 .filter(order -> order.getOrderClosedDate() != null)
-                .filter(order -> order.getOrderClosedDate().isBefore(to))
+                .filter(order -> order.getOrderClosedDate().isBefore(to.plusDays(1)))
                 .filter(order -> order.getOrderClosedDate().isAfter(from))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
                 .forEach(order -> order.setOrderPrice(calculateOrderPrice(order)));
@@ -130,7 +129,7 @@ public class OrderService implements IOrderService {
         List<Order> orders = orderDao.getAll();
         return orders.stream()
                 .filter(order -> order.getOrderClosedDate() != null)
-                .filter(order -> order.getOrderClosedDate().isBefore(to))
+                .filter(order -> order.getOrderClosedDate().isBefore(to.plusDays(1)))
                 .filter(order -> order.getOrderClosedDate().isAfter(from))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
                 .sorted(Comparator.comparing(o -> o.getOrderClosedDate()))
@@ -141,7 +140,7 @@ public class OrderService implements IOrderService {
         List<Order> orders = orderDao.getAll();
         orders.stream()
                 .filter(order -> order.getOrderClosedDate() != null)
-                .filter(order -> order.getOrderClosedDate().isBefore(to))
+                .filter(order -> order.getOrderClosedDate().isBefore(to.plusDays(1)))
                 .filter(order -> order.getOrderClosedDate().isAfter(from))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
                 .forEach(order -> order.setOrderPrice(calculateOrderPrice(order)));
@@ -157,7 +156,7 @@ public class OrderService implements IOrderService {
         List<Order> completedOrders = orders.stream()
                 .filter(order -> order.getOrderClosedDate() != null)
                 .filter(order -> order.getOrderClosedDate().isAfter(from))
-                .filter(date -> date.getOrderClosedDate().isBefore(to))
+                .filter(date -> date.getOrderClosedDate().isBefore(to.plusDays(1)))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
                 .collect(Collectors.toList());
         int number = completedOrders.size();
@@ -171,5 +170,18 @@ public class OrderService implements IOrderService {
                 .findFirst()
                 .get();
         return details;
+    }
+
+    @Override
+    public List<Order> getAll() {
+        return orderDao.getAll();
+    }
+
+    public Order getOrderById(String id) {
+        Order order = orderDao.getAll().stream()
+                .filter(order1 -> order1.getOrderNumber().equals(id))
+                .findFirst()
+                .get();
+        return order;
     }
 }

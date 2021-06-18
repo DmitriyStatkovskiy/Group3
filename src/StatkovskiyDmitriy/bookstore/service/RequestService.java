@@ -28,9 +28,9 @@ public class RequestService implements IRequestService {
         return instance;
     }
 
-//    public RequestService(IRequestDao requestDao) {
-//        this.requestDao = requestDao;
-//    }
+    public List<Request> getAll() {
+        return requestDao.getAll();
+    }
 
     @Override
     public Request createRequest(Book bookOld) {
@@ -40,6 +40,14 @@ public class RequestService implements IRequestService {
     @Override
     public void changeRequestStatus(String id, RequestStatus status) {
         requestDao.getRequestById(id).setStatus(status);
+    }
+
+    public Request getRequestByName(String name) {
+        Request request = requestDao.getAll().stream()
+                .filter(request1 -> request1.getBookOld().getName().equals(name))
+                .findFirst()
+                .get();
+        return request;
     }
 
     public void changeRequestStatusByBookName(String bookName, RequestStatus status) {

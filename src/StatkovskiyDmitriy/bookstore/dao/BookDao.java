@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class BookDao implements IBookDao {
     private static BookDao instance;
-    private List<Book> books = new ArrayList<>();
+    private final List<Book> books = new ArrayList<>();
 
     private BookDao() {
 
@@ -51,6 +51,13 @@ public class BookDao implements IBookDao {
     public Book getBookByBookId(String id) {
         return books.stream()
                 .filter(book -> book.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
+    public Book getBookByName(String name) {
+        return books.stream()
+                .filter(book -> book.getName().equals(name))
                 .findFirst()
                 .orElse(null);
     }

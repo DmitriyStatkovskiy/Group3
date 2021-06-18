@@ -19,6 +19,9 @@ public class Book {
     private double price;
     private String description;
 
+    public Book() {
+    }
+
     public Book(String name, String edition, double price, String description) {
         this.name = name;
         this.edition = edition;
@@ -26,13 +29,18 @@ public class Book {
         this.description = description;
     }
 
-    public Book() {
-    }
-
     public Book(BookStatus status, LocalDate incomingDate, String id, String name, String edition, double price, String description) {
         this.status = status;
         this.incomingDate = incomingDate;
         this.id = id;
+        this.name = name;
+        this.edition = edition;
+        this.price = price;
+        this.description = description;
+    }
+
+    public Book(String name, String edition, double price, String description, BookStatus status) {
+        this.status = status;
         this.name = name;
         this.edition = edition;
         this.price = price;

@@ -9,10 +9,9 @@ import java.util.List;
 
 public class RequestDao implements IRequestDao {
     private static RequestDao instance;
-    private List<Request> requests = new ArrayList<>();
+    private final List<Request> requests = new ArrayList<>();
 
     private RequestDao() {
-
     }
 
     public static RequestDao getInstance() {
