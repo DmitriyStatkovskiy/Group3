@@ -35,7 +35,7 @@ public class RequestDao implements IRequestDao {
         return request;
     }
 
-    public Request getRequestById(String id) {
+    public Request getRequestById(String id) throws RequestNotFoundException{
         return requests.stream()
                 .filter(request -> request.getId().equals(id))
                 .findFirst()
