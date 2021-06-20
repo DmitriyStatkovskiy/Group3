@@ -5,6 +5,7 @@ import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.dao.OrderDao;
+import StatkovskiyDmitriy.bookstore.exception.OrderNotFoundException;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
@@ -81,8 +82,8 @@ public class OrderService implements IOrderService {
 
     public double calculateOrderPrice(Order order) {
 
-        List<Book> bookOlds = order.getBooks();
-        return bookOlds.stream()
+        List<Book> books = order.getBooks();
+        return books.stream()
                 .map(book -> book.getPrice())
                 .mapToDouble(Double::doubleValue)
                 .sum();
@@ -163,12 +164,12 @@ public class OrderService implements IOrderService {
         return number;
     }
 
-    public Order showOrderInformation(String customerName) {
+    public Order showOrderInformation(String customerName) throws OrderNotFoundException {
         List<Order> units = orderDao.getAll();
         Order details = units.stream()
                 .filter(order -> order.getCustomerName().equals(customerName))
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new OrderNotFoundException("order not found, customer name: " + customerName));
         return details;
     }
 

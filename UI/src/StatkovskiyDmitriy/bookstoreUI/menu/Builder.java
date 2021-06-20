@@ -1,5 +1,6 @@
 package StatkovskiyDmitriy.bookstoreUI.menu;
 
+import StatkovskiyDmitriy.bookstoreUI.actions.IAction;
 import StatkovskiyDmitriy.bookstoreUI.actions.book.*;
 import StatkovskiyDmitriy.bookstoreUI.actions.order.*;
 import StatkovskiyDmitriy.bookstoreUI.actions.request.*;
@@ -7,6 +8,8 @@ import StatkovskiyDmitriy.bookstoreUI.actions.request.*;
 public class Builder {
     private static Builder instance;
     private Menu rootMenu;
+    private final IAction emptyAction = () -> {
+    };
 
     private Builder() {
     }
@@ -46,10 +49,8 @@ public class Builder {
         MenuItem changeStatus = new MenuItem("change status", new ChangeStatusAction(), bookMenu);
         MenuItem showDescription = new MenuItem("show book description", new GetDescriptionAction(), bookMenu);
 
-        MenuItem sort = new MenuItem("sort menu", () -> {
-        }, sortMenu);
-        MenuItem previousMenu = new MenuItem("previous menu", () -> {
-        }, rootMenu);
+        MenuItem sort = new MenuItem("sort menu", emptyAction, sortMenu);
+        MenuItem previousMenu = new MenuItem("previous menu", emptyAction, rootMenu);
 
         bookMenu.addMenuItem(showAll);
         bookMenu.addMenuItem(add);
@@ -69,8 +70,7 @@ public class Builder {
         MenuItem sortByStatus = new MenuItem("Sort by status", new SortByStatusAction(), sortBooksSortMenu);
         MenuItem sortOldByIncDate = new MenuItem("Sort old books by incoming date", new SortOldByIncomingDateAction(), sortBooksSortMenu);
         MenuItem sortOldByPrice = new MenuItem("Sort old books by price", new SortOldByPriceAction(), sortBooksSortMenu);
-        MenuItem previousMenu = new MenuItem("main menu", () -> {
-        }, rootMenu);
+        MenuItem previousMenu = new MenuItem("main menu", emptyAction, rootMenu);
 
         sortBooksSortMenu.addMenuItem(sortByName);
         sortBooksSortMenu.addMenuItem(sortByPrice);
@@ -94,11 +94,9 @@ public class Builder {
         MenuItem showCompletedOrders = new MenuItem("show completed orders value", new GetCompletedOrdersValueAction(), orderMenu);
         MenuItem showProfitOverATime = new MenuItem("show earned money over a time", new GetProfitAction(), orderMenu);
 
-        MenuItem sort = new MenuItem("sort menu", () -> {
-        }, sortMenu);
+        MenuItem sort = new MenuItem("sort menu", emptyAction, sortMenu);
 
-        MenuItem previousMenu = new MenuItem("previous menu", () -> {
-        }, rootMenu);
+        MenuItem previousMenu = new MenuItem("previous menu", emptyAction, rootMenu);
 
         orderMenu.addMenuItem(showAll);
         orderMenu.addMenuItem(addOrder);
@@ -124,8 +122,7 @@ public class Builder {
         MenuItem sortCompletedOrdersByDate = new MenuItem("sort completed orders by complete date over a period of time", new SortOrdersByCompletedDateAction(), sortOrderMenu);
         MenuItem sortCompletedOrdersByPrice = new MenuItem("sort completed orders by price over a period of time", new SortCompletedOrdersByPrice(), sortOrderMenu);
 
-        MenuItem previousMenu = new MenuItem("main menu", () -> {
-        }, rootMenu);
+        MenuItem previousMenu = new MenuItem("main menu", emptyAction, rootMenu);
 
         sortOrderMenu.addMenuItem(sortByCompletedDate);
         sortOrderMenu.addMenuItem(sortByPrice);
@@ -143,11 +140,9 @@ public class Builder {
         MenuItem getAll = new MenuItem("show all requests", new GetRequestsAction(), requestMenu);
         MenuItem add = new MenuItem("create request", new AddRequestAction(), requestMenu);
         MenuItem changeStatus = new MenuItem("change status", new ChangeRequestStatusAction(), requestMenu);
-        MenuItem sort = new MenuItem("sort menu", () -> {
-        }, sortMenu);
+        MenuItem sort = new MenuItem("sort menu", emptyAction, sortMenu);
 
-        MenuItem previousMenu = new MenuItem("previous menu", () -> {
-        }, rootMenu);
+        MenuItem previousMenu = new MenuItem("previous menu", emptyAction, rootMenu);
 
         requestMenu.addMenuItem(getAll);
         requestMenu.addMenuItem(add);
@@ -162,8 +157,7 @@ public class Builder {
         MenuItem sortByQuantity = new MenuItem("sort by quantity", new SortByQuantityAction(), sortMenu);
         MenuItem sortByName = new MenuItem("sort by book name", new SortRequestsByBookNameAction(), sortMenu);
 
-        MenuItem previousMenu = new MenuItem("previous menu", () -> {
-        }, rootMenu);
+        MenuItem previousMenu = new MenuItem("previous menu", emptyAction, rootMenu);
 
         sortMenu.addMenuItem(sortByQuantity);
         sortMenu.addMenuItem(sortByName);
