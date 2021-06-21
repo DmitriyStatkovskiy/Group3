@@ -35,7 +35,6 @@ public class Navigator {
         for (int i = 0; i < menuItems.size(); i++) {
             System.out.println(i + " " + menuItems.get(i).getTitle());
         }
-
     }
 
     public void navigate(Integer index) {
@@ -51,6 +50,8 @@ public class Navigator {
             logger.warn("ex", e);
             System.err.println(e.getMessage());
         }
-
+        catch (InputMismatchException exception){
+            logger.error("entered String instead int");
+        }
     }
 }

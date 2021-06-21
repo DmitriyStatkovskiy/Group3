@@ -4,8 +4,6 @@ import StatkovskiyDmitriy.bookstore.api.dao.IBookDao;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.dao.BookDao;
-import StatkovskiyDmitriy.bookstore.exception.BookNotFoundException;
-import StatkovskiyDmitriy.bookstore.exception.OrderNotFoundException;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
@@ -93,12 +91,12 @@ public class BookService implements IBookService {
                 .collect(Collectors.toList());
     }
 
-    public String showBookDescription(String book) throws BookNotFoundException {
+    public String showBookDescription(String book) throws SecurityException {
         List<Book> units = bookDao.getAllBooks();
         Book filteredBook = units.stream()
                 .filter(unit -> unit.getName().equals(book))
                 .findFirst()
-                .orElseThrow(() -> new BookNotFoundException("book not found, description can not be shown, book: " + book));
+                .orElseThrow(() -> new SecurityException("book not found, description can not be shown, book: " + book));
         return filteredBook.getDescription();
     }
 
