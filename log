@@ -1,0 +1,14 @@
+2021-06-21 14:06:51,173[main] WARN  StatkovskiyDmitriy.bookstoreUI.menu.Navigator  - ex
+StatkovskiyDmitriy.bookstoreUI.exception.WrongFormatException: Wrong format, should be double
+	at StatkovskiyDmitriy.bookstoreUI.actions.AbstractAction.enterDouble(AbstractAction.java:25)
+	at StatkovskiyDmitriy.bookstoreUI.actions.book.AddAction.execute(AddAction.java:17)
+	at StatkovskiyDmitriy.bookstoreUI.menu.MenuItem.doAction(MenuItem.java:18)
+	at StatkovskiyDmitriy.bookstoreUI.menu.Navigator.navigate(Navigator.java:45)
+	at StatkovskiyDmitriy.bookstoreUI.menu.MenuController.run(MenuController.java:51)
+	at StatkovskiyDmitriy.bookstoreUI.Starter.main(Starter.java:11)
+Caused by: java.util.InputMismatchException
+	at java.util.Scanner.throwFor(Scanner.java:864)
+	at java.util.Scanner.next(Scanner.java:1485)
+	at java.util.Scanner.nextDouble(Scanner.java:2413)
+	at StatkovskiyDmitriy.bookstoreUI.actions.AbstractAction.enterDouble(AbstractAction.java:23)
+	... 5 more

@@ -45,7 +45,6 @@ public class MenuController {
             try {
                 index = scanner.nextInt();
             } catch (InputMismatchException exception) {
-
                 logger.error("entered String instead int");
                 scanner.next();
             }

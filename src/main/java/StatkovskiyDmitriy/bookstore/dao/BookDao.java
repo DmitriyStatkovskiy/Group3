@@ -4,6 +4,8 @@ import StatkovskiyDmitriy.bookstore.api.dao.IBookDao;
 import StatkovskiyDmitriy.bookstore.exception.DaoException;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;

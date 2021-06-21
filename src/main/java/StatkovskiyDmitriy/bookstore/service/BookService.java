@@ -4,10 +4,13 @@ import StatkovskiyDmitriy.bookstore.api.dao.IBookDao;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.dao.BookDao;
+import StatkovskiyDmitriy.bookstore.exception.ServiceException;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.util.Collections;
@@ -16,6 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BookService implements IBookService {
+    static Logger logger = LoggerFactory.getLogger(BookService.class);
     private static BookService instance;
     private IBookDao bookDao = BookDao.getInstance();
     private IRequestService requestService;
@@ -62,8 +66,13 @@ public class BookService implements IBookService {
     @Override
     public void addBookToStock(Book bookOld) {
         List<String> name = Collections.singletonList(bookOld.getId());
-        if (bookDao.getBooksByIds(name, BookStatus.OUT_OF_STOCK).size() != 0) {
-            requestService.changeRequestStatusByBookName(bookOld.getName(), RequestStatus.CLOSED);
+        try {
+            if (bookDao.getBooksByIds(name, BookStatus.OUT_OF_STOCK).size() != 0) {
+                requestService.changeRequestStatusByBookName(bookOld.getName(), RequestStatus.CLOSED);
+            }
+        } catch (ServiceException exception) {
+            logger.info("can't add book");
+            throw new ServiceException("can't add book");
         }
     }
 
