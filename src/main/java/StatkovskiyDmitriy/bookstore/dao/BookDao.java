@@ -1,11 +1,9 @@
 package StatkovskiyDmitriy.bookstore.dao;
 
 import StatkovskiyDmitriy.bookstore.api.dao.IBookDao;
-import StatkovskiyDmitriy.bookstore.exception.DaoException;
+import StatkovskiyDmitriy.bookstore.exception.EntityNotFoundException;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,17 +50,17 @@ public class BookDao implements IBookDao {
                 .collect(Collectors.toList());
     }
 
-    public Book getBookByBookId(String id) throws DaoException {
+    public Book getBookByBookId(String id) throws EntityNotFoundException {
         return books.stream()
                 .filter(book -> book.getId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new DaoException("book by id not found, id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("book by id not found, id: " + id));
     }
 
-    public Book getBookByName(String name) throws DaoException {
+    public Book getBookByName(String name) throws EntityNotFoundException {
         return books.stream()
                 .filter(book -> book.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new DaoException("book by name not found, name: " + name));
+                .orElseThrow(() -> new EntityNotFoundException("book by name not found, name: " + name));
     }
 }

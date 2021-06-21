@@ -4,7 +4,7 @@ import StatkovskiyDmitriy.bookstore.api.dao.IBookDao;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.dao.BookDao;
-import StatkovskiyDmitriy.bookstore.exception.ServiceException;
+import StatkovskiyDmitriy.bookstore.exception.EntityNotFoundException;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
@@ -64,15 +64,15 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public void addBookToStock(Book bookOld) {
+    public void addBookToStock(Book bookOld) throws EntityNotFoundException {
         List<String> name = Collections.singletonList(bookOld.getId());
         try {
             if (bookDao.getBooksByIds(name, BookStatus.OUT_OF_STOCK).size() != 0) {
                 requestService.changeRequestStatusByBookName(bookOld.getName(), RequestStatus.CLOSED);
             }
-        } catch (ServiceException exception) {
-            logger.info("can't add book");
-            throw new ServiceException("can't add book");
+        } catch (EntityNotFoundException exception) {
+            logger.info("can't add book " + bookOld);
+            throw new EntityNotFoundException("can't add book " + bookOld);
         }
     }
 
@@ -100,12 +100,12 @@ public class BookService implements IBookService {
                 .collect(Collectors.toList());
     }
 
-    public String showBookDescription(String book) throws SecurityException {
+    public String showBookDescription(String book) throws EntityNotFoundException {
         List<Book> units = bookDao.getAllBooks();
         Book filteredBook = units.stream()
                 .filter(unit -> unit.getName().equals(book))
                 .findFirst()
-                .orElseThrow(() -> new SecurityException("book not found, description can not be shown, book: " + book));
+                .orElseThrow(() -> new EntityNotFoundException("book not found, description can not be shown, book: " + book));
         return filteredBook.getDescription();
     }
 

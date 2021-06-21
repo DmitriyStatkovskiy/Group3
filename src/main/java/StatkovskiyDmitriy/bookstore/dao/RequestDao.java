@@ -1,7 +1,7 @@
 package StatkovskiyDmitriy.bookstore.dao;
 
 import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
-import StatkovskiyDmitriy.bookstore.exception.DaoException;
+import StatkovskiyDmitriy.bookstore.exception.EntityNotFoundException;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Request;
 
@@ -34,11 +34,11 @@ public class RequestDao implements IRequestDao {
         return request;
     }
 
-    public Request getRequestById(String id) throws DaoException {
+    public Request getRequestById(String id) throws EntityNotFoundException {
         return requests.stream()
                 .filter(request -> request.getId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new DaoException("request by id not found, id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("request by id not found, id: " + id));
     }
 
     @Override

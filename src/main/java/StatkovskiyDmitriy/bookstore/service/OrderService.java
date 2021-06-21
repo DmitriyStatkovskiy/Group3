@@ -5,10 +5,12 @@ import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.dao.OrderDao;
-import StatkovskiyDmitriy.bookstore.exception.ServiceException;
+import StatkovskiyDmitriy.bookstore.exception.EntityNotFoundException;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.util.Comparator;
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class OrderService implements IOrderService {
+    static Logger logger = LoggerFactory.getLogger(BookService.class);
     private static OrderService instance;
     private IOrderDao orderDao = OrderDao.getInstance();
     private IBookService bookService = BookService.getInstance();
@@ -68,9 +71,14 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Order cancelOrder(Order order) {
-        if (order.getStatus().equals(OrderStatus.NEW)) {
-            order.setStatus(OrderStatus.CANCELED);
+    public Order cancelOrder(Order order) throws EntityNotFoundException {
+        try {
+            if (order.getStatus().equals(OrderStatus.NEW)) {
+                order.setStatus(OrderStatus.CANCELED);
+            }
+        } catch (EntityNotFoundException exception) {
+            logger.info("can't cancel order " + order);
+            throw new EntityNotFoundException("can't cancel order " + order);
         }
         return order;
     }
@@ -164,12 +172,12 @@ public class OrderService implements IOrderService {
         return number;
     }
 
-    public Order showOrderInformation(String customerName) throws ServiceException {
+    public Order showOrderInformation(String customerName) throws EntityNotFoundException {
         List<Order> units = orderDao.getAll();
         Order details = units.stream()
                 .filter(order -> order.getCustomerName().equals(customerName))
                 .findFirst()
-                .orElseThrow(() -> new SecurityException("order not found, customer name: " + customerName));
+                .orElseThrow(() -> new EntityNotFoundException("order not found, customer name: " + customerName));
         return details;
     }
 
@@ -178,11 +186,11 @@ public class OrderService implements IOrderService {
         return orderDao.getAll();
     }
 
-    public Order getOrderById(String id) throws ServiceException {
+    public Order getOrderById(String id) throws EntityNotFoundException {
         Order order = orderDao.getAll().stream()
                 .filter(order1 -> order1.getOrderNumber().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new ServiceException("order not found, id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("order not found, id: " + id));
 
         return order;
     }
