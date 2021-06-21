@@ -1,8 +1,10 @@
 package StatkovskiyDmitriy.bookstoreUI.actions;
 
 import StatkovskiyDmitriy.bookstoreUI.Manager;
+import StatkovskiyDmitriy.bookstoreUI.exception.WrongFormatException;
 
 import java.time.LocalDate;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public abstract class AbstractAction {
@@ -16,12 +18,24 @@ public abstract class AbstractAction {
 
     protected double enterDouble(String name) {
         System.out.println(name);
-        return scanner.nextDouble();
+        double in;
+        try {
+            in = scanner.nextDouble();
+        } catch (InputMismatchException exception) {
+            throw new WrongFormatException("Wrong format, should be double", exception);
+        }
+        return in;
     }
 
     protected int enterInt(String name) {
         System.out.println(name);
-        return scanner.nextInt();
+        int in;
+        try {
+            in = scanner.nextInt();
+        } catch (InputMismatchException exception) {
+            throw new WrongFormatException("Wrong format, should be int", exception);
+        }
+        return in;
     }
 
     protected LocalDate getDate() {
@@ -35,5 +49,4 @@ public abstract class AbstractAction {
         date = LocalDate.of(year, month, day);
         return date;
     }
-
 }

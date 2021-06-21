@@ -3,6 +3,7 @@ package StatkovskiyDmitriy.bookstoreUI.menu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class Navigator {
@@ -46,6 +47,9 @@ public class Navigator {
             }
         } catch (IndexOutOfBoundsException exception) {
             logger.warn("outOfBound");
+        } catch (Exception e) {
+            logger.warn("ex", e);
+            System.err.println(e.getMessage());
         }
 
     }

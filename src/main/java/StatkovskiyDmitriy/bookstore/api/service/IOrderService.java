@@ -39,5 +39,5 @@ public interface IOrderService {
 
     List<Order> getAll();
 
-    Order getOrderById(String id);
+    Order getOrderById(String id) throws OrderNotFoundException;
 }

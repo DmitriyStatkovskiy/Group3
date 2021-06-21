@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Manager {
+public class Manager  {
     private static Manager instance;
     private final IBookService bookService = BookService.getInstance();
     private final IOrderService orderService = OrderService.getInstance();

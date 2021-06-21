@@ -178,11 +178,12 @@ public class OrderService implements IOrderService {
         return orderDao.getAll();
     }
 
-    public Order getOrderById(String id) {
+    public Order getOrderById(String id) throws OrderNotFoundException {
         Order order = orderDao.getAll().stream()
                 .filter(order1 -> order1.getOrderNumber().equals(id))
                 .findFirst()
-                .get();
+                .orElseThrow(() -> new OrderNotFoundException("order not found, id: " + id));
+
         return order;
     }
 }
