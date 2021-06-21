@@ -3,8 +3,7 @@ package StatkovskiyDmitriy.bookstore.service;
 import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.dao.RequestDao;
-import StatkovskiyDmitriy.bookstore.exception.OrderNotFoundException;
-import StatkovskiyDmitriy.bookstore.exception.RequestNotFoundException;
+import StatkovskiyDmitriy.bookstore.exception.ServiceException;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Request;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
@@ -44,11 +43,11 @@ public class RequestService implements IRequestService {
         requestDao.getRequestById(id).setStatus(status);
     }
 
-    public Request getRequestByName(String name) throws RequestNotFoundException {
+    public Request getRequestByName(String name) throws ServiceException {
         Request request = requestDao.getAll().stream()
                 .filter(request1 -> request1.getBookOld().getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new RequestNotFoundException("request not found, book name: " + name));
+                .orElseThrow(() -> new ServiceException("request by book name not found, book name: " + name));
         return request;
     }
 

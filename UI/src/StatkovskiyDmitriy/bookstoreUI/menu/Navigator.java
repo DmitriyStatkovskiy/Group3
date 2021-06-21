@@ -3,6 +3,7 @@ package StatkovskiyDmitriy.bookstoreUI.menu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.InputMismatchException;
 import java.util.List;
 
 public class Navigator {
@@ -34,7 +35,6 @@ public class Navigator {
         for (int i = 0; i < menuItems.size(); i++) {
             System.out.println(i + " " + menuItems.get(i).getTitle());
         }
-
     }
 
     public void navigate(Integer index) {
@@ -47,6 +47,8 @@ public class Navigator {
         } catch (IndexOutOfBoundsException exception) {
             logger.warn("outOfBound");
         }
-
+        catch (InputMismatchException exception){
+            logger.error("entered String instead int");
+        }
     }
 }

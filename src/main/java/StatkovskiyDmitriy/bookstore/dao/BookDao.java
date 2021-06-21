@@ -1,7 +1,7 @@
 package StatkovskiyDmitriy.bookstore.dao;
 
 import StatkovskiyDmitriy.bookstore.api.dao.IBookDao;
-import StatkovskiyDmitriy.bookstore.exception.BookNotFoundException;
+import StatkovskiyDmitriy.bookstore.exception.DaoException;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 
@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class BookDao implements IBookDao {
+
     private static BookDao instance;
     private final List<Book> books = new ArrayList<>();
 
@@ -49,17 +50,17 @@ public class BookDao implements IBookDao {
                 .collect(Collectors.toList());
     }
 
-    public Book getBookByBookId(String id) throws BookNotFoundException {
+    public Book getBookByBookId(String id) throws DaoException {
         return books.stream()
                 .filter(book -> book.getId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new BookNotFoundException("book by id not found, id: " + id));
+                .orElseThrow(() -> new DaoException("book by id not found, id: " + id));
     }
 
-    public Book getBookByName(String name) throws BookNotFoundException {
+    public Book getBookByName(String name) throws DaoException {
         return books.stream()
                 .filter(book -> book.getName().equals(name))
                 .findFirst()
-                .orElseThrow(() -> new BookNotFoundException("book by name not found, name: " + name));
+                .orElseThrow(() -> new DaoException("book by name not found, name: " + name));
     }
 }

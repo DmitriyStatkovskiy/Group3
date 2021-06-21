@@ -5,7 +5,7 @@ import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.dao.OrderDao;
-import StatkovskiyDmitriy.bookstore.exception.OrderNotFoundException;
+import StatkovskiyDmitriy.bookstore.exception.ServiceException;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
@@ -164,12 +164,12 @@ public class OrderService implements IOrderService {
         return number;
     }
 
-    public Order showOrderInformation(String customerName) throws OrderNotFoundException {
+    public Order showOrderInformation(String customerName) throws ServiceException {
         List<Order> units = orderDao.getAll();
         Order details = units.stream()
                 .filter(order -> order.getCustomerName().equals(customerName))
                 .findFirst()
-                .orElseThrow(() -> new OrderNotFoundException("order not found, customer name: " + customerName));
+                .orElseThrow(() -> new SecurityException("order not found, customer name: " + customerName));
         return details;
     }
 
