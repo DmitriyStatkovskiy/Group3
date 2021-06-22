@@ -10,6 +10,6 @@ public class GetAllOrdersAction extends AbstractAction implements IAction {
     @Override
     public void execute() {
         List<Order> orders = manager.getOrders();
-        orders.stream().forEach(System.out::println);
+        orders.forEach(System.out::println);
     }
 }

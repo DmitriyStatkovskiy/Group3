@@ -8,8 +8,7 @@ import StatkovskiyDmitriy.bookstoreUI.actions.request.*;
 public class Builder {
     private static Builder instance;
     private Menu rootMenu;
-    private final IAction emptyAction = () -> {
-    };
+    private final IAction emptyAction = () -> {};
 
     private Builder() {
     }

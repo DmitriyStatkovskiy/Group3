@@ -10,6 +10,6 @@ public class SortRequestsByBookNameAction extends AbstractAction implements IAct
     @Override
     public void execute() {
         List<Request> requests = manager.sortRequestsByBookName();
-        requests.stream().forEach(System.out::println);
+        requests.forEach(System.out::println);
     }
 }

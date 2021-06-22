@@ -10,6 +10,6 @@ public class SortByQuantityAction extends AbstractAction implements IAction {
     @Override
     public void execute() {
         List<Request> requests = manager.sortRequestsQuantity();
-        requests.stream().forEach(System.out::println);
+        requests.forEach(System.out::println);
     }
 }
