@@ -34,6 +34,4 @@ public class OrderDao implements IOrderDao {
     public List<Order> getAll() {
         return orders;
     }
-
-
 }
