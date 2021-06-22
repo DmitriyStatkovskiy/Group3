@@ -19,7 +19,7 @@ public interface IBookService {
 
     List<Book> sortBooksByStatus();
 
-    String showBookDescription(String book);
+    String showDescription(String book);
 
     List<Book> getOldBooks();
 
@@ -36,5 +36,7 @@ public interface IBookService {
     List<Book> getOutBooks();
 
     Book getBookByName(String name);
+
+    void changeStatusByName(String name);
 
 }

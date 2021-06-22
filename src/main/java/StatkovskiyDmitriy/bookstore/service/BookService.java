@@ -100,7 +100,7 @@ public class BookService implements IBookService {
                 .collect(Collectors.toList());
     }
 
-    public String showBookDescription(String book) throws EntityNotFoundException {
+    public String showDescription(String book) throws EntityNotFoundException {
         List<Book> units = bookDao.getAllBooks();
         Book filteredBook = units.stream()
                 .filter(unit -> unit.getName().equals(book))
@@ -133,6 +133,30 @@ public class BookService implements IBookService {
     public Book changeBookStatus(Book book, BookStatus status) {
         book.setStatus(status);
         return book;
+    }
+
+    public void changeStatusByName(String name) throws EntityNotFoundException {
+        List<Book> books = bookDao.getAllBooks().stream()
+                .filter(book -> book.getName().equals(name))
+                .filter(book -> book.getStatus().equals(BookStatus.IN_STOCK))
+                .collect(Collectors.toList());
+
+        if (books.size() != 0) {
+            bookDao.getAllBooks().stream()
+                    .filter(book -> book.getName().equals(name))
+                    .forEach(book -> book.setStatus(BookStatus.OUT_OF_STOCK));
+        } else bookDao.getAllBooks().stream()
+                .filter(book -> book.getName().equals(name))
+                .forEach(book -> book.setStatus(BookStatus.IN_STOCK));
+        try {
+            Book book1 = bookDao.getAllBooks().stream()
+                    .filter(book -> book.getName().equals(name))
+                    .findFirst()
+                    .get();
+        } catch (EntityNotFoundException exception) {
+            logger.info("Book " + name + " not found, status can't be changed ");
+            throw new EntityNotFoundException("book " + name + " not found, status");
+        }
     }
 
     @Override

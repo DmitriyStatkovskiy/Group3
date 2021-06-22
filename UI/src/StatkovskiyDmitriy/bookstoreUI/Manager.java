@@ -6,7 +6,6 @@ import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.Request;
-import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
 import StatkovskiyDmitriy.bookstore.service.BookService;
@@ -15,9 +14,8 @@ import StatkovskiyDmitriy.bookstore.service.RequestService;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class Manager  {
+public class Manager {
     private static Manager instance;
     private final IBookService bookService = BookService.getInstance();
     private final IOrderService orderService = OrderService.getInstance();
@@ -40,27 +38,11 @@ public class Manager  {
     }
 
     public void changeStatus(String name) {
-        List<Book> books = bookService.getAllBooks().stream()
-                .filter(book1 -> book1.getName().equals(name))
-                .filter(book1 -> book1.getStatus().equals(BookStatus.IN_STOCK))
-                .collect(Collectors.toList());
-        if (books.size() != 0) {
-            bookService.getAllBooks().stream()
-                    .filter(book1 -> book1.getName().equals(name))
-                    .forEach(book2 -> book2.setStatus(BookStatus.OUT_OF_STOCK));
-        } else bookService.getAllBooks().stream()
-                .filter(book1 -> book1.getName().equals(name))
-                .forEach(book2 -> book2.setStatus(BookStatus.IN_STOCK));
+        bookService.changeStatusByName(name);
     }
 
     public String showDescription(String name) {
-
-        String description = bookService.getAllBooks().stream()
-                .filter(book -> book.getName().equals(name))
-                .findFirst()
-                .get()
-                .getDescription();
-        return description;
+        return bookService.showDescription(name);
     }
 
     public List<Book> getOutOfStock() {

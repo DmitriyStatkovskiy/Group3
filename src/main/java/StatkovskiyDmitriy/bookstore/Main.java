@@ -97,7 +97,7 @@ public class Main {
         System.out.println("sorted orders:");
         orderService.sortOrdersByPrice().forEach(System.out::println);
 
-        System.out.println(bookService.showBookDescription("DDD"));
+        System.out.println(bookService.showDescription("DDD"));
 
         orderService.addBook(order2, bookD);
         System.out.println(order2);
