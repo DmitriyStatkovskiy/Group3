@@ -1,6 +1,5 @@
 package StatkovskiyDmitriy.bookstore.api.service;
 
-import StatkovskiyDmitriy.bookstore.exception.EntityNotFoundException;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
@@ -39,5 +38,5 @@ public interface IOrderService {
 
     List<Order> getAll();
 
-    Order getOrderById(String id) throws EntityNotFoundException;
+    Order getOrderById(String id);
 }

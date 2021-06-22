@@ -5,13 +5,13 @@ import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.dao.OrderDao;
-import StatkovskiyDmitriy.bookstore.exception.EntityNotFoundException;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
@@ -22,7 +22,7 @@ public class OrderService implements IOrderService {
     private static OrderService instance;
     private IOrderDao orderDao = OrderDao.getInstance();
     private IBookService bookService = BookService.getInstance();
-    private IRequestService requestService;
+    private IRequestService requestService = RequestService.getInstance();
 
     private OrderService() {
 
@@ -71,12 +71,12 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Order cancelOrder(Order order) throws EntityNotFoundException {
+    public Order cancelOrder(Order order) throws javax.persistence.EntityNotFoundException {
         try {
             if (order.getStatus().equals(OrderStatus.NEW)) {
                 order.setStatus(OrderStatus.CANCELED);
             }
-        } catch (EntityNotFoundException exception) {
+        } catch (javax.persistence.EntityNotFoundException exception) {
             logger.info("can't cancel order " + order);
             throw new EntityNotFoundException("can't cancel order " + order);
         }
