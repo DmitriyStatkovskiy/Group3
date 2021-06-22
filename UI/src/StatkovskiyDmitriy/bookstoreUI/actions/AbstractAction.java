@@ -13,7 +13,7 @@ public abstract class AbstractAction {
 
     protected String enterString(String name) {
         System.out.println(name);
-        return scanner.nextLine();
+        return scanner.next();
     }
 
     protected double enterDouble(String name) {
