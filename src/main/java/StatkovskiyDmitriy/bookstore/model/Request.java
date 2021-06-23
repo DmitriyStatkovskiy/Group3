@@ -8,7 +8,7 @@ import java.util.UUID;
 public class Request {
     private RequestStatus status = RequestStatus.OPEN;
     private int quantity;
-    private Book bookOld;
+    private Book book;
     private String id = UUID.randomUUID().toString();
 
     public Request() {
@@ -22,8 +22,8 @@ public class Request {
         this.quantity = quantity;
     }
 
-    public Request(Book bookOld) {
-        this.bookOld = bookOld;
+    public Request(Book book) {
+        this.book = book;
     }
 
     public String getId() {
@@ -34,12 +34,12 @@ public class Request {
         this.id = id;
     }
 
-    public Book getBookOld() {
-        return bookOld;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBookOld(Book bookOld) {
-        this.bookOld = bookOld;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     public RequestStatus getStatus() {
@@ -56,13 +56,13 @@ public class Request {
         if (o == null || getClass() != o.getClass()) return false;
         Request request = (Request) o;
         return getStatus() == request.getStatus() &&
-                Objects.equals(getBookOld(), request.getBookOld()) &&
+                Objects.equals(getBook(), request.getBook()) &&
                 Objects.equals(getId(), request.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getStatus(), getBookOld(), getId());
+        return Objects.hash(getStatus(), getBook(), getId());
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Request {
         return "Request{" +
                 "requestId='" + id + '\'' +
                 "requestStatus='" + status + '\'' +
-                ", requestedBookName='" + bookOld.getName() + '\'' +
+                ", requestedBookName='" + book.getName() + '\'' +
                 '}';
     }
 }

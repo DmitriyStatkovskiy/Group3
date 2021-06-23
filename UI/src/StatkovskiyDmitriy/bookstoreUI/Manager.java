@@ -40,7 +40,11 @@ public class Manager {
     public void changeStatus(String name) {
         bookService.changeStatusByName(name);
     }
-
+    public void addBookAndCloseRequest(String name){
+        Book book = bookService.getBookByName(name);
+        bookService.addBookToStock(book);
+      //  bookService.addBookAndCloseRequest(name);
+    }
     public String showDescription(String name) {
         return bookService.showDescription(name);
     }

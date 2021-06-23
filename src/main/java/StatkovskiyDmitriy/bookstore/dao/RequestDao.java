@@ -11,7 +11,7 @@ import java.util.List;
 
 public class RequestDao implements IRequestDao {
     private static RequestDao instance;
-    private final List<Request> requests = new ArrayList<Request>();
+    private final List<Request> requests = new ArrayList<>();
 
     private RequestDao() {
 
@@ -29,8 +29,8 @@ public class RequestDao implements IRequestDao {
     }
 
     @Override
-    public Request createRequest(Book bookOld) {
-        Request request = new Request(bookOld);
+    public Request createRequest(Book book) {
+        Request request = new Request(book);
         requests.add(request);
         return request;
     }

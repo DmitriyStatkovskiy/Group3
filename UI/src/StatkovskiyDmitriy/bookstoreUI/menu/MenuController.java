@@ -5,6 +5,7 @@ import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.dao.RequestDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
+import StatkovskiyDmitriy.bookstore.model.Request;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
@@ -56,7 +57,6 @@ public class MenuController {
     private void initDao() {
         BookDao bookInstance = BookDao.getInstance();
         OrderDao orderInstance = OrderDao.getInstance();
-        RequestDao requestInstance = RequestDao.getInstance();
         OrderService orderService = OrderService.getInstance();
         RequestService requestService = RequestService.getInstance();
 

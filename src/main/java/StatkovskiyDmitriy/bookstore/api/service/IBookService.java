@@ -46,5 +46,7 @@ public interface IBookService {
 
     void setIncomingDate(String book, LocalDate date);
 
+    public void addBookAndCloseRequest(String bookName);
+
 
 }

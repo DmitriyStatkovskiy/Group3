@@ -48,7 +48,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public Order addBook(Order order, Book book) {
-        order.getBooks().add(book);
+        order.getAll().add(book);
         return order;
     }
 
@@ -90,7 +90,7 @@ public class OrderService implements IOrderService {
 
     public double calculateOrderPrice(Order order) {
 
-        List<Book> books = order.getBooks();
+        List<Book> books = order.getAll();
         return books.stream()
                 .map(book -> book.getPrice())
                 .mapToDouble(Double::doubleValue)

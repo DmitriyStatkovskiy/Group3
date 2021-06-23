@@ -38,7 +38,7 @@ public class Order {
         this.status = status;
     }
 
-    public List<Book> getBooks() {
+    public List<Book> getAll() {
         return books;
     }
 
@@ -128,11 +128,11 @@ public class Order {
                 getStatus() == order.getStatus() &&
                 Objects.equals(getOrderCreatedDate(), order.getOrderCreatedDate()) &&
                 Objects.equals(getOrderClosedDate(), order.getOrderClosedDate()) &&
-                Objects.equals(getBooks(), order.getBooks());
+                Objects.equals(getAll(), order.getAll());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCustomerName(), getOrderNumber(), getBookName(), getStatus(), getOrderCreatedDate(), getOrderClosedDate(), getOrderPrice(), getBooks());
+        return Objects.hash(getCustomerName(), getOrderNumber(), getBookName(), getStatus(), getOrderCreatedDate(), getOrderClosedDate(), getOrderPrice(), getAll());
     }
 }
