@@ -117,14 +117,14 @@ public class BookService implements IBookService {
     }
 
     public List<Book> sortOldBooksByIncomingDate() {
-        List<Book> books = getOldBooks();
+        List<Book> books = getOldBooksByFieldIsOld();
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getIncomingDate()))
                 .collect(Collectors.toList());
     }
 
     public List<Book> sortOldBooksByPrice() {
-        List<Book> books = getOldBooks();
+        List<Book> books = getOldBooksByFieldIsOld();
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getPrice()))
                 .collect(Collectors.toList());
@@ -171,6 +171,17 @@ public class BookService implements IBookService {
 
     public Book getBookByName(String name) {
         return bookDao.getBookByName(name);
+    }
+
+    public void setOldBooks(int month) {
+        bookDao.getAllBooks().stream()
+                .filter(book -> book.getIncomingDate().isBefore(LocalDate.now().minusMonths(month)))
+                .forEach(book -> book.setOld(true));
+    }
+
+    public List<Book> getOldBooksByFieldIsOld() {
+        List<Book> books = bookDao.getAllBooks();
+        return books.stream().filter(Book::isOld).collect(Collectors.toList());
     }
 
     public void printStock(List<Book> book) {

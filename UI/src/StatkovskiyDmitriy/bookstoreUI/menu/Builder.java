@@ -47,6 +47,7 @@ public class Builder {
         MenuItem showOutOfStock = new MenuItem("show out of stock books", new GetAllOutOfStockAction(), bookMenu);
         MenuItem changeStatus = new MenuItem("change status", new ChangeStatusAction(), bookMenu);
         MenuItem showDescription = new MenuItem("show book description", new GetDescriptionAction(), bookMenu);
+        MenuItem setOldBooks = new MenuItem("mark books as old", new SetOldAction(), bookMenu);
 
         MenuItem sort = new MenuItem("sort menu", emptyAction, sortMenu);
         MenuItem previousMenu = new MenuItem("previous menu", emptyAction, rootMenu);
@@ -56,6 +57,7 @@ public class Builder {
         bookMenu.addMenuItem(showOutOfStock);
         bookMenu.addMenuItem(changeStatus);
         bookMenu.addMenuItem(showDescription);
+        bookMenu.addMenuItem(setOldBooks);
         bookMenu.addMenuItem(sort);
         bookMenu.addMenuItem(previousMenu);
 

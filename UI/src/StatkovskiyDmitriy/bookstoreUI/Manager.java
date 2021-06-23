@@ -73,6 +73,10 @@ public class Manager {
         return orderService.getAll();
     }
 
+    public void setOldBooks(int month) {
+        bookService.setOldBooks(month);
+    }
+
     public void addOrder() {
         orderService.createNew();
     }

@@ -18,6 +18,7 @@ public class Book {
     private String edition;
     private double price;
     private String description;
+    private boolean isOld = false;
 
     public Book() {
     }
@@ -45,6 +46,22 @@ public class Book {
         this.edition = edition;
         this.price = price;
         this.description = description;
+    }
+
+    public Book(LocalDate incomingDate, String name, String edition, double price, String description) {
+        this.incomingDate = incomingDate;
+        this.name = name;
+        this.edition = edition;
+        this.price = price;
+        this.description = description;
+    }
+
+    public boolean isOld() {
+        return isOld;
+    }
+
+    public void setOld(boolean old) {
+        isOld = old;
     }
 
     public BookStatus getStatus() {
@@ -120,6 +137,7 @@ public class Book {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
         return Double.compare(book.getPrice(), getPrice()) == 0 &&
+                isOld() == book.isOld() &&
                 getStatus() == book.getStatus() &&
                 Objects.equals(getIncomingDate(), book.getIncomingDate()) &&
                 Objects.equals(getId(), book.getId()) &&
@@ -130,6 +148,6 @@ public class Book {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getStatus(), getIncomingDate(), getId(), getName(), getEdition(), getPrice(), getDescription());
+        return Objects.hash(getStatus(), getIncomingDate(), getId(), getName(), getEdition(), getPrice(), getDescription(), isOld());
     }
 }

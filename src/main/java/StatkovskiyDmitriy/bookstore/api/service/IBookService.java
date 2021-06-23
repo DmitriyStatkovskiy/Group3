@@ -39,4 +39,8 @@ public interface IBookService {
 
     void changeStatusByName(String name);
 
+    List<Book> getOldBooksByFieldIsOld();
+
+    void setOldBooks(int month);
+
 }
