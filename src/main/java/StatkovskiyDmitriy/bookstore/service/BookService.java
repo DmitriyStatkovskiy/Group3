@@ -79,14 +79,17 @@ public class BookService implements IBookService {
         }
     }
 
-    public void addBookAndCloseRequest(String bookName) {
+    public void addBookAndCloseRequest(String bookName) throws EntityNotFoundException {
+        try{
 
-        List<Request> requests = requestService.getAll();
-        if (bookDao.getBookByName(bookName).getStatus().equals(BookStatus.OUT_OF_STOCK) || requestService.getRequestByName(bookName).getStatus().equals(RequestStatus.OPEN)) {
-            bookDao.getBookByName(bookName).setStatus(BookStatus.IN_STOCK);
-            requestService.getRequestByName(bookName).setStatus(RequestStatus.CLOSED);
-        } else {
-            System.out.println("trololo");
+            if (bookDao.getBookByName(bookName).getStatus().equals(BookStatus.OUT_OF_STOCK) || requestService.getRequestByName(bookName).getStatus().equals(RequestStatus.OPEN)) {
+                bookDao.getBookByName(bookName).setStatus(BookStatus.IN_STOCK);
+                requestService.getRequestByName(bookName).setStatus(RequestStatus.CLOSED);
+            }
+        }
+        catch (EntityNotFoundException exception){
+            logger.warn("book not found "+bookName);
+            throw new EntityNotFoundException("can't add book " + bookName);
         }
     }
 
