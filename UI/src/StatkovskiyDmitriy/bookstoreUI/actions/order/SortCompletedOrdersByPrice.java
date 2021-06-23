@@ -13,9 +13,9 @@ public class SortCompletedOrdersByPrice extends AbstractAction implements IActio
         LocalDate dateFrom;
         LocalDate dateTo;
         System.out.println("Enter date 'From'");
-        dateFrom = getDate();
+        dateFrom = enterDate("");
         System.out.println("Enter date 'To'");
-        dateTo = getDate();
+        dateTo = enterDate("");
         List<Order> orders = manager.sortCompletedOrdersByPrice(dateFrom, dateTo);
         orders.forEach(System.out::println);
     }

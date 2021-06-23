@@ -11,13 +11,13 @@ public abstract class AbstractAction {
     protected Manager manager = Manager.getInstance();
     protected Scanner scanner = new Scanner(System.in);
 
-    protected String enterString(String name) {
-        System.out.println(name);
+    protected String enterString(String message) {
+        System.out.println(message);
         return scanner.next();
     }
 
-    protected double enterDouble(String name) {
-        System.out.println(name);
+    protected double enterDouble(String message) {
+        System.out.println(message);
         double in;
         try {
             in = scanner.nextDouble();
@@ -27,8 +27,8 @@ public abstract class AbstractAction {
         return in;
     }
 
-    protected int enterInt(String name) {
-        System.out.println(name);
+    protected int enterInt(String message) {
+        System.out.println(message);
         int in;
         try {
             in = scanner.nextInt();
@@ -38,7 +38,8 @@ public abstract class AbstractAction {
         return in;
     }
 
-    protected LocalDate getDate() {
+    protected LocalDate enterDate(String message) {
+        System.out.println(message);
         LocalDate date;
         int day;
         int month;

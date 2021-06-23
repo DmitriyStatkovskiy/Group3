@@ -166,4 +166,8 @@ public class Manager {
     public List<Request> sortRequestsByBookName() {
         return requestService.sortRequestsByBookName();
     }
+
+    public void setIncomingDate(String book, LocalDate date) {
+        bookService.setIncomingDate(book, date);
+    }
 }

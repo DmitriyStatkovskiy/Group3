@@ -127,6 +127,7 @@ public class Book {
                 ", edition='" + edition + '\'' +
                 ", price=" + price +
                 ", description=" + description +
+                ", incoming date=" + incomingDate +
                 ", status='" + status + '\'' +
                 '}';
     }

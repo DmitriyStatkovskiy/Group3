@@ -8,7 +8,8 @@ import StatkovskiyDmitriy.bookstoreUI.actions.request.*;
 public class Builder {
     private static Builder instance;
     private Menu rootMenu;
-    private final IAction emptyAction = () -> {};
+    private final IAction emptyAction = () -> {
+    };
 
     private Builder() {
     }
@@ -48,6 +49,7 @@ public class Builder {
         MenuItem changeStatus = new MenuItem("change status", new ChangeStatusAction(), bookMenu);
         MenuItem showDescription = new MenuItem("show book description", new GetDescriptionAction(), bookMenu);
         MenuItem setOldBooks = new MenuItem("mark books as old", new SetOldAction(), bookMenu);
+        MenuItem setIncomingDate = new MenuItem("set incoming date", new SetIncomingDateAction(), bookMenu);
 
         MenuItem sort = new MenuItem("sort menu", emptyAction, sortMenu);
         MenuItem previousMenu = new MenuItem("previous menu", emptyAction, rootMenu);
@@ -58,6 +60,8 @@ public class Builder {
         bookMenu.addMenuItem(changeStatus);
         bookMenu.addMenuItem(showDescription);
         bookMenu.addMenuItem(setOldBooks);
+        bookMenu.addMenuItem(setIncomingDate);
+
         bookMenu.addMenuItem(sort);
         bookMenu.addMenuItem(previousMenu);
 

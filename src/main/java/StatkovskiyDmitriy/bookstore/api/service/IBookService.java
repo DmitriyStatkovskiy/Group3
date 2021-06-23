@@ -4,6 +4,7 @@ import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface IBookService {
@@ -42,5 +43,8 @@ public interface IBookService {
     List<Book> getOldBooksByFieldIsOld();
 
     void setOldBooks(int month);
+
+    void setIncomingDate(String book, LocalDate date);
+
 
 }

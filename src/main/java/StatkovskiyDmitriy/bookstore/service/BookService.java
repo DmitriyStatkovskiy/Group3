@@ -184,6 +184,14 @@ public class BookService implements IBookService {
         return books.stream().filter(Book::isOld).collect(Collectors.toList());
     }
 
+    public void setIncomingDate(String book, LocalDate date) {
+        bookDao.getAllBooks().stream()
+                .filter(book1 -> book1.getName().equals(book))
+                .findFirst()
+                .get()
+                .setIncomingDate(date);
+    }
+
     public void printStock(List<Book> book) {
         for (Book unit : book
         ) {
