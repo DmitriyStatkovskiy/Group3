@@ -23,7 +23,7 @@ public class BookService implements IBookService {
     static Logger logger = LoggerFactory.getLogger(BookService.class);
     private static BookService instance;
     private IBookDao bookDao = BookDao.getInstance();
-    private IRequestService requestService;
+    private IRequestService requestService = RequestService.getInstance();
 
     private BookService() {
 
@@ -80,19 +80,13 @@ public class BookService implements IBookService {
     }
 
     public void addBookAndCloseRequest(String bookName) {
-        Request request;
-        String id;
+
         List<Request> requests = requestService.getAll();
         if (bookDao.getBookByName(bookName).getStatus().equals(BookStatus.OUT_OF_STOCK) || requestService.getRequestByName(bookName).getStatus().equals(RequestStatus.OPEN)) {
-            bookDao.getAllBooks().forEach(book -> book.setStatus(BookStatus.IN_STOCK));
-            request = requests.stream()
-                    .filter(request1 -> request1.getBook().getName().equals(bookName))
-                    .findFirst()
-                    .get();
-            id = request.getBook().getName();
-            //  requestService.changeRequestStatus(id, RequestStatus.CLOSED);
-            requestService.changeRequestStatusByBookName(id, RequestStatus.CLOSED);
-
+            bookDao.getBookByName(bookName).setStatus(BookStatus.IN_STOCK);
+            requestService.getRequestByName(bookName).setStatus(RequestStatus.CLOSED);
+        } else {
+            System.out.println("trololo");
         }
     }
 

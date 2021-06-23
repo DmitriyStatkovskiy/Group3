@@ -41,9 +41,8 @@ public class Manager {
         bookService.changeStatusByName(name);
     }
     public void addBookAndCloseRequest(String name){
-        Book book = bookService.getBookByName(name);
-        bookService.addBookToStock(book);
-      //  bookService.addBookAndCloseRequest(name);
+
+        bookService.addBookAndCloseRequest(name);
     }
     public String showDescription(String name) {
         return bookService.showDescription(name);

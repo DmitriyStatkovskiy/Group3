@@ -3,7 +3,6 @@ package StatkovskiyDmitriy.bookstore.service;
 import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.dao.RequestDao;
-
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Request;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
@@ -42,6 +41,10 @@ public class RequestService implements IRequestService {
     @Override
     public void changeRequestStatus(String id, RequestStatus status) {
         requestDao.getRequestById(id).setStatus(status);
+    }
+
+    public void closeRequest(String id) {
+        requestDao.getRequestById(id).setStatus(RequestStatus.CLOSED);
     }
 
     public Request getRequestByName(String name) throws EntityNotFoundException {
