@@ -9,11 +9,9 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class PropertiesLoader {
-
-    BookService bookService = BookService.getInstance();
     static Logger logger = LoggerFactory.getLogger(PropertiesLoader.class);
-
     private static PropertiesLoader instance;
+    BookService bookService = BookService.getInstance();
 
     private PropertiesLoader() {
     }
@@ -29,7 +27,7 @@ public class PropertiesLoader {
         int month;
         boolean permission;
         Properties properties = new Properties();
-        try (FileReader reader = new FileReader("properties/src/StatkovskiyDmitriy/bookstoreProperties/config-test.properties");) {
+        try (FileReader reader = new FileReader("properties/src/StatkovskiyDmitriy/bookstoreProperties/config-test.properties")) {
             properties.load(reader);
 
             month = Integer.parseInt(properties.getProperty("numberOfMonthToMarkBookAsOld"));

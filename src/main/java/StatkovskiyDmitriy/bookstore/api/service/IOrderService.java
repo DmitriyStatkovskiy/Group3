@@ -39,4 +39,6 @@ public interface IOrderService {
     List<Order> getAll();
 
     Order getOrderById(String id);
+
+    void deleteAll();
 }

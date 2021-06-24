@@ -1,17 +1,17 @@
 package StatkovskiyDmitriy.bookstore.dao;
 
 import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
-
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Request;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RequestDao implements IRequestDao {
+public class RequestDao implements IRequestDao, Serializable {
     private static RequestDao instance;
-    private final List<Request> requests = new ArrayList<>();
+    private List<Request> requests = new ArrayList<>();
 
     private RequestDao() {
 
@@ -22,6 +22,10 @@ public class RequestDao implements IRequestDao {
             instance = new RequestDao();
         }
         return instance;
+    }
+
+    public void setRequests(List<Request> requests) {
+        this.requests = requests;
     }
 
     public List<Request> getRequests() {
@@ -47,4 +51,7 @@ public class RequestDao implements IRequestDao {
         return requests;
     }
 
+    public void deleteAll() {
+        requests = new ArrayList<>();
+    }
 }

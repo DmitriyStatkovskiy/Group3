@@ -96,4 +96,8 @@ public class RequestService implements IRequestService {
                 .sorted(Comparator.comparing(o -> o.getQuantity()))
                 .collect(Collectors.toList());
     }
+
+    public void deleteAll() {
+        requestDao.deleteAll();
+    }
 }

@@ -2,10 +2,11 @@ package StatkovskiyDmitriy.bookstore.model;
 
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Request {
+public class Request implements Serializable {
     private RequestStatus status = RequestStatus.OPEN;
     private int quantity;
     private Book book;

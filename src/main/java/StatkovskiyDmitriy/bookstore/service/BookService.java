@@ -227,6 +227,10 @@ public class BookService implements IBookService {
                 .setIncomingDate(date);
     }
 
+    public void deleteAll() {
+        bookDao.deleteAll();
+    }
+
     public void printStock(List<Book> book) {
         for (Book unit : book
         ) {

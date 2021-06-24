@@ -2,13 +2,14 @@ package StatkovskiyDmitriy.bookstore.model;
 
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
 import static StatkovskiyDmitriy.bookstore.model.enums.BookStatus.IN_STOCK;
 
-public class Book {
+public class Book implements Serializable {
 
     private BookStatus status = IN_STOCK;
     private LocalDate incomingDate = LocalDate.now();

@@ -39,10 +39,12 @@ public class Manager {
     public void changeStatus(String name) {
         bookService.changeStatusByName(name);
     }
-    public void addBookAndCloseRequest(String name){
+
+    public void addBookAndCloseRequest(String name) {
 
         bookService.addBookAndCloseRequest(name);
     }
+
     public String showDescription(String name) {
         return bookService.showDescription(name);
     }
@@ -171,5 +173,17 @@ public class Manager {
 
     public void setIncomingDate(String book, LocalDate date) {
         bookService.setIncomingDate(book, date);
+    }
+
+    public void deleteAllRequests() {
+        requestService.deleteAll();
+    }
+
+    public void deleteAllOrders() {
+        orderService.deleteAll();
+    }
+
+    public void deleteAllBooks() {
+        bookService.deleteAll();
     }
 }

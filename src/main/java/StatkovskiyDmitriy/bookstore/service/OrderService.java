@@ -194,4 +194,8 @@ public class OrderService implements IOrderService {
 
         return order;
     }
+
+    public void deleteAll() {
+        orderDao.deleteAll();
+    }
 }

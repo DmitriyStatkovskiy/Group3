@@ -2,12 +2,13 @@ package StatkovskiyDmitriy.bookstore.model;
 
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Order {
+public class Order implements Serializable {
 
     private String customerName;
     private String orderNumber;

@@ -3,14 +3,15 @@ package StatkovskiyDmitriy.bookstore.dao;
 import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.model.Order;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class OrderDao implements IOrderDao {
+public class OrderDao implements IOrderDao, Serializable {
     private static OrderDao instance;
-    private final List<Order> orders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     private OrderDao() {
 
@@ -21,6 +22,14 @@ public class OrderDao implements IOrderDao {
             instance = new OrderDao();
         }
         return instance;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     public Order createOrder() {
@@ -35,5 +44,7 @@ public class OrderDao implements IOrderDao {
         return orders;
     }
 
-
+    public void deleteAll() {
+        orders = new ArrayList<>();
+    }
 }

@@ -20,5 +20,8 @@ public interface IRequestService {
     List<Request> getAll();
 
     Request getRequestByName(String name);
+
     void closeRequest(String id);
+
+    void deleteAll();
 }

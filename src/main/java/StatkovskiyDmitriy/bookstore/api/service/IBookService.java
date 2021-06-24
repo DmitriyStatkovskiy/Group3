@@ -48,5 +48,5 @@ public interface IBookService {
 
     public void addBookAndCloseRequest(String bookName);
 
-
+    void deleteAll();
 }

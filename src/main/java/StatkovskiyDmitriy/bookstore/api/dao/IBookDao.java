@@ -17,5 +17,7 @@ public interface IBookDao {
 
     Book getBookByBookId(String id);
 
+    void deleteAll();
+
     Book getBookByName(String name);
 }
