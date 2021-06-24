@@ -8,13 +8,14 @@ import StatkovskiyDmitriy.bookstore.model.Request;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class RequestService implements IRequestService {
+public class RequestService implements IRequestService, Serializable {
     private static RequestService instance;
     private final IRequestDao requestDao = RequestDao.getInstance();
 

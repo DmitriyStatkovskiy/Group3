@@ -12,12 +12,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OrderService implements IOrderService {
+public class OrderService implements IOrderService, Serializable {
     static Logger logger = LoggerFactory.getLogger(BookService.class);
     private static OrderService instance;
     private IOrderDao orderDao = OrderDao.getInstance();

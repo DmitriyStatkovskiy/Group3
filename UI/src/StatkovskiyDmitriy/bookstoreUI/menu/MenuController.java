@@ -60,23 +60,23 @@ public class MenuController {
         OrderService orderService = OrderService.getInstance();
         RequestService requestService = RequestService.getInstance();
 
-        Book bookA = new Book("AAA", "1", 10, "aaa");
-        Book bookB = new Book("BBB", "2", 20, "bbb");
-        Book bookC = new Book("CCC", "3", 30, "ccc");
-        Book bookD = new Book("DDD", "4", 40, "ddd");
-        Book bookE = new Book("EEE", "5", 50, "eee", BookStatus.OUT_OF_STOCK);
-        bookInstance.addBook(bookA);
-        bookInstance.addBook(bookB);
-        bookInstance.addBook(bookD);
-        bookInstance.addBook(bookE);
-        bookInstance.addBook(bookC);
-
-        Order order1 = orderInstance.createOrder();
-        Order order2 = orderInstance.createOrder();
-        orderService.addBook(order1, bookA);
-        orderService.addBook(order2, bookB);
-        orderService.addBook(order2, bookC);
-
-        requestService.createRequest(bookE);
+//        Book bookA = new Book("AAA", "1", 10, "aaa");
+//        Book bookB = new Book("BBB", "2", 20, "bbb");
+//        Book bookC = new Book("CCC", "3", 30, "ccc");
+//        Book bookD = new Book("DDD", "4", 40, "ddd");
+//        Book bookE = new Book("EEE", "5", 50, "eee", BookStatus.OUT_OF_STOCK);
+//        bookInstance.addBook(bookA);
+//        bookInstance.addBook(bookB);
+//        bookInstance.addBook(bookD);
+//        bookInstance.addBook(bookE);
+//        bookInstance.addBook(bookC);
+//
+//        Order order1 = orderInstance.createOrder();
+//        Order order2 = orderInstance.createOrder();
+//        orderService.addBook(order1, bookA);
+//        orderService.addBook(order2, bookB);
+//        orderService.addBook(order2, bookC);
+//
+//        requestService.createRequest(bookE);
     }
 }

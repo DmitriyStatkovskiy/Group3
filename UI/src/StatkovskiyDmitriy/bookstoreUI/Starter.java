@@ -8,13 +8,14 @@ import org.apache.log4j.PropertyConfigurator;
 import java.io.IOException;
 import java.io.Serializable;
 
-public class Starter implements Serializable {
+public class Starter {
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
 
         TestSerialization testSerialization = new TestSerialization();
 
 //TODO: придумать, что десерилизовать при первом запуске
+
         testSerialization.deserialize();
 
         PropertiesLoader.getInstance().loadPermissionAndDate();
@@ -22,5 +23,6 @@ public class Starter implements Serializable {
         MenuController.getInstance().run();
 
         testSerialization.serialize();
+
     }
 }
