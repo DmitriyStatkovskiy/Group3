@@ -42,7 +42,7 @@ public interface IBookService {
 
     List<Book> getOldBooksByFieldIsOld();
 
-    void setOldBooks(int month);
+    void manualSetOldBooks(int month);
 
     void setIncomingDate(String book, LocalDate date);
 

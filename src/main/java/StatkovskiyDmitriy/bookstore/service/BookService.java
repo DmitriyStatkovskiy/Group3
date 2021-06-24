@@ -6,7 +6,6 @@ import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.dao.BookDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
-import StatkovskiyDmitriy.bookstore.model.Request;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
 import org.slf4j.Logger;
@@ -24,6 +23,8 @@ public class BookService implements IBookService {
     private static BookService instance;
     private IBookDao bookDao = BookDao.getInstance();
     private IRequestService requestService = RequestService.getInstance();
+    private static int numberOfMonthToMarkBookAsOld = 6;
+    private static boolean permissionToAddRequest = true;
 
     private BookService() {
 
@@ -39,6 +40,14 @@ public class BookService implements IBookService {
     public BookService(IBookDao stockDao, IRequestService requestService) {
         this.bookDao = stockDao;
         this.requestService = requestService;
+    }
+
+    public void setNumberOfMonthToMarkBookAsOld(int numberOfMonthToMarkBookAsOld) {
+        BookService.numberOfMonthToMarkBookAsOld = numberOfMonthToMarkBookAsOld;
+    }
+
+    public void setPermissionToAddRequest(boolean permissionToAddRequest) {
+        BookService.permissionToAddRequest = permissionToAddRequest;
     }
 
     public List<Book> getOutOfStockBooks(Order order) {
@@ -80,15 +89,15 @@ public class BookService implements IBookService {
     }
 
     public void addBookAndCloseRequest(String bookName) throws EntityNotFoundException {
-        try{
-
+        try {
             if (bookDao.getBookByName(bookName).getStatus().equals(BookStatus.OUT_OF_STOCK) || requestService.getRequestByName(bookName).getStatus().equals(RequestStatus.OPEN)) {
                 bookDao.getBookByName(bookName).setStatus(BookStatus.IN_STOCK);
-                requestService.getRequestByName(bookName).setStatus(RequestStatus.CLOSED);
+                if (permissionToAddRequest) {
+                    requestService.getRequestByName(bookName).setStatus(RequestStatus.CLOSED);
+                }
             }
-        }
-        catch (EntityNotFoundException exception){
-            logger.warn("book not found "+bookName);
+        } catch (EntityNotFoundException exception) {
+            logger.warn("book not found " + bookName);
             throw new EntityNotFoundException("can't add book " + bookName);
         }
     }
@@ -134,16 +143,16 @@ public class BookService implements IBookService {
     }
 
     public List<Book> sortOldBooksByIncomingDate() {
-        // List<Book> books = getOldBooksByFieldIsOld();
-        List<Book> books = getOldBooks();
+        List<Book> books = getOldBooksByFieldIsOld();
+        // List<Book> books = getOldBooks();
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getIncomingDate()))
                 .collect(Collectors.toList());
     }
 
     public List<Book> sortOldBooksByPrice() {
-        //  List<Book> books = getOldBooksByFieldIsOld();
-        List<Book> books = getOldBooks();
+        List<Book> books = getOldBooksByFieldIsOld();
+        //  List<Book> books = getOldBooks();
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getPrice()))
                 .collect(Collectors.toList());
@@ -192,13 +201,20 @@ public class BookService implements IBookService {
         return bookDao.getBookByName(name);
     }
 
-    public void setOldBooks(int month) {
+    public void setOldBooks() {
+        bookDao.getAllBooks().stream()
+                .filter(book -> book.getIncomingDate().isBefore(LocalDate.now().minusMonths(numberOfMonthToMarkBookAsOld)))
+                .forEach(book -> book.setOld(true));
+    }
+
+    public void manualSetOldBooks(int month) {
         bookDao.getAllBooks().stream()
                 .filter(book -> book.getIncomingDate().isBefore(LocalDate.now().minusMonths(month)))
                 .forEach(book -> book.setOld(true));
     }
 
     public List<Book> getOldBooksByFieldIsOld() {
+        setOldBooks();
         List<Book> books = bookDao.getAllBooks();
         return books.stream().filter(Book::isOld).collect(Collectors.toList());
     }

@@ -28,7 +28,6 @@ public class Manager {
         return instance;
     }
 
-
     public void addBook(Book book) {
         bookService.addBook(book);
     }
@@ -77,7 +76,7 @@ public class Manager {
     }
 
     public void setOldBooks(int month) {
-        bookService.setOldBooks(month);
+        bookService.manualSetOldBooks(month);
     }
 
     public void addOrder() {
