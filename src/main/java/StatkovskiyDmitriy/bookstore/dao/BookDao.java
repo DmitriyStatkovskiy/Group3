@@ -42,7 +42,6 @@ public class BookDao implements IBookDao, Serializable {
         books.add(book);
     }
 
-
     public List<Book> getAllBooks() {
         return books;
     }

@@ -1,29 +1,30 @@
 package StatkovskiyDmitriy.ser;
 
-import StatkovskiyDmitriy.bookstore.dao.BookDao;
-import StatkovskiyDmitriy.bookstore.dao.OrderDao;
-import StatkovskiyDmitriy.bookstore.dao.RequestDao;
+import StatkovskiyDmitriy.bookstore.service.BookService;
+import StatkovskiyDmitriy.bookstore.service.OrderService;
+import StatkovskiyDmitriy.bookstore.service.RequestService;
 
 import java.io.Serializable;
 
 public class AllDaoData implements Serializable {
     private static final long serialVersionUID = 1L;
-    private BookDao bookDao = BookDao.getInstance();
-    private OrderDao orderDao = OrderDao.getInstance();
-    private RequestDao requestDao = RequestDao.getInstance();
+
+    private BookService bookService = BookService.getInstance();
+    private OrderService orderService = OrderService.getInstance();
+    private RequestService requestService = RequestService.getInstance();
 
     public AllDaoData() {
     }
 
-    public BookDao getBookDao() {
-        return bookDao;
+    public BookService getBookService() {
+        return bookService;
     }
 
-    public OrderDao getOrderDao() {
-        return orderDao;
+    public OrderService getOrderService() {
+        return orderService;
     }
 
-    public RequestDao getRequestDao() {
-        return requestDao;
+    public RequestService getRequestService() {
+        return requestService;
     }
 }

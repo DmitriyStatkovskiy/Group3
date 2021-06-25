@@ -20,4 +20,6 @@ public interface IBookDao {
     void deleteAll();
 
     Book getBookByName(String name);
+
+    void setBooks(List<Book> books);
 }

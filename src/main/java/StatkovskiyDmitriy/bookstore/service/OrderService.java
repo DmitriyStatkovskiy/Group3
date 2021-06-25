@@ -199,4 +199,8 @@ public class OrderService implements IOrderService, Serializable {
     public void deleteAll() {
         orderDao.deleteAll();
     }
+
+    public void setOrders(List<Order> orders) {
+        orderDao.setOrders(orders);
+    }
 }

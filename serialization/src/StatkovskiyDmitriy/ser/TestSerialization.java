@@ -1,8 +1,8 @@
 package StatkovskiyDmitriy.ser;
 
-import StatkovskiyDmitriy.bookstore.dao.BookDao;
-import StatkovskiyDmitriy.bookstore.dao.OrderDao;
-import StatkovskiyDmitriy.bookstore.dao.RequestDao;
+import StatkovskiyDmitriy.bookstore.service.BookService;
+import StatkovskiyDmitriy.bookstore.service.OrderService;
+import StatkovskiyDmitriy.bookstore.service.RequestService;
 
 import java.io.*;
 
@@ -24,9 +24,10 @@ public class TestSerialization implements Serializable {
         FileInputStream fileInputStream = new FileInputStream("save.ser");
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         AllDaoData allDaoData = (AllDaoData) objectInputStream.readObject();
-        BookDao.getInstance().setBooks(allDaoData.getBookDao().getBooks());
-        OrderDao.getInstance().setOrders(allDaoData.getOrderDao().getOrders());
-        RequestDao.getInstance().setRequests(allDaoData.getRequestDao().getRequests());
+
+        BookService.getInstance().setBooks(allDaoData.getBookService().getAllBooks());
+        OrderService.getInstance().setOrders(allDaoData.getOrderService().getAll());
+        RequestService.getInstance().setRequests(allDaoData.getRequestService().getAll());
     }
 
 }

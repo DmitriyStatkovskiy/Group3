@@ -51,6 +51,10 @@ public class BookService implements IBookService, Serializable {
         BookService.permissionToAddRequest = permissionToAddRequest;
     }
 
+    public void setBooks(List<Book> books) {
+        bookDao.setBooks(books);
+    }
+
     public List<Book> getOutOfStockBooks(Order order) {
         List<Book> bookOlds = order.getAll();
         List<String> bookIds = bookOlds.stream()

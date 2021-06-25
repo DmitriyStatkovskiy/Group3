@@ -24,4 +24,6 @@ public interface IRequestService {
     void closeRequest(String id);
 
     void deleteAll();
+
+    void setRequests(List<Request> requests);
 }

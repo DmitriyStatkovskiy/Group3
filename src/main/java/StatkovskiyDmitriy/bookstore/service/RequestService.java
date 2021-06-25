@@ -101,4 +101,8 @@ public class RequestService implements IRequestService, Serializable {
     public void deleteAll() {
         requestDao.deleteAll();
     }
+
+    public void setRequests(List<Request> requests) {
+        requestDao.setRequests(requests);
+    }
 }

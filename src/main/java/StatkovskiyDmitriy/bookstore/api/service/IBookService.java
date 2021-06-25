@@ -4,7 +4,6 @@ import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 
-import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -47,7 +46,9 @@ public interface IBookService {
 
     void setIncomingDate(String book, LocalDate date);
 
-    public void addBookAndCloseRequest(String bookName);
+    void addBookAndCloseRequest(String bookName);
 
     void deleteAll();
+
+    void setBooks(List<Book> books);
 }
