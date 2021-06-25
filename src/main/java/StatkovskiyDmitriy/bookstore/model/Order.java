@@ -88,7 +88,6 @@ public class Order implements Serializable {
     }
 
     private String orderClosedDate() {
-
         if (orderClosedDate == null) {
             return "In progress";
         }

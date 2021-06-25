@@ -22,7 +22,6 @@ public class Builder {
     }
 
     public void buildMenu() {
-
         rootMenu = new Menu("Main menu");
         rootMenu.addMenuItem(new MenuItem("Book Menu", () -> {
             System.out.println("");

@@ -90,7 +90,6 @@ public class OrderService implements IOrderService, Serializable {
     }
 
     public double calculateOrderPrice(Order order) {
-
         List<Book> books = order.getAll();
         return books.stream()
                 .map(book -> book.getPrice())

@@ -47,7 +47,6 @@ public class BookDao implements IBookDao, Serializable {
     }
 
     public List<Book> getBooksByIds(List<String> ids, BookStatus status) {
-
         return books.stream()
                 .filter(book -> ids.contains(book.getId()))
                 .filter(stockUnit -> status.equals(stockUnit.getStatus()))
@@ -55,7 +54,6 @@ public class BookDao implements IBookDao, Serializable {
     }
 
     public List<Book> getBooksByName(List<String> name, BookStatus status) {
-
         return books.stream()
                 .filter(book -> name.contains(book.getName()))
                 .filter(book -> status.equals(book.getStatus()))
