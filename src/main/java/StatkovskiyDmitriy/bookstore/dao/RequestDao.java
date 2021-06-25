@@ -14,7 +14,6 @@ public class RequestDao implements IRequestDao, Serializable {
     private List<Request> requests = new ArrayList<>();
 
     private RequestDao() {
-
     }
 
     public static RequestDao getInstance() {
