@@ -1,6 +1,5 @@
 package StatkovskiyDmitriy.bookstore.api.service;
 
-import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Request;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
@@ -22,4 +21,9 @@ public interface IRequestService {
 
     Request getRequestByName(String name);
 
+    void closeRequest(String id);
+
+    void deleteAll();
+
+    void setRequests(List<Request> requests);
 }

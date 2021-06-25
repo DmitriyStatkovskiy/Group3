@@ -12,17 +12,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BookService implements IBookService {
+public class BookService implements IBookService, Serializable {
     static Logger logger = LoggerFactory.getLogger(BookService.class);
     private static BookService instance;
     private IBookDao bookDao = BookDao.getInstance();
-    private IRequestService requestService;
+    private IRequestService requestService = RequestService.getInstance();
+    private static int numberOfMonthToMarkBookAsOld = 6;
+    private static boolean permissionToAddRequest = true;
 
     private BookService() {
 
@@ -40,8 +43,20 @@ public class BookService implements IBookService {
         this.requestService = requestService;
     }
 
+    public void setNumberOfMonthToMarkBookAsOld(int numberOfMonthToMarkBookAsOld) {
+        BookService.numberOfMonthToMarkBookAsOld = numberOfMonthToMarkBookAsOld;
+    }
+
+    public void setPermissionToAddRequest(boolean permissionToAddRequest) {
+        BookService.permissionToAddRequest = permissionToAddRequest;
+    }
+
+    public void setBooks(List<Book> books) {
+        bookDao.setBooks(books);
+    }
+
     public List<Book> getOutOfStockBooks(Order order) {
-        List<Book> bookOlds = order.getBooks();
+        List<Book> bookOlds = order.getAll();
         List<String> bookIds = bookOlds.stream()
                 .map(book -> book.getId())
                 .collect(Collectors.toList());
@@ -64,15 +79,31 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public void addBookToStock(Book bookOld) throws EntityNotFoundException {
-        List<String> name = Collections.singletonList(bookOld.getId());
+    public void addBookToStock(Book book) throws EntityNotFoundException {
+        List<String> ids = Collections.singletonList(book.getId());
+        String bookName = book.getName();
         try {
-            if (bookDao.getBooksByIds(name, BookStatus.OUT_OF_STOCK).size() != 0) {
-                requestService.changeRequestStatusByBookName(bookOld.getName(), RequestStatus.CLOSED);
+            if (bookDao.getBooksByIds(ids, BookStatus.OUT_OF_STOCK).size() != 0 || requestService.getRequestByName(bookName).getStatus().equals(RequestStatus.OPEN)) {
+                requestService.changeRequestStatusByBookName(book.getName(), RequestStatus.CLOSED);
+                bookDao.getAllBooks().forEach(book1 -> book1.setStatus(BookStatus.IN_STOCK));
             }
         } catch (EntityNotFoundException exception) {
-            logger.info("can't add book " + bookOld);
-            throw new EntityNotFoundException("can't add book " + bookOld);
+            logger.info("can't add book " + book);
+            throw new EntityNotFoundException("can't add book " + book);
+        }
+    }
+
+    public void addBookAndCloseRequest(String bookName) throws EntityNotFoundException {
+        try {
+            if (bookDao.getBookByName(bookName).getStatus().equals(BookStatus.OUT_OF_STOCK) || requestService.getRequestByName(bookName).getStatus().equals(RequestStatus.OPEN)) {
+                bookDao.getBookByName(bookName).setStatus(BookStatus.IN_STOCK);
+                if (permissionToAddRequest) {
+                    requestService.getRequestByName(bookName).setStatus(RequestStatus.CLOSED);
+                }
+            }
+        } catch (EntityNotFoundException exception) {
+            logger.warn("book not found " + bookName);
+            throw new EntityNotFoundException("can't add book " + bookName);
         }
     }
 
@@ -117,14 +148,16 @@ public class BookService implements IBookService {
     }
 
     public List<Book> sortOldBooksByIncomingDate() {
-        List<Book> books = getOldBooks();
+        List<Book> books = getOldBooksByFieldIsOld();
+        // List<Book> books = getOldBooks();
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getIncomingDate()))
                 .collect(Collectors.toList());
     }
 
     public List<Book> sortOldBooksByPrice() {
-        List<Book> books = getOldBooks();
+        List<Book> books = getOldBooksByFieldIsOld();
+        //  List<Book> books = getOldBooks();
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getPrice()))
                 .collect(Collectors.toList());
@@ -171,6 +204,36 @@ public class BookService implements IBookService {
 
     public Book getBookByName(String name) {
         return bookDao.getBookByName(name);
+    }
+
+    public void setOldBooks() {
+        bookDao.getAllBooks().stream()
+                .filter(book -> book.getIncomingDate().isBefore(LocalDate.now().minusMonths(numberOfMonthToMarkBookAsOld)))
+                .forEach(book -> book.setOld(true));
+    }
+
+    public void manualSetOldBooks(int month) {
+        bookDao.getAllBooks().stream()
+                .filter(book -> book.getIncomingDate().isBefore(LocalDate.now().minusMonths(month)))
+                .forEach(book -> book.setOld(true));
+    }
+
+    public List<Book> getOldBooksByFieldIsOld() {
+        setOldBooks();
+        List<Book> books = bookDao.getAllBooks();
+        return books.stream().filter(Book::isOld).collect(Collectors.toList());
+    }
+
+    public void setIncomingDate(String book, LocalDate date) {
+        bookDao.getAllBooks().stream()
+                .filter(book1 -> book1.getName().equals(book))
+                .findFirst()
+                .get()
+                .setIncomingDate(date);
+    }
+
+    public void deleteAll() {
+        bookDao.deleteAll();
     }
 
     public void printStock(List<Book> book) {

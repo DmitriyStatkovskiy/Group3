@@ -2,12 +2,13 @@ package StatkovskiyDmitriy.bookstore.model;
 
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Order {
+public class Order implements Serializable {
 
     private String customerName;
     private String orderNumber;
@@ -38,7 +39,7 @@ public class Order {
         this.status = status;
     }
 
-    public List<Book> getBooks() {
+    public List<Book> getAll() {
         return books;
     }
 
@@ -87,7 +88,6 @@ public class Order {
     }
 
     private String orderClosedDate() {
-
         if (orderClosedDate == null) {
             return "In progress";
         }
@@ -128,11 +128,11 @@ public class Order {
                 getStatus() == order.getStatus() &&
                 Objects.equals(getOrderCreatedDate(), order.getOrderCreatedDate()) &&
                 Objects.equals(getOrderClosedDate(), order.getOrderClosedDate()) &&
-                Objects.equals(getBooks(), order.getBooks());
+                Objects.equals(getAll(), order.getAll());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCustomerName(), getOrderNumber(), getBookName(), getStatus(), getOrderCreatedDate(), getOrderClosedDate(), getOrderPrice(), getBooks());
+        return Objects.hash(getCustomerName(), getOrderNumber(), getBookName(), getStatus(), getOrderCreatedDate(), getOrderClosedDate(), getOrderPrice(), getAll());
     }
 }

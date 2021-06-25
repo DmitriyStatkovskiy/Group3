@@ -8,7 +8,8 @@ import StatkovskiyDmitriy.bookstoreUI.actions.request.*;
 public class Builder {
     private static Builder instance;
     private Menu rootMenu;
-    private final IAction emptyAction = () -> {};
+    private final IAction emptyAction = () -> {
+    };
 
     private Builder() {
     }
@@ -21,7 +22,6 @@ public class Builder {
     }
 
     public void buildMenu() {
-
         rootMenu = new Menu("Main menu");
         rootMenu.addMenuItem(new MenuItem("Book Menu", () -> {
             System.out.println("");
@@ -46,7 +46,11 @@ public class Builder {
         MenuItem add = new MenuItem("add book", new AddAction(), bookMenu);
         MenuItem showOutOfStock = new MenuItem("show out of stock books", new GetAllOutOfStockAction(), bookMenu);
         MenuItem changeStatus = new MenuItem("change status", new ChangeStatusAction(), bookMenu);
+        MenuItem addBookToStock = new MenuItem("add book to stock and close request", new AddBookAndCloseRequest(), bookMenu);
         MenuItem showDescription = new MenuItem("show book description", new GetDescriptionAction(), bookMenu);
+        MenuItem setOldBooks = new MenuItem("mark books as old", new SetOldAction(), bookMenu);
+        MenuItem setIncomingDate = new MenuItem("set incoming date", new SetIncomingDateAction(), bookMenu);
+        MenuItem deleteAll = new MenuItem("delete all books", new DeleteAllAction(), bookMenu);
 
         MenuItem sort = new MenuItem("sort menu", emptyAction, sortMenu);
         MenuItem previousMenu = new MenuItem("previous menu", emptyAction, rootMenu);
@@ -55,7 +59,13 @@ public class Builder {
         bookMenu.addMenuItem(add);
         bookMenu.addMenuItem(showOutOfStock);
         bookMenu.addMenuItem(changeStatus);
+        bookMenu.addMenuItem(addBookToStock);
+
         bookMenu.addMenuItem(showDescription);
+        bookMenu.addMenuItem(setOldBooks);
+        bookMenu.addMenuItem(setIncomingDate);
+        bookMenu.addMenuItem(deleteAll);
+
         bookMenu.addMenuItem(sort);
         bookMenu.addMenuItem(previousMenu);
 
@@ -92,6 +102,7 @@ public class Builder {
         MenuItem getOrderDetails = new MenuItem("show order details", new GetOrderDetails(), orderMenu);
         MenuItem showCompletedOrders = new MenuItem("show completed orders value", new GetCompletedOrdersValueAction(), orderMenu);
         MenuItem showProfitOverATime = new MenuItem("show earned money over a time", new GetProfitAction(), orderMenu);
+        MenuItem deleteAll = new MenuItem("delete all orders", new DeleteAllOrdersAction(), orderMenu);
 
         MenuItem sort = new MenuItem("sort menu", emptyAction, sortMenu);
 
@@ -106,6 +117,7 @@ public class Builder {
         orderMenu.addMenuItem(getOrderDetails);
         orderMenu.addMenuItem(showCompletedOrders);
         orderMenu.addMenuItem(showProfitOverATime);
+        orderMenu.addMenuItem(deleteAll);
         orderMenu.addMenuItem(sort);
         orderMenu.addMenuItem(previousMenu);
 
@@ -139,6 +151,7 @@ public class Builder {
         MenuItem getAll = new MenuItem("show all requests", new GetRequestsAction(), requestMenu);
         MenuItem add = new MenuItem("create request", new AddRequestAction(), requestMenu);
         MenuItem changeStatus = new MenuItem("change status", new ChangeRequestStatusAction(), requestMenu);
+        MenuItem deleteAll = new MenuItem("delete all requests", new DeleteAllRequestsAction(), requestMenu);
         MenuItem sort = new MenuItem("sort menu", emptyAction, sortMenu);
 
         MenuItem previousMenu = new MenuItem("previous menu", emptyAction, rootMenu);
@@ -146,6 +159,7 @@ public class Builder {
         requestMenu.addMenuItem(getAll);
         requestMenu.addMenuItem(add);
         requestMenu.addMenuItem(changeStatus);
+        requestMenu.addMenuItem(deleteAll);
         requestMenu.addMenuItem(sort);
         requestMenu.addMenuItem(previousMenu);
         return requestMenu;

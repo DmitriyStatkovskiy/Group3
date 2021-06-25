@@ -3,19 +3,19 @@ package StatkovskiyDmitriy.bookstore.service;
 import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
 import StatkovskiyDmitriy.bookstore.dao.RequestDao;
-
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Request;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class RequestService implements IRequestService {
+public class RequestService implements IRequestService, Serializable {
     private static RequestService instance;
     private final IRequestDao requestDao = RequestDao.getInstance();
 
@@ -44,9 +44,13 @@ public class RequestService implements IRequestService {
         requestDao.getRequestById(id).setStatus(status);
     }
 
+    public void closeRequest(String id) {
+        requestDao.getRequestById(id).setStatus(RequestStatus.CLOSED);
+    }
+
     public Request getRequestByName(String name) throws EntityNotFoundException {
         Request request = requestDao.getAll().stream()
-                .filter(request1 -> request1.getBookOld().getName().equals(name))
+                .filter(request1 -> request1.getBook().getName().equals(name))
                 .findFirst()
                 .orElseThrow(() -> new EntityNotFoundException("request by book name not found, book name: " + name));
         return request;
@@ -55,24 +59,24 @@ public class RequestService implements IRequestService {
     public void changeRequestStatusByBookName(String bookName, RequestStatus status) {
         List<Request> requests = requestDao.getAll();
         requests.stream()
-                .filter(request -> request.getBookOld().getName().equals(bookName))
+                .filter(request -> request.getBook().getName().equals(bookName))
                 .forEach(request -> request.setStatus(status));
     }
 
     public List<Request> sortRequestsByBookName() {
         List<Request> books = requestDao.getAll();
         return books.stream()
-                .sorted(Comparator.comparing(o -> o.getBookOld().getName()))
+                .sorted(Comparator.comparing(o -> o.getBook().getName()))
                 .collect(Collectors.toList());
     }
 
     public List<Request> sortRequestsByQuantity() {
         List<Request> requests = requestDao.getAll();
         List<String> allBookNames = requests.stream().
-                map(book -> book.getBookOld().getName())
+                map(book -> book.getBook().getName())
                 .collect(Collectors.toList());
         Set<String> uniqName = requests.stream()
-                .map(book -> book.getBookOld().getName())
+                .map(book -> book.getBook().getName())
                 .collect(Collectors.toSet());
         String[] requestedBookNames = new String[uniqName.size()];
         uniqName.toArray(requestedBookNames);
@@ -86,11 +90,19 @@ public class RequestService implements IRequestService {
         for (int i = 0; i < requestedBookNames.length; i++) {
             int j = i;
             requests.stream()
-                    .filter(request -> request.getBookOld().getName().equals(requestedBookNames[j]))
+                    .filter(request -> request.getBook().getName().equals(requestedBookNames[j]))
                     .forEach(request -> request.setQuantity(numberOfRepetitions[j]));
         }
         return requests.stream()
                 .sorted(Comparator.comparing(o -> o.getQuantity()))
                 .collect(Collectors.toList());
+    }
+
+    public void deleteAll() {
+        requestDao.deleteAll();
+    }
+
+    public void setRequests(List<Request> requests) {
+        requestDao.setRequests(requests);
     }
 }

@@ -2,7 +2,6 @@ package StatkovskiyDmitriy.bookstoreUI.menu;
 
 import StatkovskiyDmitriy.bookstore.dao.BookDao;
 import StatkovskiyDmitriy.bookstore.dao.OrderDao;
-import StatkovskiyDmitriy.bookstore.dao.RequestDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
@@ -37,7 +36,7 @@ public class MenuController {
     public void run() {
         Scanner scanner = new Scanner(System.in);
         Integer index = -1;
-        initDao();
+        //initDao();
         navigator.setCurrentMenu(builder.getRootMenu());
         navigator.printMenu();
 
@@ -56,10 +55,8 @@ public class MenuController {
     private void initDao() {
         BookDao bookInstance = BookDao.getInstance();
         OrderDao orderInstance = OrderDao.getInstance();
-        RequestDao requestInstance = RequestDao.getInstance();
         OrderService orderService = OrderService.getInstance();
         RequestService requestService = RequestService.getInstance();
-
         Book bookA = new Book("AAA", "1", 10, "aaa");
         Book bookB = new Book("BBB", "2", 20, "bbb");
         Book bookC = new Book("CCC", "3", 30, "ccc");

@@ -12,4 +12,8 @@ public interface IRequestDao {
     List<Request> getAll();
 
     Request getRequestById(String id);
+
+    void deleteAll();
+
+    void setRequests(List<Request> requests);
 }

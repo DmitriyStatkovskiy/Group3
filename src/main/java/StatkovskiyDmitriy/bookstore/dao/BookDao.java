@@ -5,14 +5,15 @@ import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class BookDao implements IBookDao {
+public class BookDao implements IBookDao, Serializable {
 
     private static BookDao instance;
-    private final List<Book> books = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();
 
     private BookDao() {
 
@@ -25,17 +26,27 @@ public class BookDao implements IBookDao {
         return instance;
     }
 
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void deleteAll() {
+        books = new ArrayList<>();
+    }
+
     public void addBook(Book book) {
         books.add(book);
     }
-
 
     public List<Book> getAllBooks() {
         return books;
     }
 
     public List<Book> getBooksByIds(List<String> ids, BookStatus status) {
-
         return books.stream()
                 .filter(book -> ids.contains(book.getId()))
                 .filter(stockUnit -> status.equals(stockUnit.getStatus()))
@@ -43,7 +54,6 @@ public class BookDao implements IBookDao {
     }
 
     public List<Book> getBooksByName(List<String> name, BookStatus status) {
-
         return books.stream()
                 .filter(book -> name.contains(book.getName()))
                 .filter(book -> status.equals(book.getStatus()))

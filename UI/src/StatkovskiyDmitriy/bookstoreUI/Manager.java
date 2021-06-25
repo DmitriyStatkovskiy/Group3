@@ -28,7 +28,6 @@ public class Manager {
         return instance;
     }
 
-
     public void addBook(Book book) {
         bookService.addBook(book);
     }
@@ -39,6 +38,10 @@ public class Manager {
 
     public void changeStatus(String name) {
         bookService.changeStatusByName(name);
+    }
+
+    public void addBookAndCloseRequest(String name) {
+        bookService.addBookAndCloseRequest(name);
     }
 
     public String showDescription(String name) {
@@ -71,6 +74,10 @@ public class Manager {
 
     public List<Order> getOrders() {
         return orderService.getAll();
+    }
+
+    public void setOldBooks(int month) {
+        bookService.manualSetOldBooks(month);
     }
 
     public void addOrder() {
@@ -161,5 +168,21 @@ public class Manager {
 
     public List<Request> sortRequestsByBookName() {
         return requestService.sortRequestsByBookName();
+    }
+
+    public void setIncomingDate(String book, LocalDate date) {
+        bookService.setIncomingDate(book, date);
+    }
+
+    public void deleteAllRequests() {
+        requestService.deleteAll();
+    }
+
+    public void deleteAllOrders() {
+        orderService.deleteAll();
+    }
+
+    public void deleteAllBooks() {
+        bookService.deleteAll();
     }
 }

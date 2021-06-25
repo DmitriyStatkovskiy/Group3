@@ -9,4 +9,7 @@ public interface IOrderDao {
 
     List<Order> getAll();
 
+    void deleteAll();
+
+    void setOrders(List<Order> orders);
 }

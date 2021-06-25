@@ -108,6 +108,12 @@ public class Main {
 
         requestService.sortRequestsByQuantity().forEach(System.out::println);
         System.out.println(orderService.numberOfCompletedOrdersFromRange(LocalDate.of(2021, 6, 1), LocalDate.of(2021, 6, 12)));
+        bookService.changeStatusByName("AAA");
+
+        bookService.addBookToStock(bookA);
+        requestService.sortRequestsByQuantity().forEach(System.out::println);
+
+
 
     }
 }

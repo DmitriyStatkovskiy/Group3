@@ -1,6 +1,8 @@
 package StatkovskiyDmitriy.bookstore.model.enums;
 
-public enum RequestStatus {
+import java.io.Serializable;
+
+public enum RequestStatus implements Serializable {
     OPEN,
     CLOSED
 }

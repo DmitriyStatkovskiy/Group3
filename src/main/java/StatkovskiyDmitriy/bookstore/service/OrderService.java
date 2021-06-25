@@ -12,12 +12,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OrderService implements IOrderService {
+public class OrderService implements IOrderService, Serializable {
     static Logger logger = LoggerFactory.getLogger(BookService.class);
     private static OrderService instance;
     private IOrderDao orderDao = OrderDao.getInstance();
@@ -48,7 +49,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public Order addBook(Order order, Book book) {
-        order.getBooks().add(book);
+        order.getAll().add(book);
         return order;
     }
 
@@ -89,8 +90,7 @@ public class OrderService implements IOrderService {
     }
 
     public double calculateOrderPrice(Order order) {
-
-        List<Book> books = order.getBooks();
+        List<Book> books = order.getAll();
         return books.stream()
                 .map(book -> book.getPrice())
                 .mapToDouble(Double::doubleValue)
@@ -193,5 +193,13 @@ public class OrderService implements IOrderService {
                 .orElseThrow(() -> new EntityNotFoundException("order not found, id: " + id));
 
         return order;
+    }
+
+    public void deleteAll() {
+        orderDao.deleteAll();
+    }
+
+    public void setOrders(List<Order> orders) {
+        orderDao.setOrders(orders);
     }
 }
