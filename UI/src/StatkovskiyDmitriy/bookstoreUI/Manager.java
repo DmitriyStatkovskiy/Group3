@@ -41,7 +41,6 @@ public class Manager {
     }
 
     public void addBookAndCloseRequest(String name) {
-
         bookService.addBookAndCloseRequest(name);
     }
 
