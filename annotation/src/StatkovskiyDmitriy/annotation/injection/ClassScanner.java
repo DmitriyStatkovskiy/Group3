@@ -13,23 +13,20 @@ public class ClassScanner {
         this.foundClasses = new HashSet<>();
     }
 
-    public Set<Class<?>> findClasses(Class<?> startClass) {
+    public Set<Class<?>> findClasses(Class<?> startClass) throws ClassNotFoundException {
         String directory = getDirectory(startClass);
         File file = new File(directory);
         if (!file.isDirectory()) {
             throw new RuntimeException("invalid directory" + directory);
-
         }
         try {
-
             for (File innerFile : Objects.requireNonNull(file.listFiles())) {
                 scanDirectory(innerFile);
             }
         } catch (ClassNotFoundException exception) {
-            throw new RuntimeException(exception.getMessage(), exception);
+            throw new ClassNotFoundException(exception.getMessage(), exception);
         }
         return foundClasses;
-
     }
 
     private String getDirectory(Class<?> clss) {
