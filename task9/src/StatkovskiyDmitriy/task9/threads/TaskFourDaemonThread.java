@@ -2,7 +2,7 @@ package StatkovskiyDmitriy.task9.threads;
 
 import java.time.LocalTime;
 
-public class DaemonThread implements Runnable {
+public class TaskFourDaemonThread implements Runnable {
     private int seconds = 1;
 
     private boolean isActive = true;
@@ -19,10 +19,10 @@ public class DaemonThread implements Runnable {
         isActive = false;
     }
 
-    DaemonThread() {
+    TaskFourDaemonThread() {
     }
 
-    public DaemonThread(int seconds) {
+    public TaskFourDaemonThread(int seconds) {
         this.seconds = seconds;
     }
 

@@ -1,6 +1,6 @@
 package StatkovskiyDmitriy.task9.threads;
 
-public class SecondThread implements Runnable {
+public class TaskOneSecondThread implements Runnable {
     private static Object a = new Object();
     public static Object getA() {
         return a;

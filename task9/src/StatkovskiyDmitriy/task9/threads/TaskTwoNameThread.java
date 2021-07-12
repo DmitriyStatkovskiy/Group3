@@ -1,6 +1,6 @@
 package StatkovskiyDmitriy.task9.threads;
 
-public class NameThread implements Runnable {
+public class TaskTwoNameThread implements Runnable {
     boolean isActive = true;
 
     public void setActive(boolean active) {

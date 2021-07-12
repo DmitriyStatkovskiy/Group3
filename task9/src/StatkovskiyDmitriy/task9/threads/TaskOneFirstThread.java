@@ -2,7 +2,7 @@ package StatkovskiyDmitriy.task9.threads;
 
 import static java.lang.Thread.sleep;
 
-public class FirstThread implements Runnable {
+public class TaskOneFirstThread implements Runnable {
     @Override
     public void run() {
         System.out.println(Thread.currentThread().getState() + " runnable");

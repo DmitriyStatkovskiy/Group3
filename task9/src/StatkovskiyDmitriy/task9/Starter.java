@@ -7,8 +7,8 @@ import static java.lang.Thread.sleep;
 public class Starter {
     public void taskOne() {
         try {
-            Thread threadOne = new Thread(new FirstThread());
-            Thread threadTwo = new Thread(new SecondThread());
+            Thread threadOne = new Thread(new TaskOneFirstThread());
+            Thread threadTwo = new Thread(new TaskOneSecondThread());
             System.out.println(threadOne.getState() + " new");
             threadOne.start();
             threadTwo.start();
@@ -16,7 +16,7 @@ public class Starter {
             System.out.println(threadOne.getState() + " timed_waiting");
             System.out.println(threadTwo.getState() + " waiting");
 
-            Object a = SecondThread.getA();
+            Object a = TaskOneSecondThread.getA();
             synchronized (a) {
                 a.notify();
             }
@@ -31,8 +31,8 @@ public class Starter {
     }
 
     public void taskTwo() {
-        Thread name = new Thread(new NameThread());
-        Thread surname = new Thread(new SurnameThread());
+        Thread name = new Thread(new TaskTwoNameThread());
+        Thread surname = new Thread(new TaskTwoSurnameThread());
         try {
             taskFour();
             surname.start();
@@ -44,15 +44,15 @@ public class Starter {
     }
 
     public void taskFour() {
-        Thread daemon = new Thread(new DaemonThread(3));
+        Thread daemon = new Thread(new TaskFourDaemonThread(3));
         daemon.setDaemon(true);
         daemon.start();
     }
 
     public void taskThree() {
         Store store = new Store();
-        ProducerThread producer = new ProducerThread(store);
-        ConsumerThread consumer = new ConsumerThread(store);
+        TaskThreeProducerThread producer = new TaskThreeProducerThread(store);
+        TaskThreeConsumerThread consumer = new TaskThreeConsumerThread(store);
         new Thread(producer).start();
         new Thread(consumer).start();
     }

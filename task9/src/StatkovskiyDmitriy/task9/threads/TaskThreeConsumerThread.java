@@ -2,11 +2,13 @@ package StatkovskiyDmitriy.task9.threads;
 
 import StatkovskiyDmitriy.task9.Store;
 
-public class ProducerThread implements Runnable {
+public class TaskThreeConsumerThread implements Runnable {
     Store store;
-    public ProducerThread(Store store){
-        this.store=store;
+
+    public TaskThreeConsumerThread(Store store) {
+        this.store = store;
     }
+
     boolean isActive = true;
 
     public void setActive(boolean active) {
@@ -20,7 +22,7 @@ public class ProducerThread implements Runnable {
     @Override
     public void run() {
         for (int i = 1; i < 6; i++) {
-            store.put();
+            store.get();
         }
     }
 }
