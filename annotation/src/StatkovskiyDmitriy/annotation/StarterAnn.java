@@ -1,16 +1,21 @@
 package StatkovskiyDmitriy.annotation;
 
-import StatkovskiyDmitriy.bookstoreUI.Starter;
+import StatkovskiyDmitriy.bookstore.service.BookService;
 import StatkovskiyDmitriy.bookstoreUI.menu.MenuController;
+import lombok.SneakyThrows;
 import org.apache.log4j.PropertyConfigurator;
 
-import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.lang.reflect.InvocationTargetException;
 
 public class StarterAnn {
-    public static void main(String[] args) throws IOException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+
+    public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException, FileNotFoundException {
         PropertyConfigurator.configure("log4j.properties");
-        MenuController menuController = ObjectFactory.getOurInstance().createObject(MenuController.class);
+        PropertyInjector injector = ObjectFactory.getInstance().createObject(PropertyInjector.class);
+
+        injector.injectDate();
+        MenuController menuController = ObjectFactory.getInstance().createObject(MenuController.class);
 
         menuController.run();
     }
