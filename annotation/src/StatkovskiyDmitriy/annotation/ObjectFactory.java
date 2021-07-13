@@ -37,7 +37,7 @@ public class ObjectFactory {
             configurators.add(aClass.getDeclaredConstructor().newInstance());
         }
     }
-    @SneakyThrows
+
     public <T> T createObject(Class<T> type) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, FileNotFoundException {
         Class<? extends T> implClass = type;
         if (type.isInterface()) {
