@@ -22,4 +22,17 @@ public class Starter {
         testSerialization.serialize();
 
     }
+
+    public void startUi() throws IOException, ClassNotFoundException{
+        PropertyConfigurator.configure("log4j.properties");
+
+        TestSerialization testSerialization = new TestSerialization();
+
+        testSerialization.deserialize();
+
+        PropertiesLoader.getInstance().loadPermissionAndDate();
+        MenuController.getInstance().run();
+
+        testSerialization.serialize();
+    }
 }

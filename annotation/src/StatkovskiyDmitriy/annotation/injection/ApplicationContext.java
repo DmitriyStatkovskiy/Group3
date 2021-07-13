@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 public class ApplicationContext {
     private final Map<Class<?>, Object> context;
     private final Map<Class<?>, Class<?>> classInterfaceMap;
-    private ObjectFactory factory;
+    private ObjectFactoryTask factory;
 
-    public void setFactory(ObjectFactory factory) {
+    public void setFactory(ObjectFactoryTask factory) {
         this.factory = factory;
     }
 

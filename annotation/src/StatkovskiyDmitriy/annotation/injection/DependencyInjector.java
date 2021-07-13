@@ -6,7 +6,7 @@ public class DependencyInjector {
     public static void run(Class<?> startClass, ApplicationContext applicationContext) {
         try {
             ClassScanner scanner = new ClassScanner();
-            ObjectFactory factory = new ObjectFactory();
+            ObjectFactoryTask factory = new ObjectFactoryTask();
             applicationContext.setFactory(factory);
             applicationContext.createContext(scanner.findClasses(startClass));
         } catch (IllegalAccessException | ClassNotFoundException e) {

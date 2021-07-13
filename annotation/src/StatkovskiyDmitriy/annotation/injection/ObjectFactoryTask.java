@@ -4,7 +4,7 @@ import StatkovskiyDmitriy.annotation.injection.exceptions.InjectionException;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class ObjectFactory {
+public class ObjectFactoryTask {
 
     public <T> T createBean(Class<T> aClass) {
         try {
