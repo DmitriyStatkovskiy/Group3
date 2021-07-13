@@ -1,11 +1,13 @@
 package StatkovskiyDmitriy.annotation;
 
+import lombok.Getter;
 import org.reflections.Reflections;
 
 import java.util.Map;
 import java.util.Set;
 
 public class JavaConfig implements Config {
+    @Getter
     private Reflections scanner;
     private Map<Class,Class> interfaceToImplClass;
 
@@ -24,5 +26,10 @@ public class JavaConfig implements Config {
             return classes.iterator().next();
         });
 
+    }
+
+    @Override
+    public Reflections getScanner() {
+        return scanner;
     }
 }
