@@ -1,6 +1,5 @@
 package StatkovskiyDmitriy.annotation;
 
-import java.lang.invoke.SerializedLambda;
 import java.lang.reflect.InvocationTargetException;
 
 public class ObjectFactory {
@@ -16,9 +15,10 @@ public class ObjectFactory {
 
     public <T> T createObject(Class<T> type) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Class<? extends T> implClass = type;
-        if (type.isInterface()){
+        if (type.isInterface()) {
             implClass = config.getImplClass(type);
         }
-       return implClass.getDeclaredConstructor().newInstance();
+        T t = implClass.getDeclaredConstructor().newInstance();
+        return t;
     }
 }
