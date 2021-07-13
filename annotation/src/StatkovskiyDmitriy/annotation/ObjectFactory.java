@@ -1,16 +1,19 @@
 package StatkovskiyDmitriy.annotation;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ObjectFactory {
     private static ObjectFactory ourInstance = new ObjectFactory();
-    private Config config = new JavaConfig("DmitriyStatkovskiy");
+    private Config config ;
 
     public static ObjectFactory getOurInstance() {
         return ourInstance;
     }
 
     public ObjectFactory() {
+        new JavaConfig("DmitriyStatkovskiy",)
     }
 
     public <T> T createObject(Class<T> type) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
