@@ -16,22 +16,22 @@ import java.util.Scanner;
 public class MenuController {
     static Logger logger = LoggerFactory.getLogger(MenuController.class);
 
-    private static MenuController instance;
+//    private static MenuController instance;
     private final Builder builder;
     private final Navigator navigator;
 
-    private MenuController() {
+    public MenuController() {
         builder = Builder.getInstance();
         builder.buildMenu();
         navigator = Navigator.getInstance();
     }
 
-    public static MenuController getInstance() {
-        if (instance == null) {
-            instance = new MenuController();
-        }
-        return instance;
-    }
+//    public static MenuController getInstance() {
+//        if (instance == null) {
+//            instance = new MenuController();
+//        }
+//        return instance;
+//    }
 
     public void run() {
         Scanner scanner = new Scanner(System.in);
