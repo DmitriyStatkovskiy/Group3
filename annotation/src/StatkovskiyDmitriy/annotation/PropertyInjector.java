@@ -3,14 +3,15 @@ package StatkovskiyDmitriy.annotation;
 import StatkovskiyDmitriy.bookstore.service.BookService;
 
 public class PropertyInjector {
-    @InjectProperty("minusOne")
-    private String setNumberOfMonthToMarkBookAsOld;
+    @InjectProperty
+    private String numberOfMonthToMarkBookAsOld;
 
     private BookService bookService = BookService.getInstance();
 
     public void injectDate() {
-        int count = Integer.parseInt(setNumberOfMonthToMarkBookAsOld);
-        bookService.setNumberOfMonthToMarkBookAsOld(count);
-
+        if (numberOfMonthToMarkBookAsOld != null) {
+            int count = Integer.parseInt(numberOfMonthToMarkBookAsOld);
+            bookService.setNumberOfMonthToMarkBookAsOld(count);
+        }
     }
 }

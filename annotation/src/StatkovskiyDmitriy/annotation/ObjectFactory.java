@@ -34,7 +34,7 @@ public class ObjectFactory {
 
         for (Field field : implClass.getDeclaredFields()) {
             InjectProperty annotation = field.getAnnotation(InjectProperty.class);
-            String path = "annotation/src/StatkovskiyDmitriy/annotation/config.properties";
+            String path = "annotation/src/StatkovskiyDmitriy/annotation/annotation.properties";
             Stream<String> lines = new BufferedReader(new FileReader(path)).lines();
             Map<String, String> propertiesMap = lines.map(line -> line.split("=")).collect(toMap(arr -> arr[0], arr -> arr[1]));
 

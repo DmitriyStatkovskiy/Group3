@@ -27,7 +27,7 @@ public class PropertiesLoader {
     }
 
     public String setPropertyFile() {
-        return "properties/src/StatkovskiyDmitriy/bookstoreProperties/config-test.properties";
+        return "properties/src/StatkovskiyDmitriy/bookstoreProperties/iostreams.properties";
     }
 
     public void loadPermissionAndDate() throws IOException {
