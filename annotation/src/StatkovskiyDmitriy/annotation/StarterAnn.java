@@ -7,7 +7,7 @@ public class StarterAnn {
 
     public static void main(String[] args) throws Exception {
         PropertyConfigurator.configure("log4j.properties");
-        TestSerialization testSerialization = ObjectFactory.getInstance().createObject(TestSerialization.class);
+        TestSerialization testSerialization = new TestSerialization();
         testSerialization.deserialize();
 
         BookStore store = new BookStore();

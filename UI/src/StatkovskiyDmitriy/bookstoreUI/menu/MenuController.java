@@ -16,7 +16,6 @@ import java.util.Scanner;
 public class MenuController implements IMenuController {
     static Logger logger = LoggerFactory.getLogger(MenuController.class);
 
-//    private static MenuController instance;
     private final Builder builder;
     private final Navigator navigator;
 
@@ -26,17 +25,11 @@ public class MenuController implements IMenuController {
         navigator = Navigator.getInstance();
     }
 
-//    public static MenuController getInstance() {
-//        if (instance == null) {
-//            instance = new MenuController();
-//        }
-//        return instance;
-//    }
     @Override
     public void run() {
         Scanner scanner = new Scanner(System.in);
         Integer index = -1;
-        //initDao();
+        
         navigator.setCurrentMenu(builder.getRootMenu());
         navigator.printMenu();
 

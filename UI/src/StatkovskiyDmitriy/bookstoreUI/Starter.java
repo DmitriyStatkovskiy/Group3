@@ -1,6 +1,7 @@
 package StatkovskiyDmitriy.bookstoreUI;
 
 import StatkovskiyDmitriy.bookstoreProperties.PropertiesLoader;
+import StatkovskiyDmitriy.bookstoreUI.menu.IMenuController;
 import StatkovskiyDmitriy.bookstoreUI.menu.MenuController;
 import StatkovskiyDmitriy.ser.TestSerialization;
 import org.apache.log4j.PropertyConfigurator;
@@ -17,7 +18,7 @@ public class Starter {
         testSerialization.deserialize();
 
         PropertiesLoader.getInstance().loadPermissionAndDate();
-        MenuController menuController = new MenuController();
+        IMenuController menuController = new MenuController();
         menuController.run();
 
         testSerialization.serialize();

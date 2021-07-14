@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 
-public class PropertiesLoader implements LoadPropertyFile {
+public class PropertiesLoader {
 
     static Logger logger = LoggerFactory.getLogger(PropertiesLoader.getInstance().getClass());
     private static PropertiesLoader instance;
