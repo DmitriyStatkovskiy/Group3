@@ -2,7 +2,7 @@ package StatkovskiyDmitriy.annotation.injection;
 
 import StatkovskiyDmitriy.annotation.injection.annotation.Autowired;
 import StatkovskiyDmitriy.annotation.injection.annotation.Component;
-import StatkovskiyDmitriy.annotation.injection.exceptions.InjectionException;
+import StatkovskiyDmitriy.annotation.injection.exception.InjectionException;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 public class ApplicationContext {
     private final Map<Class<?>, Object> context;
     private final Map<Class<?>, Class<?>> classInterfaceMap;
-    private ObjectFactoryTask factory;
+    private ObjectFactoryT factory;
 
-    public void setFactory(ObjectFactoryTask factory) {
+    public void setFactory(ObjectFactoryT factory) {
         this.factory = factory;
     }
 

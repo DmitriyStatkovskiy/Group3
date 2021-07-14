@@ -1,11 +1,8 @@
 package StatkovskiyDmitriy.annotation.injection;
 
-import StatkovskiyDmitriy.annotation.injection.exceptions.InjectionException;
+import StatkovskiyDmitriy.annotation.injection.exception.InjectionException;
 
-import java.lang.reflect.InvocationTargetException;
-
-public class ObjectFactoryTask {
-
+public class ObjectFactoryT {
     public <T> T createBean(Class<T> aClass) {
         try {
             return aClass.getConstructor().newInstance();
