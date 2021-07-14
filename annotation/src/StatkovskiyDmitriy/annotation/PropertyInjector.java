@@ -11,6 +11,6 @@ public class PropertyInjector {
     public void injectDate() {
         int count = Integer.parseInt(setNumberOfMonthToMarkBookAsOld);
         bookService.setNumberOfMonthToMarkBookAsOld(count);
-        System.out.println(setNumberOfMonthToMarkBookAsOld);
+
     }
 }
