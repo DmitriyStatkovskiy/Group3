@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MenuController {
+public class MenuController implements IMenuController {
     static Logger logger = LoggerFactory.getLogger(MenuController.class);
 
 //    private static MenuController instance;
@@ -32,7 +32,7 @@ public class MenuController {
 //        }
 //        return instance;
 //    }
-
+    @Override
     public void run() {
         Scanner scanner = new Scanner(System.in);
         Integer index = -1;
