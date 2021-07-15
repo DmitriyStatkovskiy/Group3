@@ -1,7 +1,7 @@
 package StatkovskiyDmitriy.bookstoreUI.menu;
 
-import DmitriyStatkovskiy.ioc.injection.annotation.Autowired;
-import DmitriyStatkovskiy.ioc.injection.annotation.Component;
+import DmitriyStatkovskiy.ioc.annotation.Autowired;
+import DmitriyStatkovskiy.ioc.annotation.Component;
 import StatkovskiyDmitriy.bookstoreUI.actions.IAction;
 import StatkovskiyDmitriy.bookstoreUI.actions.book.*;
 import StatkovskiyDmitriy.bookstoreUI.actions.order.*;

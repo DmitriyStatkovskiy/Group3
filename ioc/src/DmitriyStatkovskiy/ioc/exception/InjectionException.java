@@ -1,4 +1,4 @@
-package DmitriyStatkovskiy.ioc.injection.exception;
+package DmitriyStatkovskiy.ioc.exception;
 
 public class InjectionException extends RuntimeException {
     public InjectionException(String message) {

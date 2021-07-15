@@ -1,8 +1,8 @@
-package DmitriyStatkovskiy.ioc.injection;
+package DmitriyStatkovskiy.ioc;
 
-import DmitriyStatkovskiy.ioc.injection.annotation.Autowired;
-import DmitriyStatkovskiy.ioc.injection.annotation.Component;
-import DmitriyStatkovskiy.ioc.injection.exception.InjectionException;
+import DmitriyStatkovskiy.ioc.annotation.Autowired;
+import DmitriyStatkovskiy.ioc.annotation.Component;
+import DmitriyStatkovskiy.ioc.exception.InjectionException;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;

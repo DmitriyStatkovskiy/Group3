@@ -1,7 +1,7 @@
 package StatkovskiyDmitriy.bookstoreUI;
 
-import DmitriyStatkovskiy.ioc.injection.annotation.Autowired;
-import DmitriyStatkovskiy.ioc.injection.annotation.Component;
+import DmitriyStatkovskiy.ioc.annotation.Autowired;
+import DmitriyStatkovskiy.ioc.annotation.Component;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
