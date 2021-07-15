@@ -29,6 +29,4 @@ public class JavaConfig implements Config {
             return classes.iterator().next();
         });
     }
-
-
 }

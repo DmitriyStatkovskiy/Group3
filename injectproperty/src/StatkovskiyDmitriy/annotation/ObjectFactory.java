@@ -1,7 +1,7 @@
 package StatkovskiyDmitriy.annotation;
 
-//import StatkovskiyDmitriy.bookstoreUI.menu.IMenuController;
-//import StatkovskiyDmitriy.bookstoreUI.menu.MenuController;
+import StatkovskiyDmitriy.bookstoreUI.menu.IMenuController;
+import StatkovskiyDmitriy.bookstoreUI.menu.MenuController;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -22,7 +22,7 @@ public class ObjectFactory {
     }
 
     private ObjectFactory() {
-        this.config = new JavaConfig("DmitriyStatkovskiy", new HashMap<>(Map.of(MockClass.class, MockClass.class)));
+        this.config = new JavaConfig("DmitriyStatkovskiy", new HashMap<>(Map.of(IMenuController.class, MenuController.class)));
     }
 
     public <T> T createObject(Class<T> type) throws Exception {
@@ -34,7 +34,7 @@ public class ObjectFactory {
 
         for (Field field : implClass.getDeclaredFields()) {
             InjectProperty annotation = field.getAnnotation(InjectProperty.class);
-            String path = "annotation/src/StatkovskiyDmitriy/annotation/annotation.properties";
+            String path = "injectproperty/src/StatkovskiyDmitriy/annotation/annotation.properties";
             Stream<String> lines = new BufferedReader(new FileReader(path)).lines();
             Map<String, String> propertiesMap = lines.map(line -> line.split("=")).collect(toMap(arr -> arr[0], arr -> arr[1]));
 

@@ -1,7 +1,7 @@
 package StatkovskiyDmitriy.bookstoreUI;
 
-import StatkovskiyDmitriy.annotation.injection.annotation.Autowired;
-import StatkovskiyDmitriy.annotation.injection.annotation.Component;
+import DmitriyStatkovskiy.ioc.injection.annotation.Autowired;
+import DmitriyStatkovskiy.ioc.injection.annotation.Component;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
@@ -14,7 +14,6 @@ import StatkovskiyDmitriy.bookstore.service.BookService;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
 
-import java.awt.image.ImageConsumer;
 import java.time.LocalDate;
 import java.util.List;
 

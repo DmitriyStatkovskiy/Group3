@@ -1,7 +1,7 @@
 package StatkovskiyDmitriy.bookstore.service;
 
-import StatkovskiyDmitriy.annotation.injection.annotation.Autowired;
-import StatkovskiyDmitriy.annotation.injection.annotation.Component;
+import DmitriyStatkovskiy.ioc.injection.annotation.Autowired;
+import DmitriyStatkovskiy.ioc.injection.annotation.Component;
 import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;

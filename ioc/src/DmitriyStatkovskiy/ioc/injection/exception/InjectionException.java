@@ -1,4 +1,4 @@
-package StatkovskiyDmitriy.annotation.injection.exception;
+package DmitriyStatkovskiy.ioc.injection.exception;
 
 public class InjectionException extends RuntimeException {
     public InjectionException(String message) {

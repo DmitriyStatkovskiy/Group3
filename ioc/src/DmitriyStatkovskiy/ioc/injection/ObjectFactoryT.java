@@ -1,6 +1,6 @@
-package StatkovskiyDmitriy.annotation.injection;
+package DmitriyStatkovskiy.ioc.injection;
 
-import StatkovskiyDmitriy.annotation.injection.exception.InjectionException;
+import DmitriyStatkovskiy.ioc.injection.exception.InjectionException;
 
 import java.lang.reflect.Constructor;
 

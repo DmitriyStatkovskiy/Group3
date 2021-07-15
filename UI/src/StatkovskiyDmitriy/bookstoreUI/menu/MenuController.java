@@ -1,7 +1,7 @@
 package StatkovskiyDmitriy.bookstoreUI.menu;
 
-import StatkovskiyDmitriy.annotation.injection.annotation.Autowired;
-import StatkovskiyDmitriy.annotation.injection.annotation.Component;
+import DmitriyStatkovskiy.ioc.injection.annotation.Autowired;
+import DmitriyStatkovskiy.ioc.injection.annotation.Component;
 import StatkovskiyDmitriy.bookstore.dao.BookDao;
 import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
@@ -19,16 +19,16 @@ import java.util.Scanner;
 public class MenuController implements IMenuController {
     static Logger logger = LoggerFactory.getLogger(MenuController.class);
     @Autowired
-    private final Builder builder;
+    private final Builder builder = Builder.getInstance();
     @Autowired
-    private final Navigator navigator;
+    private final Navigator navigator = Navigator.getInstance();
 
     private static MenuController instance;
 
     private MenuController() {
-        builder = Builder.getInstance();
+  //      builder = Builder.getInstance();
         builder.buildMenu();
-        navigator = Navigator.getInstance();
+  //      navigator = Navigator.getInstance();
     }
 
     public static MenuController getInstance() {

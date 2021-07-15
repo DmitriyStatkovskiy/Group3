@@ -1,4 +1,4 @@
-package StatkovskiyDmitriy.annotation.injection;
+package DmitriyStatkovskiy.ioc.injection;
 
 import java.io.File;
 import java.util.HashSet;
@@ -8,7 +8,7 @@ import java.util.Set;
 public class ClassScanner {
     private final String CLASS_EXTENSION = ".class";
     private final Set<Class<?>> foundClasses;
-   private String packageName1 ="";
+    private String packageName1 = "";
 
     public ClassScanner() {
         this.foundClasses = new HashSet<>();
@@ -44,7 +44,7 @@ public class ClassScanner {
             }
         }
         if (!file.getName().endsWith(CLASS_EXTENSION)) {
-            packageName = packageName.replace(file.getName()+".","");
+            packageName = packageName.replace(file.getName() + ".", "");
             return;
         }
         String className = packageName + file.getName().replace(CLASS_EXTENSION, "");

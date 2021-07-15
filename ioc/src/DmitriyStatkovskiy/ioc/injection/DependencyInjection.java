@@ -1,6 +1,6 @@
-package StatkovskiyDmitriy.annotation.injection;
+package DmitriyStatkovskiy.ioc.injection;
 
-import StatkovskiyDmitriy.annotation.injection.exception.InjectionException;
+import DmitriyStatkovskiy.ioc.injection.exception.InjectionException;
 
 public class DependencyInjection {
     public static void run(Class<?> startClass, ApplicationContext applicationContext) {
