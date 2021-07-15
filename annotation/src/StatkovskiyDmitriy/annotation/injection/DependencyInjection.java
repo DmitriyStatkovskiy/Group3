@@ -2,7 +2,7 @@ package StatkovskiyDmitriy.annotation.injection;
 
 import StatkovskiyDmitriy.annotation.injection.exception.InjectionException;
 
-public class DependencyInjector {
+public class DependencyInjection {
     public static void run(Class<?> startClass, ApplicationContext applicationContext) {
         try {
             ClassScanner scanner = new ClassScanner();

@@ -1,5 +1,7 @@
 package StatkovskiyDmitriy.bookstoreUI;
 
+import StatkovskiyDmitriy.annotation.injection.annotation.Autowired;
+import StatkovskiyDmitriy.annotation.injection.annotation.Component;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
@@ -12,13 +14,18 @@ import StatkovskiyDmitriy.bookstore.service.BookService;
 import StatkovskiyDmitriy.bookstore.service.OrderService;
 import StatkovskiyDmitriy.bookstore.service.RequestService;
 
+import java.awt.image.ImageConsumer;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Manager {
+@Component
+public class Manager implements IManager {
     private static Manager instance;
+    @Autowired
     private final IBookService bookService = BookService.getInstance();
+    @Autowired
     private final IOrderService orderService = OrderService.getInstance();
+    @Autowired
     private final IRequestService requestService = RequestService.getInstance();
 
     public static Manager getInstance() {

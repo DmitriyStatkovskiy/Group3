@@ -1,5 +1,7 @@
 package StatkovskiyDmitriy.bookstore.service;
 
+import StatkovskiyDmitriy.annotation.injection.annotation.Autowired;
+import StatkovskiyDmitriy.annotation.injection.annotation.Component;
 import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
@@ -17,12 +19,15 @@ import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Component
 public class OrderService implements IOrderService, Serializable {
     static Logger logger = LoggerFactory.getLogger(BookService.class);
     private static OrderService instance;
+    @Autowired
     private IOrderDao orderDao = OrderDao.getInstance();
+    @Autowired
     private IBookService bookService = BookService.getInstance();
+    @Autowired
     private IRequestService requestService = RequestService.getInstance();
 
     private OrderService() {

@@ -1,13 +1,19 @@
 package StatkovskiyDmitriy.bookstoreUI.menu;
 
+import StatkovskiyDmitriy.annotation.injection.annotation.Autowired;
+import StatkovskiyDmitriy.annotation.injection.annotation.Component;
 import StatkovskiyDmitriy.bookstoreUI.actions.IAction;
 import StatkovskiyDmitriy.bookstoreUI.actions.book.*;
 import StatkovskiyDmitriy.bookstoreUI.actions.order.*;
 import StatkovskiyDmitriy.bookstoreUI.actions.request.*;
 
-public class Builder {
+@Component
+public class Builder implements IBuilder {
+
     private static Builder instance;
+    @Autowired
     private Menu rootMenu;
+
     private final IAction emptyAction = () -> {
     };
 
@@ -38,7 +44,7 @@ public class Builder {
         return rootMenu;
     }
 
-    private Menu createBookMenu() {
+    public Menu createBookMenu() {
         Menu bookMenu = new Menu("--Book Menu--");
         Menu sortMenu = createBookSortMenu();
 
@@ -72,7 +78,7 @@ public class Builder {
         return bookMenu;
     }
 
-    private Menu createBookSortMenu() {
+    public Menu createBookSortMenu() {
         Menu sortBooksSortMenu = new Menu("--Sort Books Menu--");
         MenuItem sortByName = new MenuItem("Sort by name", new SortByNameAction(), sortBooksSortMenu);
         MenuItem sortByPrice = new MenuItem("Sort by price", new SortByPriceAction(), sortBooksSortMenu);
@@ -90,7 +96,7 @@ public class Builder {
         return sortBooksSortMenu;
     }
 
-    private Menu createOrderMenu() {
+    public Menu createOrderMenu() {
         Menu orderMenu = new Menu("--Order Menu--");
         Menu sortMenu = createOrderSortMenu();
         MenuItem showAll = new MenuItem("show all orders", new GetAllOrdersAction(), orderMenu);
@@ -124,7 +130,7 @@ public class Builder {
         return orderMenu;
     }
 
-    private Menu createOrderSortMenu() {
+    public Menu createOrderSortMenu() {
         Menu sortOrderMenu = new Menu("--Sort Orders Menu--");
 
         MenuItem sortByCompletedDate = new MenuItem("sort by completed date", new SortOrdersByCompletedDateAction(), sortOrderMenu);
@@ -145,7 +151,7 @@ public class Builder {
         return sortOrderMenu;
     }
 
-    private Menu createRequestMenu() {
+    public Menu createRequestMenu() {
         Menu requestMenu = new Menu("--Request Menu--");
         Menu sortMenu = createRequestSortMenu();
         MenuItem getAll = new MenuItem("show all requests", new GetRequestsAction(), requestMenu);
@@ -165,7 +171,7 @@ public class Builder {
         return requestMenu;
     }
 
-    private Menu createRequestSortMenu() {
+    public Menu createRequestSortMenu() {
         Menu sortMenu = new Menu("--Sort Requests--");
         MenuItem sortByQuantity = new MenuItem("sort by quantity", new SortByQuantityAction(), sortMenu);
         MenuItem sortByName = new MenuItem("sort by book name", new SortRequestsByBookNameAction(), sortMenu);

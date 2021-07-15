@@ -1,5 +1,7 @@
 package StatkovskiyDmitriy.bookstore.service;
 
+import StatkovskiyDmitriy.annotation.injection.annotation.Autowired;
+import StatkovskiyDmitriy.annotation.injection.annotation.Component;
 import StatkovskiyDmitriy.bookstore.api.dao.IBookDao;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
@@ -18,13 +20,17 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Component
 public class BookService implements IBookService, Serializable {
     static Logger logger = LoggerFactory.getLogger(BookService.class);
     private static BookService instance;
+    @Autowired
     private IBookDao bookDao = BookDao.getInstance();
+    @Autowired
     private IRequestService requestService = RequestService.getInstance();
+    @Autowired
     private static int numberOfMonthToMarkBookAsOld = 6;
+    @Autowired
     private static boolean permissionToAddRequest = true;
 
     private BookService() {

@@ -1,7 +1,7 @@
 package StatkovskiyDmitriy.annotation;
 
-import StatkovskiyDmitriy.bookstoreUI.menu.IMenuController;
-import StatkovskiyDmitriy.bookstoreUI.menu.MenuController;
+//import StatkovskiyDmitriy.bookstoreUI.menu.IMenuController;
+//import StatkovskiyDmitriy.bookstoreUI.menu.MenuController;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -22,7 +22,7 @@ public class ObjectFactory {
     }
 
     private ObjectFactory() {
-        this.config = new JavaConfig("DmitriyStatkovskiy", new HashMap<>(Map.of(IMenuController.class, MenuController.class)));
+        this.config = new JavaConfig("DmitriyStatkovskiy", new HashMap<>(Map.of(MockClass.class, MockClass.class)));
     }
 
     public <T> T createObject(Class<T> type) throws Exception {

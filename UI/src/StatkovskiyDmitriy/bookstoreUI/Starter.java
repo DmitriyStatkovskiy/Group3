@@ -18,7 +18,7 @@ public class Starter {
         testSerialization.deserialize();
 
         PropertiesLoader.getInstance().loadPermissionAndDate();
-        IMenuController menuController = new MenuController();
+        IMenuController menuController = MenuController.getInstance();
         menuController.run();
 
         testSerialization.serialize();

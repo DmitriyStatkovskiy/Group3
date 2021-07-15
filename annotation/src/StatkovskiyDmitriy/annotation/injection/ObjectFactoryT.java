@@ -5,7 +5,8 @@ import StatkovskiyDmitriy.annotation.injection.exception.InjectionException;
 public class ObjectFactoryT {
     public <T> T createBean(Class<T> aClass) {
         try {
-            return aClass.getConstructor().newInstance();
+
+            return aClass.getDeclaredConstructor().newInstance();
         } catch (ReflectiveOperationException e) {
             throw new InjectionException("Bean creation failed", e);
         }
