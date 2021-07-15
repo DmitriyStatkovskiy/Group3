@@ -9,7 +9,5 @@ public class Main {
         ApplicationContext applicationsContext = new ApplicationContext();
         DependencyInjection.run(MenuController.class, applicationsContext);
         System.out.println(123);
-
     }
-
 }
