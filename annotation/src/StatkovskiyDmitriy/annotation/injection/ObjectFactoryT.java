@@ -2,15 +2,17 @@ package StatkovskiyDmitriy.annotation.injection;
 
 import StatkovskiyDmitriy.annotation.injection.exception.InjectionException;
 
-import java.lang.reflect.Field;
+import java.lang.reflect.Constructor;
 
 
 public class ObjectFactoryT {
+
     public <T> T createBean(Class<T> aClass) {
         try {
+            Constructor<T> constructor = aClass.getDeclaredConstructor();
+            constructor.setAccessible(true);
 
-            aClass.getDeclaredConstructor().setAccessible(true);
-            return aClass.getDeclaredConstructor().newInstance();
+            return constructor.newInstance();
         } catch (ReflectiveOperationException e) {
             throw new InjectionException("Bean creation failed", e);
         }
