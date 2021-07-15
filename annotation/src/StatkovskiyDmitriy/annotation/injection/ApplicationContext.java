@@ -36,7 +36,7 @@ public class ApplicationContext {
             }
 
             for (Class<?> anInterface : interfaces) {
-                if (classInterfaceMap.containsValue(anInterface)) {
+                if (!classInterfaceMap.containsValue(anInterface)) {
                     classInterfaceMap.put(aClass, anInterface);
                 }
             }

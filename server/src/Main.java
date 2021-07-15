@@ -7,7 +7,6 @@ public class Main {
     public static void main(String[] args) throws Exception {
         PropertyConfigurator.configure("log4j.properties");
         ApplicationContext applicationsContext = new ApplicationContext();
-
         DependencyInjection.run(MenuController.class, applicationsContext);
         System.out.println(123);
 

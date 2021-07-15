@@ -10,6 +10,7 @@ import java.util.List;
 @Component
 public class Navigator implements INavigator {
     static Logger logger = LoggerFactory.getLogger(Navigator.class);
+
     private static Navigator instance;
     @Autowired
     private Menu currentMenu;
