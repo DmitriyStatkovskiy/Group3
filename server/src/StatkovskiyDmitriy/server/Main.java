@@ -10,6 +10,8 @@ public class Main {
         PropertyConfigurator.configure("log4j.properties");
         ApplicationContext applicationsContext = new ApplicationContext();
         DependencyInjection.run(MenuController.class, applicationsContext);
+        MenuController mC = applicationsContext.getBean(MenuController.class);
+        mC.run();
 
         System.out.println(123);
     }
