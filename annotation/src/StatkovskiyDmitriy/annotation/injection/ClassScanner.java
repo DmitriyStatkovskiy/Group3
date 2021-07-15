@@ -35,7 +35,7 @@ public class ClassScanner {
     }
 
     private void scanDirectory(File file, String packageName) throws ClassNotFoundException {
-      //  String packageName = "";
+
         if (file.isDirectory()) {
             packageName += file.getName() + ".";
             for (File innerFile : Objects.requireNonNull(file.listFiles())) {
