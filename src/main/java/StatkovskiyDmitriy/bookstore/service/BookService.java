@@ -5,7 +5,6 @@ import DmitriyStatkovskiy.ioc.annotation.Component;
 import StatkovskiyDmitriy.bookstore.api.dao.IBookDao;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
-import StatkovskiyDmitriy.bookstore.dao.BookDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
@@ -20,6 +19,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Component
 public class BookService implements IBookService, Serializable {
     static Logger logger = LoggerFactory.getLogger(BookService.class);
@@ -155,7 +155,7 @@ public class BookService implements IBookService, Serializable {
 
     public List<Book> sortOldBooksByIncomingDate() {
         List<Book> books = getOldBooksByFieldIsOld();
-        // List<Book> books = getOldBooks();
+
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getIncomingDate()))
                 .collect(Collectors.toList());
@@ -163,7 +163,7 @@ public class BookService implements IBookService, Serializable {
 
     public List<Book> sortOldBooksByPrice() {
         List<Book> books = getOldBooksByFieldIsOld();
-        //  List<Book> books = getOldBooks();
+
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getPrice()))
                 .collect(Collectors.toList());

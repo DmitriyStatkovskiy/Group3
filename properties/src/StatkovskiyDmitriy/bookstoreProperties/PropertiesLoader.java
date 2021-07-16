@@ -4,7 +4,6 @@ import StatkovskiyDmitriy.bookstore.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
@@ -15,6 +14,7 @@ public class PropertiesLoader {
     static Logger logger = LoggerFactory.getLogger(PropertiesLoader.getInstance().getClass());
     private static PropertiesLoader instance;
     BookService bookService = BookService.getInstance();
+    private final String PROPERTY_PATH = "properties/src/StatkovskiyDmitriy/bookstoreProperties/iostreams.properties";
 
     private PropertiesLoader() {
     }
@@ -26,15 +26,11 @@ public class PropertiesLoader {
         return instance;
     }
 
-    public String setPropertyFile() {
-        return "properties/src/StatkovskiyDmitriy/bookstoreProperties/iostreams.properties";
-    }
-
     public void loadPermissionAndDate() throws IOException {
         int month;
         boolean permission;
         Properties properties = new Properties();
-        try (FileReader reader = new FileReader(setPropertyFile())) {
+        try (FileReader reader = new FileReader(PROPERTY_PATH)) {
             properties.load(reader);
 
             month = Integer.parseInt(properties.getProperty("numberOfMonthToMarkBookAsOld"));
