@@ -4,8 +4,9 @@ import StatkovskiyDmitriy.task9.Store;
 
 public class TaskThreeProducerThread implements Runnable {
     Store store;
-    public TaskThreeProducerThread(Store store){
-        this.store=store;
+
+    public TaskThreeProducerThread(Store store) {
+        this.store = store;
     }
 
     @Override
