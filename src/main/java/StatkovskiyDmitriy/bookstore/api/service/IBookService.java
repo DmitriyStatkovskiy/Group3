@@ -51,4 +51,5 @@ public interface IBookService {
     void deleteAll();
 
     void setBooks(List<Book> books);
+    void setNumberOfMonthToMarkBookAsOld(int numberOfMonthToMarkBookAsOld);
 }

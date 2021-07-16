@@ -1,5 +1,7 @@
 package StatkovskiyDmitriy.bookstoreUI;
 
+import DmitriyStatkovskiy.ioc.annotation.Autowired;
+import DmitriyStatkovskiy.ioc.annotation.Component;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
@@ -15,17 +17,24 @@ import StatkovskiyDmitriy.bookstore.service.RequestService;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Manager {
+@Component
+public class Manager implements IManager {
     private static Manager instance;
-    private final IBookService bookService = BookService.getInstance();
-    private final IOrderService orderService = OrderService.getInstance();
-    private final IRequestService requestService = RequestService.getInstance();
+    @Autowired
+    private IBookService bookService;
+    @Autowired
+    private IOrderService orderService;
+    @Autowired
+    private IRequestService requestService;
 
     public static Manager getInstance() {
         if (instance == null) {
             instance = new Manager();
         }
         return instance;
+    }
+
+    private Manager() {
     }
 
     public void addBook(Book book) {

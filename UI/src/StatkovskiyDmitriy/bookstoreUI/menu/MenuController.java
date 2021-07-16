@@ -1,5 +1,7 @@
 package StatkovskiyDmitriy.bookstoreUI.menu;
 
+import DmitriyStatkovskiy.ioc.annotation.Autowired;
+import DmitriyStatkovskiy.ioc.annotation.Component;
 import StatkovskiyDmitriy.bookstore.dao.BookDao;
 import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
@@ -13,17 +15,19 @@ import org.slf4j.LoggerFactory;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class MenuController {
+@Component
+public class MenuController implements IMenuController {
     static Logger logger = LoggerFactory.getLogger(MenuController.class);
+    @Autowired
+    private  Builder builder;
+    @Autowired
+    private  Navigator navigator;
 
     private static MenuController instance;
-    private final Builder builder;
-    private final Navigator navigator;
 
     private MenuController() {
         builder = Builder.getInstance();
         builder.buildMenu();
-        navigator = Navigator.getInstance();
     }
 
     public static MenuController getInstance() {
@@ -33,10 +37,11 @@ public class MenuController {
         return instance;
     }
 
+    @Override
     public void run() {
         Scanner scanner = new Scanner(System.in);
         Integer index = -1;
-        //initDao();
+
         navigator.setCurrentMenu(builder.getRootMenu());
         navigator.printMenu();
 

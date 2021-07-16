@@ -1,13 +1,18 @@
 package StatkovskiyDmitriy.bookstoreUI.menu;
 
+import DmitriyStatkovskiy.ioc.annotation.Autowired;
+import DmitriyStatkovskiy.ioc.annotation.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class Navigator {
+@Component
+public class Navigator implements INavigator {
     static Logger logger = LoggerFactory.getLogger(Navigator.class);
+
     private static Navigator instance;
+    @Autowired
     private Menu currentMenu;
 
     public Menu getCurrentMenu() {

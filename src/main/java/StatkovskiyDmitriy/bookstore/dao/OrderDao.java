@@ -1,5 +1,7 @@
 package StatkovskiyDmitriy.bookstore.dao;
 
+import DmitriyStatkovskiy.ioc.annotation.Autowired;
+import DmitriyStatkovskiy.ioc.annotation.Component;
 import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.model.Order;
 
@@ -8,9 +10,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
+@Component
 public class OrderDao implements IOrderDao, Serializable {
     private static OrderDao instance;
+    @Autowired
     private List<Order> orders = new ArrayList<>();
 
     private OrderDao() {
