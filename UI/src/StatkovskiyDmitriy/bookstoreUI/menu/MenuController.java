@@ -19,16 +19,15 @@ import java.util.Scanner;
 public class MenuController implements IMenuController {
     static Logger logger = LoggerFactory.getLogger(MenuController.class);
     @Autowired
-    private final Builder builder = Builder.getInstance();
+    private  Builder builder;
     @Autowired
-    private final Navigator navigator = Navigator.getInstance();
+    private  Navigator navigator;
 
     private static MenuController instance;
 
     private MenuController() {
-  //      builder = Builder.getInstance();
+        builder = Builder.getInstance();
         builder.buildMenu();
-  //      navigator = Navigator.getInstance();
     }
 
     public static MenuController getInstance() {

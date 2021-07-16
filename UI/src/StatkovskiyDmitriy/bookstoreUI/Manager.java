@@ -21,17 +21,20 @@ import java.util.List;
 public class Manager implements IManager {
     private static Manager instance;
     @Autowired
-    private final IBookService bookService = BookService.getInstance();
+    private IBookService bookService;
     @Autowired
-    private final IOrderService orderService = OrderService.getInstance();
+    private IOrderService orderService;
     @Autowired
-    private final IRequestService requestService = RequestService.getInstance();
+    private IRequestService requestService;
 
     public static Manager getInstance() {
         if (instance == null) {
             instance = new Manager();
         }
         return instance;
+    }
+
+    private Manager() {
     }
 
     public void addBook(Book book) {

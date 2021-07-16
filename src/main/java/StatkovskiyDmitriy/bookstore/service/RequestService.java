@@ -4,7 +4,6 @@ import DmitriyStatkovskiy.ioc.annotation.Autowired;
 import DmitriyStatkovskiy.ioc.annotation.Component;
 import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
-import StatkovskiyDmitriy.bookstore.dao.RequestDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Request;
 import StatkovskiyDmitriy.bookstore.model.enums.RequestStatus;
@@ -16,11 +15,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 @Component
 public class RequestService implements IRequestService, Serializable {
     private static RequestService instance;
     @Autowired
-    private final IRequestDao requestDao = RequestDao.getInstance();
+    private IRequestDao requestDao;
 
     private RequestService() {
 

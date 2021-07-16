@@ -25,12 +25,12 @@ public class BookService implements IBookService, Serializable {
     static Logger logger = LoggerFactory.getLogger(BookService.class);
     private static BookService instance;
     @Autowired
-    private IBookDao bookDao = BookDao.getInstance();
+    private IBookDao bookDao;
     @Autowired
-    private IRequestService requestService = RequestService.getInstance();
-    @Autowired
+    private IRequestService requestService;
+
     private static int numberOfMonthToMarkBookAsOld = 6;
-    @Autowired
+
     private static boolean permissionToAddRequest = true;
 
     private BookService() {

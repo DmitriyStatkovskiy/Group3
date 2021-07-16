@@ -24,11 +24,11 @@ public class OrderService implements IOrderService, Serializable {
     static Logger logger = LoggerFactory.getLogger(BookService.class);
     private static OrderService instance;
     @Autowired
-    private IOrderDao orderDao = OrderDao.getInstance();
+    private IOrderDao orderDao;
     @Autowired
-    private IBookService bookService = BookService.getInstance();
+    private IBookService bookService;
     @Autowired
-    private IRequestService requestService = RequestService.getInstance();
+    private IRequestService requestService;
 
     private OrderService() {
 
