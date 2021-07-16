@@ -13,13 +13,13 @@ public class TaskTwoSurnameThread implements Runnable {
 
     @Override
     public synchronized void run() {
-        try {
-            while (isActive) {
-                System.out.println("Statkovskiy");
+        while (isActive) {
+            System.out.println("Statkovskiy");
+            try {
                 Thread.sleep(100);
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

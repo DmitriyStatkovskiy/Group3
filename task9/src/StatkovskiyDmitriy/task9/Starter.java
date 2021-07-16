@@ -16,9 +16,9 @@ public class Starter {
             System.out.println(threadOne.getState() + " timed_waiting");
             System.out.println(threadTwo.getState() + " waiting");
 
-            Object a = TaskOneSecondThread.getA();
-            synchronized (a) {
-                a.notify();
+            Object object = TaskOneSecondThread.getObjectFromSecondThread();
+            synchronized (object) {
+                object.notify();
             }
 
             System.out.println(threadTwo.getState() + " blocked");

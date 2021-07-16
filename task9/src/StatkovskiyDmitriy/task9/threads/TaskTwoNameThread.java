@@ -18,8 +18,8 @@ public class TaskTwoNameThread implements Runnable {
                 System.out.println("Dmitriy");
                 Thread.sleep(100);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (InterruptedException exception) {
+            exception.printStackTrace();
         }
     }
 }

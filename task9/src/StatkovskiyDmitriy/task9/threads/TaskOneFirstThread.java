@@ -8,8 +8,8 @@ public class TaskOneFirstThread implements Runnable {
         System.out.println(Thread.currentThread().getState() + " runnable");
         try {
             sleep(1000);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (InterruptedException exception) {
+            exception.printStackTrace();
         }
     }
 }
