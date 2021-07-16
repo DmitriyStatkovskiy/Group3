@@ -15,7 +15,7 @@ public class TaskOneFirstThread implements Runnable {
             sleep(1000);
         } catch (InterruptedException exception) {
             System.out.println(exception.getMessage() + " " + exception.getCause());
-            logger.warn("InterruptedException TaskOneSecondThread.run");
+            logger.warn("InterruptedException TaskOneFirstThread.run");
         }
     }
 }

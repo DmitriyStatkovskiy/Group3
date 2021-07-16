@@ -34,7 +34,7 @@ public class TaskFourDaemonThread implements Runnable {
                 wait(seconds * 1000);
             } catch (InterruptedException exception) {
                 System.out.println(exception.getMessage() + " " + exception.getCause());
-                logger.warn("InterruptedException TaskOneSecondThread.run");
+                logger.warn("InterruptedException TaskFourDaemonThread.run");
             }
         }
     }
