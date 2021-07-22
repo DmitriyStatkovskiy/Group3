@@ -67,7 +67,7 @@ public class ApplicationContext {
 
     public <T> T getBean(Class<T> type) {
         Set<Map.Entry<Class<?>, Class<?>>> classSet = classInterfaceMap.entrySet().stream()
-                .filter(entry -> type.equals(entry.getValue()))
+                .filter(entry -> type.equals(entry.getKey()))
                 .collect(Collectors.toSet());
         if (classSet.size() != 1) {
             throw new InjectionException("msg");
