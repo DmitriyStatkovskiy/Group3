@@ -1,5 +1,7 @@
 package StatkovskiyDmitriy.bookstore.dao;
 
+import DmitriyStatkovskiy.ioc.annotation.Autowired;
+import DmitriyStatkovskiy.ioc.annotation.Component;
 import StatkovskiyDmitriy.bookstore.api.dao.IRequestDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Request;
@@ -8,9 +10,10 @@ import javax.persistence.EntityNotFoundException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class RequestDao implements IRequestDao, Serializable {
     private static RequestDao instance;
+    @Autowired
     private List<Request> requests = new ArrayList<>();
 
     private RequestDao() {

@@ -1,9 +1,10 @@
 package StatkovskiyDmitriy.bookstore.service;
 
+import DmitriyStatkovskiy.ioc.annotation.Autowired;
+import DmitriyStatkovskiy.ioc.annotation.Component;
 import StatkovskiyDmitriy.bookstore.api.dao.IBookDao;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
-import StatkovskiyDmitriy.bookstore.dao.BookDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
@@ -19,12 +20,17 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class BookService implements IBookService, Serializable {
     static Logger logger = LoggerFactory.getLogger(BookService.class);
     private static BookService instance;
-    private IBookDao bookDao = BookDao.getInstance();
-    private IRequestService requestService = RequestService.getInstance();
+    @Autowired
+    private IBookDao bookDao;
+    @Autowired
+    private IRequestService requestService;
+
     private static int numberOfMonthToMarkBookAsOld = 6;
+
     private static boolean permissionToAddRequest = true;
 
     private BookService() {
@@ -149,7 +155,7 @@ public class BookService implements IBookService, Serializable {
 
     public List<Book> sortOldBooksByIncomingDate() {
         List<Book> books = getOldBooksByFieldIsOld();
-        // List<Book> books = getOldBooks();
+
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getIncomingDate()))
                 .collect(Collectors.toList());
@@ -157,7 +163,7 @@ public class BookService implements IBookService, Serializable {
 
     public List<Book> sortOldBooksByPrice() {
         List<Book> books = getOldBooksByFieldIsOld();
-        //  List<Book> books = getOldBooks();
+
         return books.stream()
                 .sorted(Comparator.comparing(o -> o.getPrice()))
                 .collect(Collectors.toList());

@@ -14,9 +14,7 @@ public class Store {
                 e.printStackTrace();
             }
         }
-
         product.remove(product.size() - 1);
-
         System.out.println("Покупатель купил 1 товар");
         System.out.println("Товаров на складе: " + product.size());
         for (Integer integer : product) {
@@ -45,7 +43,6 @@ public class Store {
         if (product.size() != 0) {
             System.out.println();
         }
-
         notify();
     }
 }

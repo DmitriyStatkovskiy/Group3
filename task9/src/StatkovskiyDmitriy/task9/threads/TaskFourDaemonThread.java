@@ -1,15 +1,15 @@
 package StatkovskiyDmitriy.task9.threads;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.LocalTime;
 
 public class TaskFourDaemonThread implements Runnable {
+    static Logger logger = LoggerFactory.getLogger(TaskFourDaemonThread.class);
     private int seconds = 1;
 
     private boolean isActive = true;
-
-    public int getSeconds() {
-        return seconds;
-    }
 
     public void setActive(boolean active) {
         isActive = active;
@@ -28,13 +28,14 @@ public class TaskFourDaemonThread implements Runnable {
 
     @Override
     public synchronized void run() {
-        try {
-            while (isActive) {
-                System.out.println(LocalTime.now());
+        while (isActive) {
+            System.out.println(LocalTime.now());
+            try {
                 wait(seconds * 1000);
+            } catch (InterruptedException exception) {
+                System.out.println(exception.getMessage() + " " + exception.getCause());
+                logger.warn("InterruptedException TaskFourDaemonThread.run");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

@@ -1,10 +1,14 @@
 package StatkovskiyDmitriy.task9;
 
 import StatkovskiyDmitriy.task9.threads.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static java.lang.Thread.sleep;
 
 public class Starter {
+    static Logger logger = LoggerFactory.getLogger(Starter.class);
+
     public void taskOne() {
         try {
             Thread threadOne = new Thread(new TaskOneFirstThread());
@@ -16,17 +20,18 @@ public class Starter {
             System.out.println(threadOne.getState() + " timed_waiting");
             System.out.println(threadTwo.getState() + " waiting");
 
-            Object a = TaskOneSecondThread.getA();
-            synchronized (a) {
-                a.notify();
+            Object object = TaskOneSecondThread.getObjectFromSecondThread();
+            synchronized (object) {
+                object.notify();
             }
 
             System.out.println(threadTwo.getState() + " blocked");
             sleep(2000);
             System.out.println(threadOne.getState() + " terminated");
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (InterruptedException exception) {
+            System.out.println(exception.getMessage() + " " + exception.getCause());
+            logger.warn("InterruptedException Starter.taskOne");
         }
     }
 
@@ -38,8 +43,9 @@ public class Starter {
             surname.start();
             name.start();
             name.join();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (InterruptedException exception) {
+            System.out.println(exception.getMessage() + " " + exception.getCause());
+            logger.warn("InterruptedException Starter.taskTwo");
         }
     }
 

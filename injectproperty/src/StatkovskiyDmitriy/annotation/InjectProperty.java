@@ -1,4 +1,4 @@
-package StatkovskiyDmitriy.annotation.injection.annotation;
+package StatkovskiyDmitriy.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,5 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Autowired {
+public @interface InjectProperty {
+    String value() default "";
 }

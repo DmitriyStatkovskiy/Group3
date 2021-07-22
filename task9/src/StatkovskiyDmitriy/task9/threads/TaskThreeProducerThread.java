@@ -4,17 +4,9 @@ import StatkovskiyDmitriy.task9.Store;
 
 public class TaskThreeProducerThread implements Runnable {
     Store store;
-    public TaskThreeProducerThread(Store store){
-        this.store=store;
-    }
-    boolean isActive = true;
 
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public void disable() {
-        isActive = false;
+    public TaskThreeProducerThread(Store store) {
+        this.store = store;
     }
 
     @Override

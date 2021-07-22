@@ -1,6 +1,10 @@
 package StatkovskiyDmitriy.task9.threads;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class TaskTwoSurnameThread implements Runnable {
+    static Logger logger = LoggerFactory.getLogger(TaskTwoSurnameThread.class);
     boolean isActive = true;
 
     public void setActive(boolean active) {
@@ -13,13 +17,14 @@ public class TaskTwoSurnameThread implements Runnable {
 
     @Override
     public synchronized void run() {
-        try {
-            while (isActive) {
-                System.out.println("Statkovskiy");
+        while (isActive) {
+            System.out.println("Statkovskiy");
+            try {
                 Thread.sleep(100);
+            } catch (InterruptedException exception) {
+                System.out.println(exception.getMessage() + " " + exception.getCause());
+                logger.warn("InterruptedException TaskTwoSurnameThread.run");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

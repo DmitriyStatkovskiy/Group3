@@ -1,8 +1,8 @@
-package StatkovskiyDmitriy.annotation.injection;
+package DmitriyStatkovskiy.ioc;
 
-import StatkovskiyDmitriy.annotation.injection.annotation.Autowired;
-import StatkovskiyDmitriy.annotation.injection.annotation.Component;
-import StatkovskiyDmitriy.annotation.injection.exceptions.InjectionException;
+import DmitriyStatkovskiy.ioc.annotation.Autowired;
+import DmitriyStatkovskiy.ioc.annotation.Component;
+import DmitriyStatkovskiy.ioc.exception.InjectionException;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 public class ApplicationContext {
     private final Map<Class<?>, Object> context;
     private final Map<Class<?>, Class<?>> classInterfaceMap;
-    private ObjectFactory factory;
+    private ObjectFactoryT factory;
 
-    public void setFactory(ObjectFactory factory) {
+    public void setFactory(ObjectFactoryT factory) {
         this.factory = factory;
     }
 
@@ -36,7 +36,7 @@ public class ApplicationContext {
             }
 
             for (Class<?> anInterface : interfaces) {
-                if (classInterfaceMap.containsValue(anInterface)) {
+                if (!classInterfaceMap.containsValue(anInterface)) {
                     classInterfaceMap.put(aClass, anInterface);
                 }
             }
@@ -67,7 +67,7 @@ public class ApplicationContext {
 
     public <T> T getBean(Class<T> type) {
         Set<Map.Entry<Class<?>, Class<?>>> classSet = classInterfaceMap.entrySet().stream()
-                .filter(entry -> type.equals(entry.getValue()))
+                .filter(entry -> type.equals(entry.getKey()))
                 .collect(Collectors.toSet());
         if (classSet.size() != 1) {
             throw new InjectionException("msg");

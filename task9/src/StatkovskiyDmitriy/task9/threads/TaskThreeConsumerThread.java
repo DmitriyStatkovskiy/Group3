@@ -9,16 +9,6 @@ public class TaskThreeConsumerThread implements Runnable {
         this.store = store;
     }
 
-    boolean isActive = true;
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public void disable() {
-        isActive = false;
-    }
-
     @Override
     public void run() {
         for (int i = 1; i < 6; i++) {

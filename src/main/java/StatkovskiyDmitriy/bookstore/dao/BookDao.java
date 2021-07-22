@@ -1,5 +1,7 @@
 package StatkovskiyDmitriy.bookstore.dao;
 
+import DmitriyStatkovskiy.ioc.annotation.Autowired;
+import DmitriyStatkovskiy.ioc.annotation.Component;
 import StatkovskiyDmitriy.bookstore.api.dao.IBookDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.enums.BookStatus;
@@ -9,10 +11,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Component
 public class BookDao implements IBookDao, Serializable {
 
     private static BookDao instance;
+    @Autowired
     private List<Book> books = new ArrayList<>();
 
     private BookDao() {
