@@ -149,7 +149,7 @@ public class BookService implements IBookService, Serializable {
     public List<Book> getOldBooks() {
         List<Book> books = bookDao.getAllBooks();
         return books.stream()
-                .filter(unit -> unit.getIncomingDate().isBefore(LocalDate.now().minusMonths(6)))
+                .filter(unit -> unit.getReceived().isBefore(LocalDate.now().minusMonths(6)))
                 .collect(Collectors.toList());
     }
 
@@ -157,7 +157,7 @@ public class BookService implements IBookService, Serializable {
         List<Book> books = getOldBooksByFieldIsOld();
 
         return books.stream()
-                .sorted(Comparator.comparing(o -> o.getIncomingDate()))
+                .sorted(Comparator.comparing(o -> o.getReceived()))
                 .collect(Collectors.toList());
     }
 
@@ -214,13 +214,13 @@ public class BookService implements IBookService, Serializable {
 
     public void setOldBooks() {
         bookDao.getAllBooks().stream()
-                .filter(book -> book.getIncomingDate().isBefore(LocalDate.now().minusMonths(numberOfMonthToMarkBookAsOld)))
+                .filter(book -> book.getReceived().isBefore(LocalDate.now().minusMonths(numberOfMonthToMarkBookAsOld)))
                 .forEach(book -> book.setOld(true));
     }
 
     public void manualSetOldBooks(int month) {
         bookDao.getAllBooks().stream()
-                .filter(book -> book.getIncomingDate().isBefore(LocalDate.now().minusMonths(month)))
+                .filter(book -> book.getReceived().isBefore(LocalDate.now().minusMonths(month)))
                 .forEach(book -> book.setOld(true));
     }
 
@@ -235,7 +235,7 @@ public class BookService implements IBookService, Serializable {
                 .filter(book1 -> book1.getName().equals(book))
                 .findFirst()
                 .get()
-                .setIncomingDate(date);
+                .setReceived(date);
     }
 
     public void deleteAll() {

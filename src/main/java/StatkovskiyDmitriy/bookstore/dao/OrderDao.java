@@ -37,8 +37,8 @@ public class OrderDao implements IOrderDao, Serializable {
 
     public Order createOrder() {
         Order order = new Order();
-        order.setOrderNumber(UUID.randomUUID().toString());
-        order.setOrderCreatedDate(LocalDate.now());
+        order.setId(UUID.randomUUID().toString());
+        order.setCreated(LocalDate.now());
         orders.add(order);
         return order;
     }

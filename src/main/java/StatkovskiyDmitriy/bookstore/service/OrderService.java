@@ -6,7 +6,6 @@ import StatkovskiyDmitriy.bookstore.api.dao.IOrderDao;
 import StatkovskiyDmitriy.bookstore.api.service.IBookService;
 import StatkovskiyDmitriy.bookstore.api.service.IOrderService;
 import StatkovskiyDmitriy.bookstore.api.service.IRequestService;
-import StatkovskiyDmitriy.bookstore.dao.OrderDao;
 import StatkovskiyDmitriy.bookstore.model.Book;
 import StatkovskiyDmitriy.bookstore.model.Order;
 import StatkovskiyDmitriy.bookstore.model.enums.OrderStatus;
@@ -65,7 +64,7 @@ public class OrderService implements IOrderService, Serializable {
         }
         List<Book> outOfStockBook = bookService.getOutOfStockBooks(order);
         if (outOfStockBook.size() == 0) {
-            order.setOrderClosedDate(LocalDate.now());
+            order.setClosed(LocalDate.now());
             order.setStatus(OrderStatus.COMPLETED);
         } else {
             Book book = outOfStockBook.stream()
@@ -105,8 +104,8 @@ public class OrderService implements IOrderService, Serializable {
     public List<Order> sortOrdersByFulfillmentDate() {
         List<Order> orders = orderDao.getAll();
         return orders.stream()
-                .filter(order -> order.getOrderClosedDate() != null)
-                .sorted(Comparator.comparing(o -> o.getOrderClosedDate()))
+                .filter(order -> order.getClosed() != null)
+                .sorted(Comparator.comparing(o -> o.getClosed()))
                 .collect(Collectors.toList());
     }
 
@@ -119,48 +118,48 @@ public class OrderService implements IOrderService, Serializable {
 
     public List<Order> sortOrdersByPrice() {
         List<Order> orders = orderDao.getAll();
-        orders.forEach(order -> order.setOrderPrice(calculateOrderPrice(order)));
+        orders.forEach(order -> order.setPrice(calculateOrderPrice(order)));
         return orders.stream()
-                .sorted(Comparator.comparing(o -> o.getOrderPrice()))
+                .sorted(Comparator.comparing(o -> o.getPrice()))
                 .collect(Collectors.toList());
     }
 
     public List<Order> sortCompletedOrdersByPriceFromRange(LocalDate from, LocalDate to) {
         List<Order> orders = orderDao.getAll();
         orders.stream()
-                .filter(order -> order.getOrderClosedDate() != null)
-                .filter(order -> order.getOrderClosedDate().isBefore(to))
-                .filter(order -> order.getOrderClosedDate().isAfter(from))
+                .filter(order -> order.getClosed() != null)
+                .filter(order -> order.getClosed().isBefore(to))
+                .filter(order -> order.getClosed().isAfter(from))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
-                .forEach(order -> order.setOrderPrice(calculateOrderPrice(order)));
+                .forEach(order -> order.setPrice(calculateOrderPrice(order)));
 
         return orders.stream()
-                .sorted(Comparator.comparing(o -> o.getOrderPrice()))
+                .sorted(Comparator.comparing(o -> o.getPrice()))
                 .collect(Collectors.toList());
     }
 
     public List<Order> sortCompletedOrdersByCompletedDateFromRange(LocalDate from, LocalDate to) {
         List<Order> orders = orderDao.getAll();
         return orders.stream()
-                .filter(order -> order.getOrderClosedDate() != null)
-                .filter(order -> order.getOrderClosedDate().isBefore(to))
-                .filter(order -> order.getOrderClosedDate().isAfter(from))
+                .filter(order -> order.getClosed() != null)
+                .filter(order -> order.getClosed().isBefore(to))
+                .filter(order -> order.getClosed().isAfter(from))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
-                .sorted(Comparator.comparing(o -> o.getOrderClosedDate()))
+                .sorted(Comparator.comparing(o -> o.getClosed()))
                 .collect(Collectors.toList());
     }
 
     public double calculateEarnedMoneyFromRange(LocalDate from, LocalDate to) {
         List<Order> orders = orderDao.getAll();
         orders.stream()
-                .filter(order -> order.getOrderClosedDate() != null)
-                .filter(order -> order.getOrderClosedDate().isBefore(to))
-                .filter(order -> order.getOrderClosedDate().isAfter(from))
+                .filter(order -> order.getClosed() != null)
+                .filter(order -> order.getClosed().isBefore(to))
+                .filter(order -> order.getClosed().isAfter(from))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
-                .forEach(order -> order.setOrderPrice(calculateOrderPrice(order)));
+                .forEach(order -> order.setPrice(calculateOrderPrice(order)));
 
         return orders.stream()
-                .map(order -> order.getOrderPrice())
+                .map(order -> order.getPrice())
                 .mapToDouble(Double::doubleValue)
                 .sum();
     }
@@ -168,9 +167,9 @@ public class OrderService implements IOrderService, Serializable {
     public int numberOfCompletedOrdersFromRange(LocalDate from, LocalDate to) {
         List<Order> orders = orderDao.getAll();
         List<Order> completedOrders = orders.stream()
-                .filter(order -> order.getOrderClosedDate() != null)
-                .filter(order -> order.getOrderClosedDate().isAfter(from))
-                .filter(date -> date.getOrderClosedDate().isBefore(to))
+                .filter(order -> order.getClosed() != null)
+                .filter(order -> order.getClosed().isAfter(from))
+                .filter(date -> date.getClosed().isBefore(to))
                 .filter(order -> order.getStatus().equals(OrderStatus.COMPLETED))
                 .collect(Collectors.toList());
         int number = completedOrders.size();
@@ -193,7 +192,7 @@ public class OrderService implements IOrderService, Serializable {
 
     public Order getOrderById(String id) throws EntityNotFoundException {
         Order order = orderDao.getAll().stream()
-                .filter(order1 -> order1.getOrderNumber().equals(id))
+                .filter(order1 -> order1.getId().equals(id))
                 .findFirst()
                 .orElseThrow(() -> new EntityNotFoundException("order not found, id: " + id));
 
