@@ -11,24 +11,24 @@ import java.util.Objects;
 public class Order implements Serializable {
 
     private String customerName;
-    private String orderNumber;
-    private String bookName;
+    private String id;
+
     private OrderStatus status = OrderStatus.NEW;
-    private LocalDate orderCreatedDate;
-    private LocalDate orderClosedDate = null;
-    private double orderPrice;
+    private LocalDate created;
+    private LocalDate closed = null;
+    private double price;
 
     private List<Book> books = new ArrayList<>();
 
     public Order() {
     }
 
-    public double getOrderPrice() {
-        return orderPrice;
+    public double getPrice() {
+        return price;
     }
 
-    public void setOrderPrice(double orderPrice) {
-        this.orderPrice = orderPrice;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public OrderStatus getStatus() {
@@ -43,36 +43,28 @@ public class Order implements Serializable {
         return books;
     }
 
-    public String getOrderNumber() {
-        return orderNumber;
+    public String getId() {
+        return id;
     }
 
-    public void setOrderNumber(String orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getBookName() {
-        return bookName;
+    public LocalDate getCreated() {
+        return created;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public void setCreated(LocalDate created) {
+        this.created = created;
     }
 
-    public LocalDate getOrderCreatedDate() {
-        return orderCreatedDate;
+    public LocalDate getClosed() {
+        return closed;
     }
 
-    public void setOrderCreatedDate(LocalDate orderCreatedDate) {
-        this.orderCreatedDate = orderCreatedDate;
-    }
-
-    public LocalDate getOrderClosedDate() {
-        return orderClosedDate;
-    }
-
-    public void setOrderClosedDate(LocalDate orderClosedDate) {
-        this.orderClosedDate = orderClosedDate;
+    public void setClosed(LocalDate closed) {
+        this.closed = closed;
     }
 
     public String getCustomerName() {
@@ -88,13 +80,13 @@ public class Order implements Serializable {
     }
 
     private String orderClosedDate() {
-        if (orderClosedDate == null) {
+        if (closed == null) {
             return "In progress";
         }
-        if (orderClosedDate.equals(LocalDate.of(1970, 1, 1))) {
+        if (closed.equals(LocalDate.of(1970, 1, 1))) {
             return "Canceled";
         }
-        return orderClosedDate.toString();
+        return closed.toString();
     }
 
     private String printBooks() {
@@ -108,9 +100,9 @@ public class Order implements Serializable {
     @Override
     public String toString() {
         return "Order{" +
-                "orderNumber='" + orderNumber + '\'' +
+                "orderNumber='" + id + '\'' +
                 ", orderStatus='" + status + '\'' +
-                ", orderCreationDate=" + orderCreatedDate +
+                ", orderCreationDate=" + created +
                 ", Books:" + printBooks() +
                 ", orderClosedDate=" + orderClosedDate() +
                 '}';
@@ -121,18 +113,17 @@ public class Order implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Double.compare(order.getOrderPrice(), getOrderPrice()) == 0 &&
+        return Double.compare(order.getPrice(), getPrice()) == 0 &&
                 Objects.equals(getCustomerName(), order.getCustomerName()) &&
-                Objects.equals(getOrderNumber(), order.getOrderNumber()) &&
-                Objects.equals(getBookName(), order.getBookName()) &&
+                Objects.equals(getId(), order.getId()) &&
                 getStatus() == order.getStatus() &&
-                Objects.equals(getOrderCreatedDate(), order.getOrderCreatedDate()) &&
-                Objects.equals(getOrderClosedDate(), order.getOrderClosedDate()) &&
-                Objects.equals(getAll(), order.getAll());
+                Objects.equals(getCreated(), order.getCreated()) &&
+                Objects.equals(getClosed(), order.getClosed()) &&
+                Objects.equals(books, order.books);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCustomerName(), getOrderNumber(), getBookName(), getStatus(), getOrderCreatedDate(), getOrderClosedDate(), getOrderPrice(), getAll());
+        return Objects.hash(getCustomerName(), getId(), getStatus(), getCreated(), getClosed(), getPrice(), books);
     }
 }
