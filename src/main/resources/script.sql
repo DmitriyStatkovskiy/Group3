@@ -31,15 +31,31 @@ FROM product
 where hd > 300;
 
 /*task7*/
-SELECT p.model, price FROM product p, laptop l WHERE
-        p.model = l.model AND p.maker = 'AAA'
+SELECT p.model, price
+FROM product p,
+     laptop l
+WHERE p.model = l.model
+  AND p.maker = 'AAA'
 UNION
-SELECT p.model, price FROM product p, pc c WHERE
-        p.model = c.model AND p.maker = 'AAA'
+SELECT p.model, price
+FROM product p,
+     pc c
+WHERE p.model = c.model
+  AND p.maker = 'AAA'
 UNION
-SELECT p.model, price FROM product p, printer r WHERE
-        p.model = r.model AND p.maker = 'AAA';
+SELECT p.model, price
+FROM product p,
+     printer r
+WHERE p.model = r.model
+  AND p.maker = 'AAA';
+
 /*task8*/
+SELECT maker
+FROM product
+WHERE type = 'pc' EXCEPT
+SELECT DISTINCT maker
+FROM product
+Where type = 'laptop';
 /*task9*/
 /*task10*/
 /*task11*/
