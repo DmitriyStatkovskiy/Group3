@@ -12,7 +12,7 @@ import static StatkovskiyDmitriy.bookstore.model.enums.BookStatus.IN_STOCK;
 public class Book implements Serializable {
 
     private BookStatus status = IN_STOCK;
-    private LocalDate incomingDate = LocalDate.now();
+    private LocalDate received = LocalDate.now();
 
     private String id = UUID.randomUUID().toString();
     private String name;
@@ -31,9 +31,9 @@ public class Book implements Serializable {
         this.description = description;
     }
 
-    public Book(BookStatus status, LocalDate incomingDate, String id, String name, String edition, double price, String description) {
+    public Book(BookStatus status, LocalDate received, String id, String name, String edition, double price, String description) {
         this.status = status;
-        this.incomingDate = incomingDate;
+        this.received = received;
         this.id = id;
         this.name = name;
         this.edition = edition;
@@ -49,8 +49,8 @@ public class Book implements Serializable {
         this.description = description;
     }
 
-    public Book(LocalDate incomingDate, String name, String edition, double price, String description) {
-        this.incomingDate = incomingDate;
+    public Book(LocalDate received, String name, String edition, double price, String description) {
+        this.received = received;
         this.name = name;
         this.edition = edition;
         this.price = price;
@@ -73,12 +73,12 @@ public class Book implements Serializable {
         this.status = status;
     }
 
-    public LocalDate getIncomingDate() {
-        return incomingDate;
+    public LocalDate getReceived() {
+        return received;
     }
 
-    public void setIncomingDate(LocalDate incomingDate) {
-        this.incomingDate = incomingDate;
+    public void setReceived(LocalDate received) {
+        this.received = received;
     }
 
     public String getId() {
@@ -128,7 +128,7 @@ public class Book implements Serializable {
                 ", edition='" + edition + '\'' +
                 ", price=" + price +
                 ", description=" + description +
-                ", incoming date=" + incomingDate +
+                ", incoming date=" + received +
                 ", status='" + status + '\'' +
                 '}';
     }
@@ -141,7 +141,7 @@ public class Book implements Serializable {
         return Double.compare(book.getPrice(), getPrice()) == 0 &&
                 isOld() == book.isOld() &&
                 getStatus() == book.getStatus() &&
-                Objects.equals(getIncomingDate(), book.getIncomingDate()) &&
+                Objects.equals(getReceived(), book.getReceived()) &&
                 Objects.equals(getId(), book.getId()) &&
                 Objects.equals(getName(), book.getName()) &&
                 Objects.equals(getEdition(), book.getEdition()) &&
@@ -150,6 +150,6 @@ public class Book implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getStatus(), getIncomingDate(), getId(), getName(), getEdition(), getPrice(), getDescription(), isOld());
+        return Objects.hash(getStatus(), getReceived(), getId(), getName(), getEdition(), getPrice(), getDescription(), isOld());
     }
 }
