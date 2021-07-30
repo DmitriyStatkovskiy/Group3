@@ -7,10 +7,10 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Request implements Serializable {
+    private String id = UUID.randomUUID().toString();
     private RequestStatus status = RequestStatus.OPEN;
     private int quantity;
     private Book book;
-    private String id = UUID.randomUUID().toString();
 
     public Request() {
     }

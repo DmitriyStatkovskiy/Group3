@@ -10,8 +10,8 @@ import java.util.Objects;
 
 public class Order implements Serializable {
 
-    private String customerName;
     private String id;
+    private String customerName;
 
     private OrderStatus status = OrderStatus.NEW;
     private LocalDate created;

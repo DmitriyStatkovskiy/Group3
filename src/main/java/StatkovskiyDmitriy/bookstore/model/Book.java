@@ -11,10 +11,10 @@ import static StatkovskiyDmitriy.bookstore.model.enums.BookStatus.IN_STOCK;
 
 public class Book implements Serializable {
 
+    private String id = UUID.randomUUID().toString();
     private BookStatus status = IN_STOCK;
     private LocalDate received = LocalDate.now();
 
-    private String id = UUID.randomUUID().toString();
     private String name;
     private String edition;
     private double price;

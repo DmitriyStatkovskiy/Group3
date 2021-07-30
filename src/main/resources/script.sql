@@ -85,7 +85,7 @@ WHERE pc.model = product.model
   AND product.maker = 'AAA';
 
 /*task14*/
-SELECT speed, sum(price) / count(price) AS avg_price
+SELECT speed, AVG(price::numeric) /*sum(price) / count(price) AS avg_price*/
 FROM pc
 GROUP BY speed;
 
