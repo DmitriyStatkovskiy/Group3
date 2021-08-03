@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Component
 public class BookDao implements IBookDao, Serializable {
 
+
     private static BookDao instance;
     @Autowired
     private List<Book> books = new ArrayList<>();
